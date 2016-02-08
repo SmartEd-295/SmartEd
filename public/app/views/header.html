@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default navbar-fixed-top topnav"
+  role="navigation">
+  <div class="topnav">
+    <div class="navbar-header">
+      <a class="navbar-brand topnav"><img
+        style="height: inherit; margin-top: -15px; margin-left: -60px"
+        src="/app/images/paypalLogo.jpg"></a>
+    </div>
+
+    <div ng-show="isLoggedIn">
+      <div class="collapse navbar-collapse"
+        id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#/"><i
+              class="glyphicon glyphicon-home"></i><span ng-class="getClass('/')"> Accounts</span></a></li>
+          <li><a href="#/payment"><i
+              class="glyphicon glyphicon-briefcase"></i><span ng-class="getClass('/payment')"> Payments</span></a></li>
+          <li><a href=""><i
+              class="glyphicon glyphicon-envelope"></i><span ng-class="getClass('/document')"> Documentation</span></a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li style="margin-top: 15px; margin-right:5px; color:#33CCFF; text-transform: uppercase;">{{environment}}</li>
+          <li><a href=""><i
+              class="glyphicon glyphicon-user"></i><span ng-class="getClass('/profile')"> Profile</span></a></li>
+
+          <li>
+            <button type="button" style="margin-top: 6px; margin-right: 30px;"
+              class="btn btn-default" ng-click="logout()">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

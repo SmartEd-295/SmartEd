@@ -1,0 +1,32 @@
+{
+    
+
+    "middleware": {
+
+        "devtools": {
+            "enabled": true,
+            "priority": 35,
+            "module": {
+                "name": "kraken-devtools",
+                "arguments": [
+                    "path:./public",
+                    "path:./.build",
+                    {   
+                        "copier": {
+                            "module": "kraken-devtools/plugins/copier",
+                            "files": "**/*"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    
+     "dataConfig":{
+        "host": "ds059165.mongolab.com",
+        "port": "59165",
+        "database":"smarted",
+        "userName":"smarted",
+        "password": "smarted"
+      }
+}

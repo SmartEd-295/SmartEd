@@ -1,0 +1,65 @@
+<!DOCTYPE>
+<html ng-app="myApp">
+  <head>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
+    <link rel="stylesheet" href="app/css/styles.css">
+    <link rel="stylesheet" href="app/css/selectize.default.css">
+    <link rel="stylesheet" href="bower_components/angular-spinkit/build/angular-spinkit.min.css">
+    <link rel="stylesheet" href="bower_components/ng-prettyjson/dist/ng-prettyjson.min.css">
+    <link rel="stylesheet" href="app/css/spinner.css">
+    <title>SmartEd</title>
+  </head>
+
+  <body>
+
+    <div ng-view></div>
+
+    <!-- Declaration of default angular and bootsrap utilities-->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
+    <script src="bower_components/ng-table/dist/ng-table.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/angular-spinkit/build/angular-spinkit.min.js"></script>
+    <script src="bower_components/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
+
+    <!-- Declaration of Main Application JS, which takes care of routes and redirection-->
+    <script src="app/app.js"></script>
+
+    <!-- Declaration of Controllers-->
+    <script src="app/controllers/headerController.js"></script>
+    <script src="app/controllers/registerController.js"></script>
+    <script src="app/controllers/loginController.js"></script>
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/accountController.js"></script>
+    <script src="app/controllers/dialogController.js"></script>
+    <script src="app/controllers/paymentController.js"></script>
+    <script src="app/controllers/payment/createPaymentController.js"></script>
+    <script src="app/controllers/payment/paymentDetailsController.js"></script>
+    <script src="app/controllers/payment/bankDetailsController.js"></script>
+
+    <!-- Declaration of Directives-->
+    <script src="app/directives/appDirective.js"></script>
+
+    <!-- Declaration of Sevices-->
+    <script src="app/services/userService.js"></script>
+    <script src="app/services/flashService.js"></script>
+    <script src="app/services/accountService.js"></script>
+    <script src="app/services/alertService.js"></script>
+    <script src="app/services/paymentService.js"></script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close(false)" data-dismiss="modal"
+                aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edit Account Details</h4>
+      </div>
+      <form name="accountForm" role="form">
+        <div class="modal-body">
+
+          <div class="col-md-10 col-md-offset-1">
+            <div
+              ng-class="{in:alert, 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}"
+              ng-if="flash">
+              <div ng-show="flash.showDetailsButton">
+                <button type="button" style="margin-right: 15px;" class="primary" ng-click="showDetails()">Details
+                </button>
+                <button type="button" class="close" ng-click="closeAlert()">×</button>
+                {{flash.message}}
+              </div>
+
+              <div ng-show="!flash.showDetailsButton">
+                <button type="button" class="close" ng-click="closeAlert()">×</button>
+                {{flash.message}}
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="accountId">Account Id</label>
+            <input type="text" name="accountId" id="accountId" readonly="readonly" class="form-control"
+                   ng-model="account.account_id"/>
+          </div>
+
+          <div class="form-group">
+            <label for="paymentMethod">Payment Method</label>
+            <input type="text" name="paymentMethod" id="paymentMethod" readonly="readonly" class="form-control"
+                   ng-model="account.payment_method"/>
+          </div>
+
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="settlement">Settlement Currency</label>
+              <input type="text" name="settlement" id="settlement" readonly="readonly" class="form-control"
+                     ng-model="account.settlement_currency"/>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error': accountForm.presentment.$error.required }">
+            <label for="presentment">Presentment Currencies</label>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <select name="currencySelector" id="currencySelector" class="form-control" ng-model="currencySelector"
+                        ng-options="item.code as item.display for item in presentmentCurrencyList"
+                        ng-change="selectCurrency()">
+                  <option value="">Presentment Currency</option>
+                </select>
+              </div>
+            </div>
+            <textarea class="form-control" rows="1" id="presentment" name="presentment"
+                      ng-model="presentment_currencies" readonly="readonly" required></textarea>
+            <span ng-show="accountForm.presentment.$dirty && accountForm.presentment.$error.required"
+                  class="help-block">Presentment Currency is required input.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="notificationUrl">Notification URL</label>
+            <textarea class="form-control" rows="1" id="notificationUrl" readonly="readonly" name="notificationUrl"
+                      ng-model="account.notification_urls"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="merchantId">Partner Merchant Account Id</label>
+              <input type="text" name="merchantId" id="merchantId" class="form-control" readonly="readonly"
+                     ng-model="account.merchant_account_id"/>
+            </div>
+          </div>
+
+          <hr/>
+          <div><b>Payment Provider Details:</b></div>
+          <br/>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="paymentProviderId">Merchant Id</label>
+              <input type="text" name="paymentProviderId" id="paymentProviderId" class="form-control"
+                     readonly="readonly" ng-model="account.merchant_id"/>
+            </div>
+          </div>
+
+          <div><b>Additional Config:</b></div>
+          <br/>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="subId">Sub Account Id</label>
+              <input type="text" name="subId" id="subId" class="form-control" readonly="readonly"
+                     ng-model="account.sub_account_id"/>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <div class="form-actions">
+            <button type="button" ng-disabled="accountForm.$invalid" ng-click="updateAccount()" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
