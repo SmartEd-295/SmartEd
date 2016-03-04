@@ -13,16 +13,29 @@
             }
         }
 
-        
-        ,"expressView": {
-            "priority": 100,
-            "enabled": true,
+
+    ,"appsec": {
             "module": {
-                "name": "engine-munger/lib/expressView"
+                "arguments": [
+                    {
+                        "xframe": false,
+                        "p3p": false,
+                        "csp": false
+                    }
+                ]
             }
         }
-        
 
-        
+    ,"csrf": {
+            "enabled": false,
+            "priority": 111,
+            "route": "*/*",
+            "module": {
+                "name": "lusca",
+                "method": "csrf",
+                "arguments": [ {} ]
+            }
+        }
+
     }
 }

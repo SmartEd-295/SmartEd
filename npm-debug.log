@@ -1,60 +1,253 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'bower' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'nodemailer', '-save' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.40
-4 verbose cache add [ 'bower', null ]
-5 verbose cache add name=undefined spec="bower" args=["bower",null]
-6 verbose parsed url { protocol: null,
-6 verbose parsed url   slashes: null,
-6 verbose parsed url   auth: null,
-6 verbose parsed url   host: null,
-6 verbose parsed url   port: null,
-6 verbose parsed url   hostname: null,
-6 verbose parsed url   hash: null,
-6 verbose parsed url   search: null,
-6 verbose parsed url   query: null,
-6 verbose parsed url   pathname: 'bower',
-6 verbose parsed url   path: 'bower',
-6 verbose parsed url   href: 'bower' }
-7 silly lockFile 206e3ce5-bower bower
-8 verbose lock bower /Users/knbarve/.npm/206e3ce5-bower.lock
-9 silly lockFile 206e3ce5-bower bower
-10 silly lockFile 206e3ce5-bower bower
-11 verbose addNamed [ 'bower', '' ]
-12 verbose addNamed [ null, '*' ]
-13 silly lockFile 1240aab1-bower bower@
-14 verbose lock bower@ /Users/knbarve/.npm/1240aab1-bower.lock
-15 silly addNameRange { name: 'bower', range: '*', hasData: false }
-16 verbose request where is /bower
-17 verbose request registry http://npm.paypal.com/
-18 verbose request id bc58ee6bc972f73a
-19 verbose url raw /bower
-20 verbose url resolving [ 'http://npm.paypal.com/', './bower' ]
-21 verbose url resolved http://npm.paypal.com/bower
-22 verbose request where is http://npm.paypal.com/bower
-23 info trying registry request attempt 1 at 14:35:29
-24 http GET http://npm.paypal.com/bower
-25 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
-26 info trying registry request attempt 2 at 14:35:39
-27 http GET http://npm.paypal.com/bower
+4 warn package.json smarted@0.1.0 No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'nodemailer', null ]
+7 verbose cache add name=undefined spec="nodemailer" args=["nodemailer",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'nodemailer',
+8 verbose parsed url   path: 'nodemailer',
+8 verbose parsed url   href: 'nodemailer' }
+9 silly lockFile 2e159dcb-nodemailer nodemailer
+10 verbose lock nodemailer /Users/knbarve/.npm/2e159dcb-nodemailer.lock
+11 silly lockFile 2e159dcb-nodemailer nodemailer
+12 silly lockFile 2e159dcb-nodemailer nodemailer
+13 verbose addNamed [ 'nodemailer', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile a9602281-nodemailer nodemailer@
+16 verbose lock nodemailer@ /Users/knbarve/.npm/a9602281-nodemailer.lock
+17 silly addNameRange { name: 'nodemailer', range: '*', hasData: false }
+18 verbose request where is /nodemailer
+19 verbose request registry http://npm.paypal.com/
+20 verbose request id 0c7916481eddeb84
+21 verbose url raw /nodemailer
+22 verbose url resolving [ 'http://npm.paypal.com/', './nodemailer' ]
+23 verbose url resolved http://npm.paypal.com/nodemailer
+24 verbose request where is http://npm.paypal.com/nodemailer
+25 info trying registry request attempt 1 at 15:12:22
+26 verbose etag "1NXTRY7LPP5EXGI6T1ATE5KK5"
+27 http GET http://npm.paypal.com/nodemailer
 28 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
-29 info trying registry request attempt 3 at 14:36:39
-30 http GET http://npm.paypal.com/bower
-31 silly lockFile 1240aab1-bower bower@
-32 silly lockFile 1240aab1-bower bower@
-33 error network getaddrinfo ENOTFOUND
-33 error network This is most likely not a problem with npm itself
-33 error network and is related to network connectivity.
-33 error network In most cases you are behind a proxy or have bad network settings.
-33 error network
-33 error network If you are behind a proxy, please make sure that the
-33 error network 'proxy' config is set properly.  See: 'npm help config'
-34 error System Darwin 14.5.0
-35 error command "node" "/usr/local/bin/npm" "install" "-g" "bower"
-36 error cwd /Users/knbarve/Desktop/MyFiles/SmartEd
-37 error node -v v0.10.40
-38 error npm -v 1.4.28
-39 error syscall getaddrinfo
-40 error code ENOTFOUND
-41 error errno ENOTFOUND
-42 verbose exit [ 1, true ]
+29 info trying registry request attempt 2 at 15:12:32
+30 verbose etag "1NXTRY7LPP5EXGI6T1ATE5KK5"
+31 http GET http://npm.paypal.com/nodemailer
+32 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+33 info trying registry request attempt 3 at 15:13:32
+34 verbose etag "1NXTRY7LPP5EXGI6T1ATE5KK5"
+35 http GET http://npm.paypal.com/nodemailer
+36 silly registry.get cb [ 304, undefined ]
+37 verbose etag http://npm.paypal.com/nodemailer from cache
+38 silly addNameRange number 2 { name: 'nodemailer', range: '*', hasData: true }
+39 silly addNameRange versions [ 'nodemailer',
+39 silly addNameRange   [ '0.1.1',
+39 silly addNameRange     '0.1.2',
+39 silly addNameRange     '0.1.3',
+39 silly addNameRange     '0.1.4',
+39 silly addNameRange     '0.1.5',
+39 silly addNameRange     '0.1.6',
+39 silly addNameRange     '0.1.7',
+39 silly addNameRange     '0.1.8',
+39 silly addNameRange     '0.1.9',
+39 silly addNameRange     '0.1.10',
+39 silly addNameRange     '0.1.11',
+39 silly addNameRange     '0.1.12',
+39 silly addNameRange     '0.1.13',
+39 silly addNameRange     '0.1.14',
+39 silly addNameRange     '0.1.15',
+39 silly addNameRange     '0.1.16',
+39 silly addNameRange     '0.1.17',
+39 silly addNameRange     '0.1.18',
+39 silly addNameRange     '0.1.19',
+39 silly addNameRange     '0.1.20',
+39 silly addNameRange     '0.1.21',
+39 silly addNameRange     '0.1.22',
+39 silly addNameRange     '0.1.23',
+39 silly addNameRange     '0.1.24',
+39 silly addNameRange     '0.2.0',
+39 silly addNameRange     '0.2.1',
+39 silly addNameRange     '0.2.2',
+39 silly addNameRange     '0.2.3',
+39 silly addNameRange     '0.2.4',
+39 silly addNameRange     '0.3.0',
+39 silly addNameRange     '0.3.1',
+39 silly addNameRange     '0.3.2',
+39 silly addNameRange     '0.3.3',
+39 silly addNameRange     '0.3.4',
+39 silly addNameRange     '0.3.5',
+39 silly addNameRange     '0.3.6',
+39 silly addNameRange     '0.3.7',
+39 silly addNameRange     '0.3.8',
+39 silly addNameRange     '0.3.9',
+39 silly addNameRange     '0.3.10',
+39 silly addNameRange     '0.3.11',
+39 silly addNameRange     '0.3.12',
+39 silly addNameRange     '0.3.13',
+39 silly addNameRange     '0.3.14',
+39 silly addNameRange     '0.3.15',
+39 silly addNameRange     '0.3.16',
+39 silly addNameRange     '0.3.17',
+39 silly addNameRange     '0.3.18',
+39 silly addNameRange     '0.3.19',
+39 silly addNameRange     '0.3.20',
+39 silly addNameRange     '0.3.21',
+39 silly addNameRange     '0.3.22',
+39 silly addNameRange     '0.3.23',
+39 silly addNameRange     '0.3.24',
+39 silly addNameRange     '0.3.25',
+39 silly addNameRange     '0.3.26',
+39 silly addNameRange     '0.3.27',
+39 silly addNameRange     '0.3.28',
+39 silly addNameRange     '0.3.29',
+39 silly addNameRange     '0.3.30',
+39 silly addNameRange     '0.3.31',
+39 silly addNameRange     '0.3.32',
+39 silly addNameRange     '0.3.33',
+39 silly addNameRange     '0.3.34',
+39 silly addNameRange     '0.3.35',
+39 silly addNameRange     '0.3.37',
+39 silly addNameRange     '0.3.38',
+39 silly addNameRange     '0.3.39',
+39 silly addNameRange     '0.3.40',
+39 silly addNameRange     '0.3.41',
+39 silly addNameRange     '0.3.42',
+39 silly addNameRange     '0.3.43',
+39 silly addNameRange     '0.3.44',
+39 silly addNameRange     '0.4.0',
+39 silly addNameRange     '0.4.1',
+39 silly addNameRange     '0.4.2',
+39 silly addNameRange     '0.4.3',
+39 silly addNameRange     '0.4.4',
+39 silly addNameRange     '0.5.0',
+39 silly addNameRange     '0.5.1',
+39 silly addNameRange     '0.5.2',
+39 silly addNameRange     '0.5.3',
+39 silly addNameRange     '0.5.4',
+39 silly addNameRange     '0.5.5',
+39 silly addNameRange     '0.5.6',
+39 silly addNameRange     '0.5.7',
+39 silly addNameRange     '0.5.8',
+39 silly addNameRange     '0.5.9',
+39 silly addNameRange     '0.5.10',
+39 silly addNameRange     '0.5.11',
+39 silly addNameRange     '0.5.12',
+39 silly addNameRange     '0.5.13',
+39 silly addNameRange     '0.5.14',
+39 silly addNameRange     '0.5.15',
+39 silly addNameRange     '0.6.0',
+39 silly addNameRange     '0.6.1',
+39 silly addNameRange     '0.6.2',
+39 silly addNameRange     '0.6.3',
+39 silly addNameRange     '0.6.4',
+39 silly addNameRange     '0.6.5',
+39 silly addNameRange     '0.7.0',
+39 silly addNameRange     '0.7.1',
+39 silly addNameRange     '1.0.0-rc.1',
+39 silly addNameRange     '1.0.0',
+39 silly addNameRange     '1.0.1',
+39 silly addNameRange     '1.0.2',
+39 silly addNameRange     '1.0.3',
+39 silly addNameRange     '1.0.4',
+39 silly addNameRange     '1.1.0',
+39 silly addNameRange     '1.1.1',
+39 silly addNameRange     '1.1.2',
+39 silly addNameRange     '1.2.0',
+39 silly addNameRange     '1.2.1',
+39 silly addNameRange     '1.2.2',
+39 silly addNameRange     '1.3.0',
+39 silly addNameRange     '1.3.1',
+39 silly addNameRange     '1.3.2',
+39 silly addNameRange     '1.3.3',
+39 silly addNameRange     '1.3.4',
+39 silly addNameRange     '1.4.0',
+39 silly addNameRange     '1.5.0',
+39 silly addNameRange     '1.6.0',
+39 silly addNameRange     '1.7.0',
+39 silly addNameRange     '1.8.0',
+39 silly addNameRange     '1.9.0',
+39 silly addNameRange     '1.10.0',
+39 silly addNameRange     '1.11.0',
+39 silly addNameRange     '2.0.0-beta.0',
+39 silly addNameRange     '2.0.0-beta.1',
+39 silly addNameRange     '2.0.0-beta.2',
+39 silly addNameRange     '2.0.0-rc.1',
+39 silly addNameRange     '2.0.0-rc.2',
+39 silly addNameRange     '2.0.0',
+39 silly addNameRange     '2.1.0-beta.0',
+39 silly addNameRange     '2.1.0-beta.1',
+39 silly addNameRange     '2.1.0-beta.2',
+39 silly addNameRange     '2.1.0-beta.3',
+39 silly addNameRange     '2.1.0-rc.0',
+39 silly addNameRange     '2.1.0-rc.1',
+39 silly addNameRange     '2.1.0',
+39 silly addNameRange     '2.2.0-beta.0',
+39 silly addNameRange     '2.2.0-beta.1',
+39 silly addNameRange     '2.2.0-beta.2',
+39 silly addNameRange     '2.2.0-beta.3',
+39 silly addNameRange     '2.2.0-beta.4',
+39 silly addNameRange     '2.2.0-beta.5',
+39 silly addNameRange     '2.2.0-beta.6',
+39 silly addNameRange     '2.2.0-rc.7',
+39 silly addNameRange     '2.2.0-rc.8',
+39 silly addNameRange     '2.2.0-rc.9',
+39 silly addNameRange     '2.2.0-rc.10',
+39 silly addNameRange     '2.2.0-rc.11',
+39 silly addNameRange     '2.2.0',
+39 silly addNameRange     '2.2.1',
+39 silly addNameRange     '2.3.0-beta.0',
+39 silly addNameRange     '2.3.0-beta.1',
+39 silly addNameRange     '2.3.0-rc.2',
+39 silly addNameRange     '2.3.0-rc.3' ] ]
+40 verbose addNamed [ 'nodemailer', '2.2.1' ]
+41 verbose addNamed [ '2.2.1', '2.2.1' ]
+42 silly lockFile fb2030fa-nodemailer-2-2-1 nodemailer@2.2.1
+43 verbose lock nodemailer@2.2.1 /Users/knbarve/.npm/fb2030fa-nodemailer-2-2-1.lock
+44 silly lockFile b7a636c2--nodemailer-nodemailer-2-2-1-tgz http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+45 verbose lock http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz /Users/knbarve/.npm/b7a636c2--nodemailer-nodemailer-2-2-1-tgz.lock
+46 verbose addRemoteTarball [ 'http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz',
+46 verbose addRemoteTarball   'e62585081bcf1a0141b6ad449a5dd4aa85e726d5' ]
+47 info retry fetch attempt 1 at 15:13:32
+48 verbose fetch to= /var/folders/g8/8lpyrl094r76465hvwgsb8683944jq/T/npm-38066-4pc0K8iO/npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+49 http GET http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+50 error fetch failed http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+51 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+52 info retry fetch attempt 2 at 15:13:42
+53 verbose fetch to= /var/folders/g8/8lpyrl094r76465hvwgsb8683944jq/T/npm-38066-4pc0K8iO/npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+54 http GET http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+55 error fetch failed http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+56 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+57 info retry fetch attempt 3 at 15:14:42
+58 verbose fetch to= /var/folders/g8/8lpyrl094r76465hvwgsb8683944jq/T/npm-38066-4pc0K8iO/npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+59 http GET http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+60 error fetch failed http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+61 silly lockFile b7a636c2--nodemailer-nodemailer-2-2-1-tgz http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+62 silly lockFile b7a636c2--nodemailer-nodemailer-2-2-1-tgz http://npm.paypal.com/nodemailer/-/nodemailer-2.2.1.tgz
+63 silly lockFile fb2030fa-nodemailer-2-2-1 nodemailer@2.2.1
+64 silly lockFile fb2030fa-nodemailer-2-2-1 nodemailer@2.2.1
+65 silly lockFile a9602281-nodemailer nodemailer@
+66 silly lockFile a9602281-nodemailer nodemailer@
+67 error network getaddrinfo ENOTFOUND
+67 error network This is most likely not a problem with npm itself
+67 error network and is related to network connectivity.
+67 error network In most cases you are behind a proxy or have bad network settings.
+67 error network
+67 error network If you are behind a proxy, please make sure that the
+67 error network 'proxy' config is set properly.  See: 'npm help config'
+68 error System Darwin 14.5.0
+69 error command "node" "/usr/local/bin/npm" "install" "nodemailer" "-save"
+70 error cwd /Users/knbarve/Desktop/MyFiles/SmartEd
+71 error node -v v0.10.40
+72 error npm -v 1.4.28
+73 error syscall getaddrinfo
+74 error code ENOTFOUND
+75 error errno ENOTFOUND
+76 verbose exit [ 1, true ]

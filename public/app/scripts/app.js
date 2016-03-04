@@ -1,27 +1,21 @@
+(function () {
 'use strict';
-/**
- * @ngdoc overview
- * @name sbAdminApp
- * @description
- * # sbAdminApp
- *
- * Main module of the application.
- */
-angular
-  .module('sbAdminApp', [
+
+ var app =  angular.module('sbAdminApp', [
     'oc.lazyLoad',
     'ui.router',
     'ui.bootstrap',
-    'angular-loading-bar',
-  ])
-  .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
-    
+    'angular-loading-bar', 'ngCookies'
+  ]);
+
+  app.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
+
     $ocLazyLoadProvider.config({
       debug:false,
       events:true,
     });
 
-    $urlRouterProvider.otherwise('/dashboard/home');
+    $urlRouterProvider.otherwise('/login');
 
     $stateProvider
       .state('dashboard', {
@@ -102,9 +96,37 @@ angular
         url:'/blank'
     })
       .state('login',{
-        templateUrl:'views/pages/login.html',
-        url:'/login'
+        controller: 'LoginCtrl',
+        templateUrl:'views/userManagement/login.html',
+        url:'/login',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+                'scripts/controllers/userManagement/loginController.js'
+              ]
+            })
+          }
+        }
     })
+
+      .state('signUp',{
+        controller: 'RegisterCtrl',
+        templateUrl:'views/userManagement/register.html',
+        url:'/signUp',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              'scripts/controllers/userManagement/registerController.js'
+              ]
+            })
+          }
+        }
+    })
+
       .state('dashboard.chart',{
         templateUrl:'views/chart.html',
         url:'/chart',
@@ -155,4 +177,35 @@ angular
    })
   }]);
 
-    
+  //  Keep User Logged in on different navigations.
+  app.run(['$rootScope', '$location', '$cookieStore', '$interval', function run($rootScope, $location, $cookieStore, $interval) {
+    $rootScope.globals = $cookieStore.get('globals') || {};
+
+    var lastDigestRun = Date.now();
+    var idleCheck = $interval(function() {
+      var now = Date.now();
+      if (now - lastDigestRun > 20*60*1000) {
+        $rootScope.globals = {};
+        $cookieStore.remove('globals');
+      }
+    }, 60*1000);
+
+    $rootScope.$on('$routeChangeStart', function() {
+      lastDigestRun = Date.now();
+    });
+
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+//          Redirect to login page if not logged in and trying to access a restricted page
+      var restrictedPage = $.inArray($location.path(), ['/login', '/signUp']) === -1;
+      var loggedIn = $rootScope.globals.currentUser;
+      if (restrictedPage && !loggedIn) {
+        $location.path('/login');
+      }
+    });
+
+
+  }]);
+
+})();
+
+
