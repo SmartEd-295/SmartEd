@@ -31,7 +31,7 @@ myApp.controller('LoginCtrl',['$scope', '$location', 'UserService' , 'AlertServi
     $scope.login = function() {
       var loggedUser = $scope.user;
       UserService.validateUser(loggedUser).success( function (data, status) {
-        UserService.setCredentials(data._id, data.email, data.environment);
+        UserService.setCredentials(data._id, data.email, data.role);
         $location.path('/dashboard');
       }).error( function (data, status) {
         AlertService.Error($scope, data);

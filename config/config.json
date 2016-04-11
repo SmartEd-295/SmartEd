@@ -1,20 +1,22 @@
 {
     "middleware": {
-
         "static": {
             "module": {
-                "arguments": [ "path:./.build" ]
+                "arguments": [
+                    "path:./.build"
+                ]
             }
-        }
-
-        ,"router": {
+        },
+        "router": {
             "module": {
-                "arguments": [{ "directory": "path:./controllers" }]
+                "arguments": [
+                    {
+                        "directory": "path:./controllers"
+                    }
+                ]
             }
-        }
-
-
-    ,"appsec": {
+        },
+        "appsec": {
             "module": {
                 "arguments": [
                     {
@@ -24,18 +26,19 @@
                     }
                 ]
             }
-        }
-
-    ,"csrf": {
+        },
+        "csrf": {
             "enabled": false,
             "priority": 111,
             "route": "*/*",
             "module": {
                 "name": "lusca",
                 "method": "csrf",
-                "arguments": [ {} ]
+                "arguments": [
+                    {}
+                ]
             }
         }
-
-    }
+    },
+    "verificationUrl": "http://localhost:3000/user/verifyUser?email="
 }

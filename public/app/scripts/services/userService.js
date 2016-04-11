@@ -13,12 +13,12 @@ myApp.service('UserService', ['$http','$cookieStore', '$rootScope', function($ht
 	  return $http.post('/user/signin',user);
   }
 
-  this.setCredentials = function(userId, email, env) {
+  this.setCredentials = function(userId, email, role) {
 	   $rootScope.globals = {
           currentUser: {
-              userName: userId,
+              userId: userId,
               userMail: email,
-              environment: env
+              role: role
           }
       };
      $cookieStore.put('globals', $rootScope.globals);

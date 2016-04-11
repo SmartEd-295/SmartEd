@@ -14,11 +14,12 @@ myApp.controller('RegisterCtrl',['$scope', '$location', 'UserService' , 'AlertSe
 
     $scope.register = function() {
       console.log($scope.user);
-    	  	UserService.createUser($scope.user).success( function (data, status) {
-    		    AlertService.SuccessGlobal(data);
-    			  $location.path('/login');
-    	  	}).error( function (data, status) {
-    		  	AlertService.Error($scope, data);
-    	  	});
+
+      UserService.createUser($scope.user).success(function(data, status) {
+        AlertService.SuccessGlobal(data);
+        $location.path('/login');
+      }).error( function (data, status) {
+        AlertService.Error($scope, data);
+      });
     	}
   }]);

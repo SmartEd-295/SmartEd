@@ -4,10 +4,12 @@ var mongoose = require('mongoose');
 
 module.exports = function UserModel() {
 	 var userSchema = mongoose.Schema({
-	 	environment : String,
+	 	role : String,
 	 	firstName : String,
 	 	lastName: String,
 	 	email : String,
+        studentId: Number,
+        isVerified: Boolean,
 	 	password: String
 	 },{
 	 	collection: 'userDetails'
