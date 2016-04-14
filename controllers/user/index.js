@@ -1,10 +1,12 @@
 'use strict';
 
 
-var UserModel = require('../../models/user');
-var bcrypt = require('bcrypt');
-var constant = require('../../lib/constants');
-var utility = require('../../lib/utility');
+var UserModel = require('../../models/user'),
+    bcrypt = require('bcrypt'),
+    constant = require('../../lib/constants'),
+    utility = require('../../lib/utility'),
+    sessionFilter = require('../../lib/sessionFilter'),
+    canvasConnectivity = require('../../lib/canvasAPI');
 
 module.exports = function (router) {
 
@@ -69,6 +71,11 @@ module.exports = function (router) {
                 res.status(401).send(constant.MESSAGE_MAP.get("USER_NOT_EXIST"));
             } else {
                 if (bcrypt.compareSync(password, doc.password) && doc.isVerified) {
+                    req.session.smartedVisitId = new Buffer(userEmail).toString('base64');
+                    req.session.userEmail = userEmail;
+
+                    canvasConnectivity.getStudentDetails(constant.MESSAGE_MAP.get("GET_COURSE_DETAILS"), req.session.userEmail);
+
                     res.json(doc);
                 } else {
                     res.status(401).send(constant.MESSAGE_MAP.get("LOGIN_FAILED"));

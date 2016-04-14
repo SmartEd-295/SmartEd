@@ -18,7 +18,8 @@
     "kraken-js": "^1.0.1",
     "localizr": "^0.1.6",
     "mongoose": "*",
-    "nodemailer": "^2.3.0"
+    "nodemailer": "^2.3.0",
+    "request": "^2.71.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

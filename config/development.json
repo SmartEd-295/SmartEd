@@ -19,9 +19,9 @@
         }
     },
     "dataConfig": {
-        "host": "ds059165.mongolab.com",
-        "port": "59165",
-        "database": "smarted",
+        "host": "ds023570.mlab.com",
+        "port": "23570",
+        "database": "smartedlearninganalytics",
         "userName": "smarted",
         "password": "smarted"
     }
