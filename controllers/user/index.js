@@ -74,7 +74,7 @@ module.exports = function (router) {
                     req.session.smartedVisitId = new Buffer(userEmail).toString('base64');
                     req.session.userEmail = userEmail;
 
-                    canvasConnectivity.getStudentDetails(constant.MESSAGE_MAP.get("GET_COURSE_DETAILS"), req.session.userEmail);
+                    canvasConnectivity.getCanvasDetails(constant.MESSAGE_MAP.get("GET_COURSE_DETAILS"), req.session.userEmail);
 
                     res.json(doc);
                 } else {
