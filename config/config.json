@@ -40,5 +40,6 @@
             }
         }
     },
-    "verificationUrl": "http://localhost:3000/user/verifyUser?email="
+    "verificationUrl": "http://localhost:3000/user/verifyUser?email=",
+    "applicationUrl": "http://localhost:3000/"
 }

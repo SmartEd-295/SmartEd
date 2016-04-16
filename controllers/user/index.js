@@ -1,12 +1,11 @@
 'use strict';
 
-
 var UserModel = require('../../models/user'),
-    bcrypt = require('bcrypt'),
     constant = require('../../lib/constants'),
     utility = require('../../lib/utility'),
     sessionFilter = require('../../lib/sessionFilter'),
-    canvasConnectivity = require('../../lib/canvasAPI');
+    canvasConnectivity = require('../../lib/canvasAPI'),
+    config = require('../../config/config.json');
 
 module.exports = function (router) {
 
@@ -22,7 +21,7 @@ module.exports = function (router) {
         var password = req.body.password;
         var studentId = req.body.studentId;
 
-        var hash = bcrypt.hashSync(password, 10);
+        var hash = new Buffer(password).toString('base64');
 
         if (email.indexOf(constant.MESSAGE_MAP.get("DOMAIN")) > -1) {
             userExist(email, function (error, doc) {
@@ -32,7 +31,7 @@ module.exports = function (router) {
                         firstName: firstName,
                         lastName: lastName,
                         email: email,
-                        studentId: studentId,
+                        sjsuId: studentId,
                         isVerified: false,
                         password: hash
                     }, function (err, doc) {
@@ -70,7 +69,8 @@ module.exports = function (router) {
             if (error || doc == null) {
                 res.status(401).send(constant.MESSAGE_MAP.get("USER_NOT_EXIST"));
             } else {
-                if (bcrypt.compareSync(password, doc.password) && doc.isVerified) {
+                var encryptedPassword = new Buffer(password).toString('base64');
+                if (encryptedPassword == doc.password && doc.isVerified) {
                     req.session.smartedVisitId = new Buffer(userEmail).toString('base64');
                     req.session.userEmail = userEmail;
 
@@ -85,15 +85,55 @@ module.exports = function (router) {
 
     });
 
+    router.post('/registerProfessor', function (req, res) {
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var email = req.body.email;
+        var password = req.body.password;
+        var professorId = req.body.professorId;
+        var courseName = req.body.courseName;
+        var courseId = req.body.courseId;
+
+        var hash = new Buffer(password).toString('base64');
+
+        if (email.indexOf(constant.MESSAGE_MAP.get("DOMAIN")) > -1) {
+            userExist(email, function (error, doc) {
+                if (error || doc == null) {
+                    User.create({
+                        role: constant.MESSAGE_MAP.get("STUDENT_ROLE"),
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        sjsuId: professorId,
+                        isVerified: false,
+                        password: hash
+                    }, function (err, doc) {
+                        if (err) {
+                            console.log(err);
+                            res.status(400).send(constant.MESSAGE_MAP.get("REGISTER_FAILED"));
+                        }
+                        else {
+                            res.status(200).send(constant.MESSAGE_MAP.get("REGISTER_SUCCESS"));
+                            utility.welcomeMail(email);
+                        }
+                    });
+                }
+            });
+        } else {
+            res.status(400).send(constant.MESSAGE_MAP.get("REGISTER_INVALID_EMAIL"));
+        }
+    });
+
     router.get('/verifyUser', function (req, res) {
         var emailAddress = req.query.email;
+        var applicationUrl = config.applicationUrl;
         User.update({email: emailAddress}, {$set: {isVerified: true}}, function (err, doc) {
             if (err || doc == null) {
                 res.send("<center><br><br><h3>Some error occured in verification, please try again.</h3></center>");
             }
             else {
                 res.send("<center><br><br><br><h3>Email address verified.</h3>" +
-                    "<br><a href='http://localhost:3000/'>Login!</a>" +
+                    "<br><a href='" + applicationUrl + "'>Login!</a>" +
                     "</center>");
             }
         });

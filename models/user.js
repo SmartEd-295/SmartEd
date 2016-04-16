@@ -8,10 +8,10 @@ module.exports = function UserModel() {
 	 	firstName : String,
 	 	lastName: String,
 	 	email : String,
-        studentId: Number,
+        sjsuId: Number,
         isVerified: Boolean,
 	 	password: String
-	 },{
+     },{
 	 	collection: 'userDetails'
 	 });
 
