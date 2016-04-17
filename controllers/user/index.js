@@ -1,6 +1,7 @@
 'use strict';
 
 var UserModel = require('../../models/user'),
+    ProfessorModel = require('../../models/professorDetails'),
     constant = require('../../lib/constants'),
     utility = require('../../lib/utility'),
     sessionFilter = require('../../lib/sessionFilter'),
@@ -10,6 +11,7 @@ var UserModel = require('../../models/user'),
 module.exports = function (router) {
 
     var User = new UserModel();
+    var ProfessorDetails = new ProfessorModel();
 
 
     /*	CREATE A NEW USER
@@ -41,7 +43,7 @@ module.exports = function (router) {
                         }
                         else {
                             res.status(200).send(constant.MESSAGE_MAP.get("REGISTER_SUCCESS"));
-                            utility.welcomeMail(email);
+                            utility.welcomeStudentMail(email);
                         }
                     });
                 } else {
@@ -49,7 +51,7 @@ module.exports = function (router) {
                         res.status(400).send(constant.MESSAGE_MAP.get("USER_REGISTERED"));
                     } else {
                         res.status(400).send(constant.MESSAGE_MAP.get("USER_NEEDS_VERIFICATION"));
-                        utility.welcomeMail(email);
+                        utility.welcomeStudentMail(email);
                     }
                 }
             });
@@ -74,7 +76,7 @@ module.exports = function (router) {
                     req.session.smartedVisitId = new Buffer(userEmail).toString('base64');
                     req.session.userEmail = userEmail;
 
-                    canvasConnectivity.getCanvasDetails(constant.MESSAGE_MAP.get("GET_COURSE_DETAILS"), req.session.userEmail);
+                    //canvasConnectivity.getCanvasDetails(constant.MESSAGE_MAP.get("GET_COURSE_DETAILS"), req.session.userEmail);
 
                     res.json(doc);
                 } else {
@@ -82,7 +84,6 @@ module.exports = function (router) {
                 }
             }
         });
-
     });
 
     router.post('/registerProfessor', function (req, res) {
@@ -91,8 +92,6 @@ module.exports = function (router) {
         var email = req.body.email;
         var password = req.body.password;
         var professorId = req.body.professorId;
-        var courseName = req.body.courseName;
-        var courseId = req.body.courseId;
 
         var hash = new Buffer(password).toString('base64');
 
@@ -100,7 +99,7 @@ module.exports = function (router) {
             userExist(email, function (error, doc) {
                 if (error || doc == null) {
                     User.create({
-                        role: constant.MESSAGE_MAP.get("STUDENT_ROLE"),
+                        role: constant.MESSAGE_MAP.get("PROFESSOR_ROLE"),
                         firstName: firstName,
                         lastName: lastName,
                         email: email,
@@ -110,19 +109,43 @@ module.exports = function (router) {
                     }, function (err, doc) {
                         if (err) {
                             console.log(err);
-                            res.status(400).send(constant.MESSAGE_MAP.get("REGISTER_FAILED"));
+                            res.status(400).send(constant.MESSAGE_MAP.get("PROFESSOR_REGISTER_FAILED"));
                         }
                         else {
-                            res.status(200).send(constant.MESSAGE_MAP.get("REGISTER_SUCCESS"));
-                            utility.welcomeMail(email);
+                            addSubjectsForProfessor(req, res);
                         }
                     });
+                } else {
+                    res.status(400).send(constant.MESSAGE_MAP.get("PROFESSOR_REGISTERED"));
                 }
             });
         } else {
             res.status(400).send(constant.MESSAGE_MAP.get("REGISTER_INVALID_EMAIL"));
         }
     });
+
+    var addSubjectsForProfessor = function (req, res) {
+        var email = req.body.email;
+        var courseName = req.body.courseName;
+        var courseId = req.body.courseId;
+        var password = req.body.password;
+        ProfessorDetails.create({
+            email: email,
+            classData: [{
+                id: courseId,
+                name: courseName
+            }]
+        }, function (err, doc) {
+            if (err) {
+                console.log(err);
+                res.status(400).send(constant.MESSAGE_MAP.get("PROFESSOR_REGISTER_FAILED"));
+            }
+            else {
+                res.status(200).send(constant.MESSAGE_MAP.get("PROFESSOR_REGISTER_SUCCESS"));
+                utility.welcomeProfessorMail(email, password);
+            }
+        });
+    }
 
     router.get('/verifyUser', function (req, res) {
         var emailAddress = req.query.email;
