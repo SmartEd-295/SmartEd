@@ -8,6 +8,7 @@ module.exports = function jshint(grunt) {
     // Options
     return {
         files: [
+            'config/*.js',
             'controllers/**/*.js',
             'lib/**/*.js',
             'models/**/*.js'
