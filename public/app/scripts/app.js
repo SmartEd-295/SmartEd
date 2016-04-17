@@ -15,12 +15,12 @@
       events:true,
     });
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/home');
 
     $stateProvider
       .state('dashboard', {
         url:'/dashboard',
-        templateUrl: 'views/dashboard/main.html',
+        templateUrl: 'views/dashboard/home.html',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){
                 return $ocLazyLoad.load(
@@ -30,7 +30,12 @@
                     'scripts/directives/header/header.js',
                     'scripts/directives/header/header-notification/header-notification.js',
                     'scripts/directives/sidebar/sidebar.js',
-                    'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
+                    'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
+                    'scripts/directives/chat/chat.js',
+                    'scripts/directives/dashboard/stats/stats.js',
+                    'js/classie.js',
+                    'js/cbpAnimatedHeader.js',
+                    'js/agency.js'
                     ]
                 }),
                 $ocLazyLoad.load(
@@ -68,25 +73,6 @@
             }
         }
     })
-      .state('dashboard.home',{
-        url:'/home',
-        controller: 'MainCtrl',
-        templateUrl:'views/dashboard/home.html',
-        resolve: {
-          loadMyFiles:function($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name:'sbAdminApp',
-              files:[
-              'scripts/controllers/main.js',
-              'scripts/directives/timeline/timeline.js',
-              'scripts/directives/notifications/notifications.js',
-              'scripts/directives/chat/chat.js',
-              'scripts/directives/dashboard/stats/stats.js'
-              ]
-            })
-          }
-        }
-      })
       .state('dashboard.form',{
         templateUrl:'views/form.html',
         url:'/form'
@@ -175,6 +161,11 @@
        templateUrl:'views/ui-elements/grid.html',
        url:'/grid'
    })
+
+      .state('home',{
+        url:'/home',
+        templateUrl:'views/home.html'
+      })
   }]);
 
   //  Keep User Logged in on different navigations.
@@ -193,15 +184,17 @@
     $rootScope.$on('$routeChangeStart', function() {
       lastDigestRun = Date.now();
     });
+/*
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
 //          Redirect to login page if not logged in and trying to access a restricted page
       var restrictedPage = $.inArray($location.path(), ['/login', '/signUp']) === -1;
       var loggedIn = $rootScope.globals.currentUser;
       if (restrictedPage && !loggedIn) {
-        $location.path('/login');
+        $location.path('/home');
       }
     });
+*/
 
 
   }]);
