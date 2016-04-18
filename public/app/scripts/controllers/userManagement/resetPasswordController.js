@@ -1,6 +1,6 @@
 'use strict';
 
-var myApp = angular.module('sbAdminApp');
+var myApp = angular.module('smartedApp');
 
 myApp.controller('ResetCtrl', ['$scope', '$location', 'UserService', 'AlertService',
 

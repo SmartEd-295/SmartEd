@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('sbAdminApp',[]);
+var app = angular.module('smartedApp');
 
 app.directive("passwordVerify", function() {
    return {

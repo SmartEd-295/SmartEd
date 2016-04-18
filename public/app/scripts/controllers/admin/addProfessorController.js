@@ -2,17 +2,18 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('RegisterCtrl',['$scope', '$location', 'UserService' , 'AlertService',
+myApp.controller('AddProfessorCtrl',['$scope', '$location', 'UserService' , 'AlertService',
 
-    function($scope, $location, UserService, AlertService) {
+  function($scope, $location, UserService, AlertService) {
 
-      var closeAlerts = function(){
-    		AlertService.clearFlashMessage($scope);
-    	}
-    	$scope.closeAlert = closeAlerts;
-    	closeAlerts();
+    var closeAlerts = function(){
+      AlertService.clearFlashMessage($scope);
+    }
+    $scope.closeAlert = closeAlerts;
+    closeAlerts();
 
-    $scope.register = function() {
+
+    /*$scope.register = function() {
       console.log($scope.user);
 
       UserService.createUser($scope.user).success(function(data, status) {
@@ -21,5 +22,5 @@ myApp.controller('RegisterCtrl',['$scope', '$location', 'UserService' , 'AlertSe
       }).error( function (data, status) {
         AlertService.Error($scope, data);
       });
-    	}
+    }*/
   }]);

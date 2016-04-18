@@ -1,6 +1,6 @@
 'use strict';
 
-var myApp = angular.module('sbAdminApp');
+var myApp = angular.module('smartedApp');
 
 myApp.service('UserService', ['$http','$cookieStore', '$rootScope', function($http, $cookieStore, $rootScope) {
 

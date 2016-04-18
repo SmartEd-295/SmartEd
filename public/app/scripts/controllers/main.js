@@ -1,11 +1,11 @@
 'use strict';
 /**
  * @ngdoc function
- * @name sbAdminApp.controller:MainCtrl
+ * @name smartedApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the sbAdminApp
+ * Controller of the smartedApp
  */
-angular.module('sbAdminApp')
+angular.module('smartedApp')
   .controller('MainCtrl', function($scope,$position) {
   });

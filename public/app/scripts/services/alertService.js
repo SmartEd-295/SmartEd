@@ -1,6 +1,6 @@
 'use strict';
 
-var myApp = angular.module('sbAdminApp');
+var myApp = angular.module('smartedApp');
 
 /*  IF YOU WANT TO PERSIST ALERTS BETWEEN DIFFERENT SCREENS(SCOPES) THEN MAKE
     USE OF GLOBAL FUNCTIONS. BUT MAKE SURE AT THAT TIME YOU ARE NOT CALLING CLEARALERTS()
