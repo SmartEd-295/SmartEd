@@ -8,7 +8,7 @@
  */
 
 angular.module('smartedApp')
-  .directive('sidebar',['$location',function() {
+  .directive('sidebar',['UserService',function(UserService) {
     return {
       templateUrl:'scripts/directives/sidebar/sidebar.html',
       restrict: 'E',
@@ -35,6 +35,17 @@ angular.module('smartedApp')
           else
             $scope.multiCollapseVar = y;
         };
+
+        if (UserService.getCurrentUserRole() == 'Professor'){
+          $scope.userRole = "Professor";
+        } else if (UserService.getCurrentUserRole() == 'Student') {
+          $scope.userRole = "Student";
+        } else if(UserService.getCurrentUserRole() == 'Admin') {
+          $scope.userRole = "Admin";
+        }
+
+
+        // replace with constants
       }
     }
   }]);

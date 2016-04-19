@@ -64,4 +64,14 @@ myApp.service('UserService', ['$http','$cookieStore', '$rootScope', function($ht
       return undefined;
   }
 
+
+  this.getCurrentUserRole = function(){
+    $rootScope.globals = $cookieStore.get('globals') || {};
+
+    if ($rootScope.globals.currentUser)
+      return $rootScope.globals.currentUser.role;
+    else
+      return undefined;
+  }
+
  }]);
