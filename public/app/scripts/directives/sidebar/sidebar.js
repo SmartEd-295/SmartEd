@@ -16,12 +16,12 @@ angular.module('smartedApp')
       scope: {
       },
       controller:function($scope){
-        $scope.selectedMenu = 'dashboard';
         $scope.collapseVar = 0;
         $scope.multiCollapseVar = 0;
 
-        $scope.check = function(x){
 
+
+        $scope.check = function(x){
           if(x==$scope.collapseVar)
             $scope.collapseVar = 0;
           else
