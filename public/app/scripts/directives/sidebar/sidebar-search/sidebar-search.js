@@ -16,7 +16,6 @@ angular.module('smartedApp')
       scope: {
       },
       controller:function($scope){
-        $scope.selectedMenu = 'home';
       }
     }
   });
