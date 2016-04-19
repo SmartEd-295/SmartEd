@@ -19,8 +19,6 @@ angular.module('smartedApp')
         $scope.collapseVar = 0;
         $scope.multiCollapseVar = 0;
 
-
-
         $scope.check = function(x){
           if(x==$scope.collapseVar)
             $scope.collapseVar = 0;
