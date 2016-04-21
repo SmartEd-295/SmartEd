@@ -155,6 +155,25 @@
         }
       })
 
+      /* Admin State */
+      .state('dashboard.admin', {
+        url:'',
+        templateUrl: 'views/dashboard/admin.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad){
+            return $ocLazyLoad.load(
+              {
+                name:'smartedApp',
+                files:[
+                  'scripts/directives/notifications/notifications.js',
+                  'scripts/directives/chat/chat.js',
+                  'scripts/directives/dashboard/stats/stats.js'
+                ]
+              })
+          }
+        }
+      })
+
     .state('course.students',{
       templateUrl:'views/form.html',
       url:'/form'

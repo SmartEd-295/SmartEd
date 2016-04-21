@@ -1,103 +1,124 @@
 <div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
+  <div class="sidebar-nav navbar-collapse">
 
 
-          <div ng-switch on="userRole">
-            <div ng-switch-when="Professor">
-                        <ul class="nav in" id="side-menu">
-                          <sidebar-search></sidebar-search>
-                          <li ui-sref-active="active">
-                            <a ui-sref="professorDashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                          </li>
+    <div ng-switch on="userRole">
 
-                          <li ng-class="{active: collapseVar==1}">{{dropDown}}
-                            <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
-                              class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level" collapse="collapseVar!=1">
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.students.all">Students</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.assignments.all">Assignments</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.quizzes.all">Quizzes</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.grades.upload">Grades</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.files.all"> Course Content</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.announcements.all"> Announcements</a>
-                              </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                          </li>
+      <div ng-switch-when="Professor">
+        <ul class="nav in" id="side-menu">
+          <sidebar-search></sidebar-search>
+          <li ui-sref-active="active">
+            <a ui-sref="professorDashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+          </li>
 
-                          <li ui-sref-active="active">
-                            <a ui-sref="professor.performance"><i class="fa fa-bar-chart-o fa-fw"></i> Performance<span></span></a>
-                          </li>
-                          <li ui-sref-active="active">
-                            <a ui-sref="professor.statistics"><i class="fa fa-table fa-fw"></i> Statistics</a>
-                          </li>
-                          <li ui-sref-active="active">
-                            <a ui-sref="professor.collaboration"><i class="fa fa-table fa-fw"></i> Collaboration</a>
-                          </li>
-                          <li><a href="http://www.vishwadesai.com/"><i class="fa fa-user fa-fw"></i>Personal Page</a></li>
-                        </ul>
-            </div>
-            <div ng-switch-when="Student">
-                          <ul class="nav in" id="side-menu">
-                          <sidebar-search></sidebar-search>
-                          <li ui-sref-active="active">
-                            <a ui-sref="student.dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                          </li>
+          <li ng-class="{active: collapseVar==1}">{{dropDown}}
+            <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
+              class="fa arrow"></span></a>
+            <ul class="nav nav-second-level" collapse="collapseVar!=1">
+              <li ui-sref-active="active">
+                <a ui-sref="course.students.all">Students</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.assignments.all">Assignments</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.quizzes.all">Quizzes</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.grades.upload">Grades</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.files.all"> Course Content</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.announcements.all"> Announcements</a>
+              </li>
+            </ul>
+          </li>
 
-                          <li ng-class="{active: collapseVar==1}">{{dropDown}}
-                            <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
-                              class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level" collapse="collapseVar!=1">
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.assignments.all">Assignments</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.quizzes.all">Quizzes</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.grades.upload">Grades</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.files.all"> Course Content</a>
-                              </li>
-                              <li ui-sref-active="active">
-                                <a ui-sref="course.announcements.all"> Announcements</a>
-                              </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="professor.performance"><i class="fa fa-bar-chart-o fa-fw"></i> Performance<span></span></a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="professor.statistics"><i class="fa fa-table fa-fw"></i> Statistics</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="professor.collaboration"><i class="fa fa-table fa-fw"></i> Collaboration</a>
+          </li>
+          <li><a href="http://www.vishwadesai.com/"><i class="fa fa-user fa-fw"></i>Personal Page</a></li>
+        </ul>
+      </div>
 
-                          <li ui-sref-active="active">
-                            <a ui-sref="student.performance"><i class="fa fa-bar-chart-o fa-fw"></i> Performance<span></span></a>
-                          </li>
-                          <li ui-sref-active="active">
-                            <a ui-sref="student.recommendations"><i class="fa fa-table fa-fw"></i> Recommendations</a>
-                          </li>
-                          <li ui-sref-active="active">
-                            <a ui-sref="student.collaboration"><i class="fa fa-table fa-fw"></i> Collaboration</a>
-                          </li>
-                          <li><a href="http://www.vishwadesai.com/"><i class="fa fa-user fa-fw"></i>Personal Page</a></li>
-                         </ul>
-            </div>
-            <div ng-switch-when="Admin">
-              <!-- code to render the regular video block -->
-            </div>
-          </div>
+
+
+      <div ng-switch-when="Student">
+        <ul class="nav in" id="side-menu">
+          <sidebar-search></sidebar-search>
+          <li ui-sref-active="active">
+            <a ui-sref="student.dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+          </li>
+
+          <li ng-class="{active: collapseVar==1}">{{dropDown}}
+            <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
+              class="fa arrow"></span></a>
+            <ul class="nav nav-second-level" collapse="collapseVar!=1">
+              <li ui-sref-active="active">
+                <a ui-sref="course.assignments.all">Assignments</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.quizzes.all">Quizzes</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.grades.upload">Grades</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.files.all"> Course Content</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="course.announcements.all"> Announcements</a>
+              </li>
+            </ul>
+          </li>
+
+          <li ui-sref-active="active">
+            <a ui-sref="student.performance"><i class="fa fa-bar-chart-o fa-fw"></i> Performance<span></span></a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="student.recommendations"><i class="fa fa-table fa-fw"></i> Recommendations</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="student.collaboration"><i class="fa fa-table fa-fw"></i> Collaboration</a>
+          </li>
+          <li><a href="http://www.vishwadesai.com/"><i class="fa fa-user fa-fw"></i>Personal Page</a></li>
+        </ul>
+      </div>
+
+
+
+      <div ng-switch-when="Admin">
+        <ul class="nav in" id="side-menu">
+          <sidebar-search></sidebar-search>
+
+          <li ui-sref-active="active">
+            <a ui-sref="professorDashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+          </li>
+
+
+          <li ui-sref-active="active">
+            <a ui-sref="professor.performance"><i class="fa fa-bar-chart-o fa-fw"></i>Add Professor</a>
+          </li>
+
+          <li><a href="http://www.vishwadesai.com/"><i class="fa fa-user fa-fw"></i>Personal Page</a></li>
+        </ul>
+      </div>
+
 
 
     </div>
-    <!-- /.sidebar-collapse -->
+
+
+  </div>
+  <!-- /.sidebar-collapse -->
 </div>
 
 

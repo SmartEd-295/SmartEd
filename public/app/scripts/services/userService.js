@@ -31,7 +31,7 @@ myApp.service('UserService', ['$http','$cookieStore', '$rootScope', function($ht
   }
 
   this.setCredentials = function(userId, email, role) {
-	   $rootScope.globals = {
+    $rootScope.globals = {
           currentUser: {
               userId: userId,
               userMail: email,
