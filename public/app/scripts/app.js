@@ -68,16 +68,17 @@
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: 'views/dashboard/wrapper.html',
-        controller: 'WrapperController',
+        controller: 'DashboardCtrl',
         resolve: {
           loadMyFiles:function($ocLazyLoad){
             return $ocLazyLoad.load(
               {
                 name: 'smartedApp',
                 files: [
-             	    'scripts/controllers/main.js',
+             	    'scripts/controllers/dashboard/dashboard.js',
+                  'scripts/controllers/dashboard/sidebarController.js',
                   'scripts/directives/header/header.js',
-                  'scripts/directives/header/header-notification/header-notification.js',
+                  'scripts/directives/header-notification/header-notification.js',
                   'scripts/directives/sidebar/sidebar.js',
                   'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
                 ]
