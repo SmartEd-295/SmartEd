@@ -14,27 +14,25 @@
           <li ng-class="{active: collapseVar==1}">{{dropDown}}
             <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
               class="fa arrow"></span></a>
-            <ul class="nav nav-second-level" collapse="collapseVar!=1">
+            <ul class="nav nav-second-level" collapse="false">
               <li ui-sref-active="active">
-                <a ui-sref="course.students.all">Students</a>
+                <a ui-sref="dashboard.courseCharts({courseid: 1111})" >CMPE 202</a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="course.assignments.all">Assignments</a>
+                <a ui-sref="dashboard.courseCharts({courseid: 2222})" >CMPE 272</a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="course.quizzes.all">Quizzes</a>
+                <a ui-sref="dashboard.courseCharts({courseid: 3333})" >CMPE 273</a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="course.grades.upload">Grades</a>
+                <a ui-sref="dashboard.courseCharts({courseid: 4444})" >CMPE 275</a>
               </li>
               <li ui-sref-active="active">
-                <a ui-sref="course.files.all"> Course Content</a>
-              </li>
-              <li ui-sref-active="active">
-                <a ui-sref="course.announcements.all"> Announcements</a>
+                <a ui-sref="dashboard.courseCharts({courseid: 5555})" >CMPE 239</a>
               </li>
             </ul>
           </li>
+
 
           <li ui-sref-active="active">
             <a ui-sref="professor.performance"><i class="fa fa-bar-chart-o fa-fw"></i> Performance<span></span></a>
@@ -55,7 +53,7 @@
         <ul class="nav in" id="side-menu">
           <sidebar-search></sidebar-search>
           <li ui-sref-active="active">
-            <a ui-sref="student.dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a ui-sref="studentDashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
 
           <li ng-class="{active: collapseVar==1}">{{dropDown}}

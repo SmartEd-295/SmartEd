@@ -220,9 +220,9 @@
         templateUrl: 'views/ui-elements/grid.html',
         url: '/grid'
       })
-      .state('dashboard.charts', {
-        templateUrl: 'views/chart.html',
-        url: '/chart',
+      .state('dashboard.courseCharts', {
+        templateUrl: 'views/courseChart.html',
+        url: '/course/:courseid',
         controller: 'ChartCtrl',
         resolve: {
           loadMyFile: function ($ocLazyLoad) {
@@ -233,9 +233,26 @@
                 'bower_components/angular-chart.js/dist/angular-chart.css'
               ]
             }),
+              $ocLazyLoad.load(
+                {
+                  name: 'highcharts',
+                  files: [
+                    "/bower_components/highcharts/highcharts.js"
+                  ]
+                }),
+              $ocLazyLoad.load(
+                {
+                  name: 'highcharts-3d',
+                  files: [
+                    "/bower_components/highcharts/highcharts-3d.js"
+                  ]
+                }),
               $ocLazyLoad.load({
                 name: 'smartedApp',
-                files: ['scripts/controllers/chartContoller.js']
+                files: [
+                  'scripts/controllers/chartController.js',
+                  'scripts/directives/charts/dashboardCharts.js'
+                ]
               })
           }
         }

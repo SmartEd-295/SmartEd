@@ -20,7 +20,8 @@
     "metisMenu": "~1.1.3",
     "angular-chart.js": "~0.5.2",
     "angular-modal-service": "^0.9.10",
-    "ng-notify": "^0.8.0"
+    "ng-notify": "^0.8.0",
+    "highcharts": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
