@@ -2,21 +2,16 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('AddProfessorCtrl',['$scope', '$location', 'UserService' , 'AlertService',
+myApp.controller('AddProfessorCtrl', ['$scope', 'AdminService', 'AlertService',
 
-  function($scope, $location, UserService, AlertService) {
+  function ($scope, AdminService, AlertService) {
 
-    AlertService.displayBoxMessage('This is just a simple test', 'addProfCotainer', 'success');
+    $scope.addProfessor = function () {
+      AdminService.addProfessor($scope.user).success(function (data, status) {
+        AlertService.displayBoxMessage(data, 'addProfContainer', 'success');
+      }).error(function (data, status) {
+        AlertService.displayBoxMessage(data, 'addProfContainer', 'error');
+      });
+    };
 
-    $scope.register = function() {
-      console.log("Hello");
-      AlertService.clearFlashMessage($scope);
-
-      /*UserService.createUser($scope.user).success(function(data, status) {
-        AlertService.SuccessGlobal(data);
-        $location.path('/login');
-      }).error( function (data, status) {
-        AlertService.Error($scope, data);
-      });*/
-    }
   }]);

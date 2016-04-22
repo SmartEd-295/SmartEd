@@ -3,61 +3,84 @@
 </div>
 
 
-<div id="addProfCotainer" class="col-md-8">
+<div id="addProfContainer" class="col-md-12">
 
-  <br><br>
+  <form name="addProfessorForm" ng-submit="addProfessor()" role="form">
+    <br><br>
+    <div class="row">
+      <div class="form-group col-md-6"
+           ng-class="{ 'has-error': addProfessorForm.firstName.$dirty && addProfessorForm.firstName.$error.required }">
+        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name"
+               ng-model="user.firstName" required/>
+        <span ng-show="addProfessorForm.firstName.$dirty && addProfessorForm.firstName.$error.required"
+              class="help-block">First Name is required input.</span>
+      </div>
 
-  <form name="registerForm" ng-submit="register()" role="form">
+      <div class="form-group col-md-6"
+           ng-class="{ 'has-error': addProfessorForm.lastName.$dirty && addProfessorForm.lastName.$error.required }">
+        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
+               ng-model="user.lastName" required/>
+        <span ng-show="addProfessorForm.lastName.$dirty && addProfessorForm.lastName.$error.required"
+              class="help-block">Last Name is required input.</span>
+      </div>
+    </div>
+
+    <br>
 
     <div class="form-group"
-         ng-class="{ 'has-error': registerForm.username.$dirty && registerForm.username.$error.required}">
-      <input type="email" name="username" id="username" class="form-control" placeholder="SJSU E-mail"
+         ng-class="{ 'has-error': addProfessorForm.email.$dirty && addProfessorForm.email.$error.required}">
+      <input type="email" name="email" id="email" class="form-control" placeholder="SJSU E-mail"
              ng-model="user.email" required/>
-      <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.required">E-mail is required input.</span>
-      <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.email">Please enter a valid email address.</span>
+      <span class="help-block" ng-show="addProfessorForm.email.$dirty && addProfessorForm.email.$error.required">E-mail is required input.</span>
+      <span class="help-block" ng-show="addProfessorForm.email.$dirty && addProfessorForm.email.$error.email">Please enter a valid email address.</span>
     </div>
 
-    <div class="form-group"
-         ng-class="{ 'has-error': registerForm.studentId.$dirty && registerForm.studentId.$error.required }">
-      <input type="number" name="studentId" id="studentId" class="form-control" placeholder="Student ID"
-             ng-model="user.studentId" required/>
-      <span ng-show="registerForm.studentId.$dirty && registerForm.studentId.$error.required" class="help-block">Student Id is required input.</span>
-    </div>
+    <br>
 
     <div class="form-group"
-         ng-class="{ 'has-error': registerForm.firstName.$dirty && registerForm.firstName.$error.required }">
-      <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name"
-             ng-model="user.firstName" required/>
-      <span ng-show="registerForm.firstName.$dirty && registerForm.firstName.$error.required" class="help-block">First Name is required input.</span>
+         ng-class="{ 'has-error': addProfessorForm.professorId.$dirty && addProfessorForm.professorId.$error.required }">
+      <input type="number" name="professorId" id="professorId" class="form-control" placeholder="Professor SJSU ID"
+             ng-model="user.professorId" required/>
+      <span ng-show="addProfessorForm.professorId.$dirty && addProfessorForm.professorId.$error.required"
+            class="help-block">Professor Id is required input.</span>
     </div>
 
-    <div class="form-group"
-         ng-class="{ 'has-error': registerForm.lastName.$dirty && registerForm.lastName.$error.required }">
-      <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
-             ng-model="user.lastName" required/>
-      <span ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
-    </div>
+    <br>
 
     <div class="form-group"
-         ng-class="{ 'has-error': registerForm.password.$dirty && registerForm.password.$error.required}">
+         ng-class="{ 'has-error': addProfessorForm.password.$dirty && addProfessorForm.password.$error.required}">
       <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="user.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
       <input type="password" name="password" id="password" class="form-control" placeholder="Password"
              ng-model="user.password" required/>
-      <span ng-show="registerForm.password.$dirty && registerForm.password.$error.required" class="help-block">Password is required input.</span>
-      <!--<span ng-show="registerForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+        <span ng-show="addProfessorForm.password.$dirty && addProfessorForm.password.$error.required"
+              class="help-block">Password is required input.</span>
+      <!--<span ng-show="addProfessorForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
     </div>
 
-    <div class="form-group"
-         ng-class="{ 'has-error': registerForm.rePassword.$dirty && registerForm.rePassword.$error.required}">
-      <input type="password" name="rePassword" id="rePassword" class="form-control" placeholder="Retype Password"
-             ng-model="user.rePassword" required password-verify="user.password"/>
-      <!--<span ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
-            <span class="help-block"
-                  ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.passwordVerify">Retype Password : password did not match.</span>
+    <br>
+
+    <div class="row">
+      <div class="form-group col-md-4"
+           ng-class="{ 'has-error': addProfessorForm.courseId.$dirty && addProfessorForm.courseId.$error.required }">
+        <input type="text" name="courseId" id="courseId" class="form-control" placeholder="Course Id (CMPE 239)"
+               ng-model="user.courseId" required/>
+        <span ng-show="addProfessorForm.courseId.$dirty && addProfessorForm.courseId.$error.required"
+              class="help-block">Course Id is required input.</span>
+      </div>
+
+      <div class="form-group col-md-8"
+           ng-class="{ 'has-error': addProfessorForm.courseName.$dirty && addProfessorForm.courseName.$error.required }">
+        <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course Name"
+               ng-model="user.courseName" required/>
+      <span ng-show="addProfessorForm.courseName.$dirty && addProfessorForm.courseName.$error.required"
+            class="help-block">Course Name is required input.</span>
+      </div>
     </div>
+
+    <br><br>
 
     <div class="form-actions">
-      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="submit" class="btn btn-primary col-md-offset-5">Add Professor</button>
     </div>
 
   </form>
