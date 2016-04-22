@@ -6,16 +6,6 @@ myApp.controller('LoginCtrl', ['$scope', '$location', 'UserService', 'AlertServi
 
   function ($scope, $location, UserService, AlertService) {
 
-    /*	WHEN SCREEN LOADS CLOSE ANY ALERTS AND USED WHEN CLOSE BUTTON
-     IN ALERT POPUP IS CLICKED
-     */
-
-    var closeAlerts = function () {
-      AlertService.clearFlashMessage($scope);
-    }
-    $scope.closeAlert = closeAlerts;
-    //closeAlerts();
-
     /*	WHENEVER LOGIN PAGE IS CALLED, CONTROLLER WILL BE INITIALIZED,
      AND THAT WILL CLEAR THE LOGGED IN USER FROM THE SCOPE OF THE
      APPLICATION.
@@ -34,14 +24,14 @@ myApp.controller('LoginCtrl', ['$scope', '$location', 'UserService', 'AlertServi
         UserService.setCredentials(data._id, data.email, data.role);
         $location.path('/dashboard');
       }).error(function (data, status) {
-        AlertService.Error($scope, data);
+        AlertService.displayMessage(data, 'error');
       });
     };
 
     $scope.forgotPassword = function () {
       var email = $scope.user != undefined ? $scope.user.email : undefined;
       if (undefined == email || "" == email) {
-        AlertService.Error($scope, "Please enter valid E-mail to retrieve your password.");
+        AlertService.displayMessage('Please enter valid E-mail to retrieve your password.', 'error');
       } else {
         UserService.forgotPassword(email).success(function (data, status) {
           var randomPass = data.randomPass;
@@ -49,13 +39,11 @@ myApp.controller('LoginCtrl', ['$scope', '$location', 'UserService', 'AlertServi
             userMail: email,
             tempPass: randomPass
           }
-
           UserService.setTempData(tempData);
-
-          AlertService.SuccessGlobal(data.message);
+          AlertService.displayMessage(data.message, 'success');
           $location.path('/reset');
         }).error(function (data, status) {
-          AlertService.Error($scope, data);
+          AlertService.displayMessage(data, 'error');
         });
       }
     }

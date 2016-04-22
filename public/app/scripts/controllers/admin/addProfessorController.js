@@ -6,21 +6,17 @@ myApp.controller('AddProfessorCtrl',['$scope', '$location', 'UserService' , 'Ale
 
   function($scope, $location, UserService, AlertService) {
 
-    var closeAlerts = function(){
+    AlertService.displayBoxMessage('This is just a simple test', 'addProfCotainer', 'success');
+
+    $scope.register = function() {
+      console.log("Hello");
       AlertService.clearFlashMessage($scope);
-    }
-    $scope.closeAlert = closeAlerts;
-    closeAlerts();
 
-
-    /*$scope.register = function() {
-      console.log($scope.user);
-
-      UserService.createUser($scope.user).success(function(data, status) {
+      /*UserService.createUser($scope.user).success(function(data, status) {
         AlertService.SuccessGlobal(data);
         $location.path('/login');
       }).error( function (data, status) {
         AlertService.Error($scope, data);
-      });
-    }*/
+      });*/
+    }
   }]);

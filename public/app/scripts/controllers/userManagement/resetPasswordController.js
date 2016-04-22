@@ -6,11 +6,6 @@ myApp.controller('ResetCtrl', ['$scope', '$location', 'UserService', 'AlertServi
 
   function ($scope, $location, UserService, AlertService) {
 
-    var closeAlerts = function () {
-      AlertService.clearFlashMessage($scope);
-    }
-    $scope.closeAlert = closeAlerts;
-
     $scope.resetPassword = function () {
       var tempData = UserService.getTempData();
       var oldPwd = tempData.tempPass;
@@ -21,13 +16,13 @@ myApp.controller('ResetCtrl', ['$scope', '$location', 'UserService', 'AlertServi
       if (oldPwd == enteredPwd) {
         $scope.user.email = userMail;
         UserService.updatePassword($scope.user).success(function (data, status) {
-          AlertService.SuccessGlobal(data);
+          AlertService.displayMessage(data, 'success');
           $location.path('/login');
         }).error(function (data, status) {
-          AlertService.Error($scope, data);
+          AlertService.displayMessage(data, 'error');
         });
       } else {
-        AlertService.Error($scope, "Your temporary password is wrong, please check your mail.");
+        AlertService.displayMessage('Your temporary password is wrong, please check your mail.', 'error');
       }
     }
 

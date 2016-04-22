@@ -3,122 +3,146 @@
 var myApp = angular.module('smartedApp');
 
 /*  IF YOU WANT TO PERSIST ALERTS BETWEEN DIFFERENT SCREENS(SCOPES) THEN MAKE
-    USE OF GLOBAL FUNCTIONS. BUT MAKE SURE AT THAT TIME YOU ARE NOT CALLING CLEARALERTS()
-    IN RESPECTIVE CONTROLLER.
-*/
+ USE OF GLOBAL FUNCTIONS. BUT MAKE SURE AT THAT TIME YOU ARE NOT CALLING CLEARALERTS()
+ IN RESPECTIVE CONTROLLER.
+ */
 
-myApp.service('AlertService', ['$rootScope', function($rootScope) {
-    var service = {};
+myApp.service('AlertService', ['$rootScope', 'ngNotify', function ($rootScope, ngNotify) {
+  var service = {};
 
-    service.Success = Success;
-    service.Error = Error;
-    service.clearFlashMessage = clearFlashMessage;
-    service.SuccessGlobal = SuccessGlobal;
-    service.ErrorGlobal = ErrorGlobal;
-    service.DetailedError = DetailedError;
-    service.DetailedErrorGlobal = DetailedErrorGlobal;
-    service.DisplayError = DisplayError;
+  service.Success = Success;
+  service.Error = Error;
+  service.clearFlashMessage = clearFlashMessage;
+  service.SuccessGlobal = SuccessGlobal;
+  service.ErrorGlobal = ErrorGlobal;
+  service.DetailedError = DetailedError;
+  service.DetailedErrorGlobal = DetailedErrorGlobal;
+  service.DisplayError = DisplayError;
 
-    return service;
 
-    function clearFlashMessage(scope) {
-        var flash = scope.flash;
-        if (flash) {
-            delete scope.flash;
-        }
 
-        var globalFlash = $rootScope.flash;
-        if (globalFlash) {
-           delete $rootScope.flash;
-        }
+  function clearFlashMessage(scope) {
+    var flash = scope.flash;
+    if (flash) {
+      delete scope.flash;
     }
 
-    function Success(scope, message) {
-        scope.flash = {
-            message: message,
-            type: 'success'
-        };
+    var globalFlash = $rootScope.flash;
+    if (globalFlash) {
+      delete $rootScope.flash;
     }
+  }
 
-    function Error(scope, message) {
-        scope.flash = {
-            message: message,
-            type: 'error'
-        };
+  function Success(scope, message) {
+    scope.flash = {
+      message: message,
+      type: 'success'
+    };
+  }
+
+  function Error(scope, message) {
+    scope.flash = {
+      message: message,
+      type: 'error'
+    };
+  }
+
+  function DetailedError(scope, data) {
+
+    var message = data.message;
+
+    if (data.isErrorData != undefined && data.isErrorData == true) {
+      var detailMessage = data.detailMessage;
+      scope.flash = {
+        showDetailsButton: true,
+        message: message,
+        detailMessage: detailMessage,
+        type: 'error'
+      };
+    } else {
+      scope.flash = {
+        showDetailsButton: false,
+        message: message,
+        type: 'error'
+      };
     }
+  }
 
-    function DetailedError(scope, data) {
+  function SuccessGlobal(message) {
+    $rootScope.flash = {
+      message: message,
+      type: 'success'
+    };
+  }
 
-        var message = data.message;
+  function ErrorGlobal(message) {
+    $rootScope.flash = {
+      message: message,
+      type: 'error'
+    };
+  }
 
-        if(data.isErrorData != undefined && data.isErrorData == true){
-          var detailMessage = data.detailMessage;
-          scope.flash = {
-              showDetailsButton : true,
-              message: message,
-              detailMessage : detailMessage,
-              type: 'error'
-          };
-        }else{
-          scope.flash = {
-              showDetailsButton : false,
-              message: message,
-              type: 'error'
-          };
-        }
+  function DetailedErrorGlobal(data) {
+
+    var message = data.message;
+
+    if (data.isErrorData != undefined && data.isErrorData == true) {
+      var detailMessage = data.detailMessage;
+      $rootScope.flash = {
+        showDetailsButton: true,
+        message: message,
+        detailMessage: detailMessage,
+        type: 'error'
+      };
+    } else {
+      $rootScope.flash = {
+        showDetailsButton: false,
+        message: message,
+        type: 'error'
+      };
     }
+  }
 
-    function SuccessGlobal(message) {
-       $rootScope.flash = {
-            message: message,
-            type: 'success'
-        };
-    }
-
-    function ErrorGlobal(message) {
-        $rootScope.flash = {
-            message: message,
-            type: 'error'
-        };
-    }
-
-    function DetailedErrorGlobal(data) {
-
-        var message = data.message;
-
-        if(data.isErrorData != undefined && data.isErrorData == true){
-          var detailMessage = data.detailMessage;
-          $rootScope.flash = {
-              showDetailsButton : true,
-              message: message,
-              detailMessage : detailMessage,
-              type: 'error'
-          };
-        }else{
-          $rootScope.flash = {
-              showDetailsButton : false,
-              message: message,
-              type: 'error'
-          };
-        }
-    }
-
-    function DisplayError(scope, ModalService){
-      var displayMessage = scope.flash.detailMessage;
-      ModalService.showModal({
-        templateUrl: "/app/views/dialogBox.html",
-        controller: "DialogController",
-        backdrop: 'static',
-        inputs: {
-          title: 'Error Details',
-          message : displayMessage,
-          buttonText: '',
-          mode: 'JSON_DISPLAY'
-        }
-      }).then(function(modal) {
-        modal.element.modal();
-        modal.close.then(function(result) {});
+  function DisplayError(scope, ModalService) {
+    var displayMessage = scope.flash.detailMessage;
+    ModalService.showModal({
+      templateUrl: "/app/views/dialogBox.html",
+      controller: "DialogController",
+      backdrop: 'static',
+      inputs: {
+        title: 'Error Details',
+        message: displayMessage,
+        buttonText: '',
+        mode: 'JSON_DISPLAY'
+      }
+    }).then(function (modal) {
+      modal.element.modal();
+      modal.close.then(function (result) {
       });
-    }
+    });
+  }
+
+  // Available types: success, info, warn, error, grimace
+  service.displayMessage = function (message, type) {
+    ngNotify.set(message, {
+      type: type
+    });
+  };
+
+  service.displayStickyMessage = function (message, type) {
+    ngNotify.set(message, {
+      type: type,
+      sticky: true
+    });
+  };
+
+  service.displayBoxMessage = function (message, containerId, type) {
+    ngNotify.set(message, {
+      type: type,
+      target: '#'+containerId
+    });
+  };
+
+  return service;
 
 }]);

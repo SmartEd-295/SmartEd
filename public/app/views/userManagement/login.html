@@ -7,18 +7,7 @@
   </div>
 </nav>
 
-<br><br><br>
-
-
-<div class="col-md-8 col-md-offset-2">
-  <div
-    ng-class="{in:alert, 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}"
-    ng-if="flash">
-    <button type="button" class="close" ng-click="closeAlert()">×</button>
-    {{flash.message}}
-  </div>
-</div>
-
+<br><br>
 
 <div class="row">
 
@@ -28,7 +17,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">Welcome to SmartEd </h3>
       </div>
-      <div class="panel-body">
+      <div id="mycontainer" class="panel-body">
         <form name="form" ng-submit="login()" role="form">
 
           <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required}">

@@ -7,16 +7,7 @@
   </div>
 </nav>
 
-<br><br><br>
-
-<div class="col-md-8 col-md-offset-2">
-  <div
-    ng-class="{in:alert, 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}"
-    ng-if="flash">
-    <button type="button" class="close" ng-click="closeAlert()">×</button>
-    {{flash.message}}
-  </div>
-</div>
+<br><br>
 
 <div class="row">
 
@@ -53,7 +44,7 @@
 
           <div class="form-group"
                ng-class="{ 'has-error': registerForm.lastName.$dirty && registerForm.lastName.$errord.required }">
-            <input type="text" name="lastName" id="Text1" class="form-control" placeholder="Last Name"
+            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
                    ng-model="user.lastName" required/>
             <span ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
           </div>

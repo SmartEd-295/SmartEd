@@ -1,144 +1,64 @@
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Create Account</h4>
-      </div>
-      <form name="accountForm" ng-submit="createAccount()" role="form">
-        <div class="modal-body">
-
-
-          <div class="col-md-10 col-md-offset-1">
-            <div
-              ng-class="{in:alert, 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error'}"
-              ng-if="flash">
-              <div ng-show="flash.showDetailsButton">
-                <button type="button" style="margin-right: 15px;" class="primary" ng-click="showDetails()">Details
-                </button>
-                <button type="button" class="close" ng-click="closeAlert()">×</button>
-                {{flash.message}}
-              </div>
-
-              <div ng-show="!flash.showDetailsButton">
-                <button type="button" class="close" ng-click="closeAlert()">×</button>
-                {{flash.message}}
-              </div>
-
-            </div>
-          </div>
-
-          <!--<div style="text-align: right;">
-            <button type="button" ng-click="fillData()" class="btn btn-primary">Fill Data</button>
-            <button type="button" ng-click="eraseData()" class="btn btn-info">Reset</button>
-          </div>-->
-
-          <div class="form-group"
-               ng-class="{ 'has-error': accountForm.paymentMethod.$dirty &&  accountForm.paymentMethod.$error.required}">
-            <label for="paymentMethod">Payment Method<span class="require-field">&nbsp;*</span></label>
-            <select name="paymentMethod" id="paymentMethod" class="form-control" ng-model="account.payment_method"
-                    ng-options="item as item for item in paymentMethodList"
-                    ng-change="loadCurrencies(account.payment_method)" required>
-              <option value="">Select Payment Method</option>
-              <option value="IDEAL">iDeal</option>
-            </select>
-            <span class="help-block"
-                  ng-show="accountForm.paymentMethod.$dirty && accountForm.paymentMethod.$error.required">Payment method is required.</span>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-md-6"
-                 ng-class="{ 'has-error': accountForm.settlement.$dirty && accountForm.settlement.$error.required}">
-              <label for="settlement">Settlement Currency<span class="require-field">&nbsp;*</span></label>
-              <select name="settlement" id="settlement" class="form-control" ng-model="account.settlement_currency"
-                      ng-options="item.code as item.display for item in settlementCurrencyList" required>
-                <option value="">Settlement Currency</option>
-              </select>
-              <span class="help-block"
-                    ng-show="accountForm.settlement.$dirty && accountForm.settlement.$error.required">Settlement Currency is required.</span>
-            </div>
-
-          </div>
-
-          <div class="form-group"
-               ng-class="{ 'has-error': accountForm.presentment.$dirty && accountForm.presentment.$error.required }">
-            <label for="presentment">Presentment Currencies<span class="require-field">&nbsp;*</span></label>
-
-            <div class="row">
-              <div class="form-group col-md-6">
-                <select name="currencySelector" id="currencySelector" class="form-control" ng-model="currencySelector"
-                        ng-options="item.code as item.display for item in presentmentCurrencyList"
-                        ng-change="selectCurrency()">
-                  <option value="">Presentment Currency</option>
-                </select>
-              </div>
-            </div>
-            <textarea class="form-control" rows="1" id="presentment" name="presentment"
-                      ng-model="presentment_currencies" readonly="readonly" required></textarea>
-            <span ng-show="accountForm.presentment.$dirty && accountForm.presentment.$error.required"
-                  class="help-block">Presentment Currency is required input.</span>
-          </div>
-
-          <div class="form-group"
-               ng-class="{ 'has-error': accountForm.notificationUrl.$dirty && accountForm.notificationUrl.$error.required }">
-            <label for="notificationUrl">Notification URL<span class="require-field">&nbsp;*</span></label>
-            <textarea class="form-control" rows="1" placeholder="Separate multiple urls with comma" id="notificationUrl"
-                      name="notificationUrl" ng-model="notification_urls" required></textarea>
-            <span ng-show="accountForm.notificationUrl.$dirty && accountForm.notificationUrl.$error.required"
-                  class="help-block">Notification Url is required input.</span>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-md-6"
-                 ng-class="{ 'has-error': accountForm.merchantId.$dirty && accountForm.merchantId.$error.required }">
-              <label for="merchantId">Partner Merchant Account Id<span class="require-field">&nbsp;*</span></label>
-              <input type="text" name="merchantId" id="merchantId" class="form-control"
-                     ng-model="account.merchant_account_id" required/>
-              <span ng-show="accountForm.merchantId.$dirty && accountForm.merchantId.$error.required"
-                    class="help-block">Merchant account id is required input.</span>
-            </div>
-
-          </div>
-
-          <hr/>
-          <div><b>Payment Provider Details:</b></div>
-          <br/>
-
-          <div class="row">
-            <div class="form-group col-md-6"
-                 ng-class="{ 'has-error': accountForm.paymentProviderId.$dirty && accountForm.paymentProviderId.$error.required }">
-              <label for="paymentProviderId">Merchant Id<span
-                class="require-field">&nbsp;*</span></label>
-              <input type="text" name="paymentProviderId" id="paymentProviderId" class="form-control"
-                     readonly="readonly" ng-model="account.merchant_id" required/>
-              <span ng-show="accountForm.paymentProviderId.$dirty && accountForm.paymentProviderId.$error.required"
-                    class="help-block">Payment provider merchant id is required input.</span>
-            </div>
-          </div>
-
-          <div><b>Additional Config:</b></div>
-          <br/>
-
-          <div class="row">
-            <div class="form-group col-md-6">
-              <label for="subId">Sub Account Id</label>
-              <input type="text" name="subId" id="subId" class="form-control" ng-model="account.sub_account_id"/>
-            </div>
-          </div>
-
-          <br>
-          <b><p><span class="require-field">&nbsp;*&nbsp;</span>denotes the required fields.</p></b>
-        </div>
-
-        <div class="modal-footer">
-          <div class="form-actions">
-            <button type="submit" ng-disabled="accountForm.$invalid " class="btn btn-primary">Create</button>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </div>
+<div class="col-lg-12">
+  <h3 class="page-header">Add Professor</h3>
 </div>
 
 
+<div id="addProfCotainer" class="col-md-8">
+
+  <br><br>
+
+  <form name="registerForm" ng-submit="register()" role="form">
+
+    <div class="form-group"
+         ng-class="{ 'has-error': registerForm.username.$dirty && registerForm.username.$error.required}">
+      <input type="email" name="username" id="username" class="form-control" placeholder="SJSU E-mail"
+             ng-model="user.email" required/>
+      <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.required">E-mail is required input.</span>
+      <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.email">Please enter a valid email address.</span>
+    </div>
+
+    <div class="form-group"
+         ng-class="{ 'has-error': registerForm.studentId.$dirty && registerForm.studentId.$error.required }">
+      <input type="number" name="studentId" id="studentId" class="form-control" placeholder="Student ID"
+             ng-model="user.studentId" required/>
+      <span ng-show="registerForm.studentId.$dirty && registerForm.studentId.$error.required" class="help-block">Student Id is required input.</span>
+    </div>
+
+    <div class="form-group"
+         ng-class="{ 'has-error': registerForm.firstName.$dirty && registerForm.firstName.$error.required }">
+      <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name"
+             ng-model="user.firstName" required/>
+      <span ng-show="registerForm.firstName.$dirty && registerForm.firstName.$error.required" class="help-block">First Name is required input.</span>
+    </div>
+
+    <div class="form-group"
+         ng-class="{ 'has-error': registerForm.lastName.$dirty && registerForm.lastName.$error.required }">
+      <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
+             ng-model="user.lastName" required/>
+      <span ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
+    </div>
+
+    <div class="form-group"
+         ng-class="{ 'has-error': registerForm.password.$dirty && registerForm.password.$error.required}">
+      <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="user.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
+      <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+             ng-model="user.password" required/>
+      <span ng-show="registerForm.password.$dirty && registerForm.password.$error.required" class="help-block">Password is required input.</span>
+      <!--<span ng-show="registerForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+    </div>
+
+    <div class="form-group"
+         ng-class="{ 'has-error': registerForm.rePassword.$dirty && registerForm.rePassword.$error.required}">
+      <input type="password" name="rePassword" id="rePassword" class="form-control" placeholder="Retype Password"
+             ng-model="user.rePassword" required password-verify="user.password"/>
+      <!--<span ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
+            <span class="help-block"
+                  ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.passwordVerify">Retype Password : password did not match.</span>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+
+  </form>
+</div>

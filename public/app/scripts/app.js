@@ -4,7 +4,7 @@
   var app = angular.module('smartedApp', [
     'oc.lazyLoad',
     'ui.router',
-    'ui.bootstrap',
+    'ui.bootstrap', 'ngNotify',
     'angular-loading-bar', 'ngCookies'
   ]);
 
@@ -18,9 +18,9 @@
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
-      .state('home',{
-        url:'/home',
-        templateUrl:'views/home.html'
+      .state('home', {
+        url: '/home',
+        templateUrl: 'views/home.html'
       })
       .state('login', {
         controller: 'LoginCtrl',
@@ -67,15 +67,15 @@
       /* Generic dashboard wrapper */
       .state('dashboard', {
         url: '/dashboard',
-        templateUrl: 'views/dashboard/wrapper.html',
+        templateUrl: 'views/dashboard/dashboard.html',
         controller: 'DashboardCtrl',
         resolve: {
-          loadMyFiles:function($ocLazyLoad){
+          loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load(
               {
                 name: 'smartedApp',
                 files: [
-             	    'scripts/controllers/dashboard/dashboard.js',
+                  'scripts/controllers/dashboard/dashboardController.js',
                   'scripts/controllers/dashboard/sidebarController.js',
                   'scripts/directives/header/header.js',
                   'scripts/directives/header-notification/header-notification.js',
@@ -120,32 +120,30 @@
       })
       /* Professor States  */
       .state('dashboard.professor', {
-        url:'',
         templateUrl: 'views/dashboard/professor.html',
         resolve: {
-            loadMyFiles:function($ocLazyLoad){
-                return $ocLazyLoad.load(
-                {
-                    name:'smartedApp',
-                    files:[
-                    'scripts/directives/notifications/notifications.js',
-                    'scripts/directives/chat/chat.js',
-                    'scripts/directives/dashboard/stats/stats.js'
-                    ]
-                })
-            }
-        }
-    })
-      /* Student States  */
-      .state('dashboard.student', {
-        url:'',
-        templateUrl: 'views/dashboard/student.html',
-        resolve: {
-          loadMyFiles:function($ocLazyLoad){
+          loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load(
               {
-                name:'smartedApp',
-                files:[
+                name: 'smartedApp',
+                files: [
+                  'scripts/directives/notifications/notifications.js',
+                  'scripts/directives/chat/chat.js',
+                  'scripts/directives/dashboard/stats/stats.js'
+                ]
+              })
+          }
+        }
+      })
+      /* Student States  */
+      .state('dashboard.student', {
+        templateUrl: 'views/dashboard/student.html',
+        resolve: {
+          loadMyFiles: function ($ocLazyLoad) {
+            return $ocLazyLoad.load(
+              {
+                name: 'smartedApp',
+                files: [
                   'scripts/directives/notifications/notifications.js',
                   'scripts/directives/chat/chat.js',
                   'scripts/directives/dashboard/stats/stats.js'
@@ -157,14 +155,13 @@
 
       /* Admin State */
       .state('dashboard.admin', {
-        url:'',
         templateUrl: 'views/dashboard/admin.html',
         resolve: {
-          loadMyFiles:function($ocLazyLoad){
+          loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load(
               {
-                name:'smartedApp',
-                files:[
+                name: 'smartedApp',
+                files: [
                   'scripts/directives/notifications/notifications.js',
                   'scripts/directives/chat/chat.js',
                   'scripts/directives/dashboard/stats/stats.js'
@@ -174,66 +171,79 @@
         }
       })
 
-    .state('course.students',{
-      templateUrl:'views/form.html',
-      url:'/form'
-    })
-    .state('course.assignments',{
-      templateUrl:'views/pages/blank.html',
-      url:'/blank'
-    })
-    .state('course.quizzes',{
-      templateUrl:'views/table.html',
-      url:'/table'
-    })
-    .state('course.grades.upload',{
-      templateUrl:'views/ui-elements/panels-wells.html',
-      url:'/panels-wells'
-    })
-    .state('course.files.all',{
-      templateUrl:'views/ui-elements/buttons.html',
-      url:'/buttons'
-    })
-    .state('course.announcements.all',{
-      templateUrl:'views/ui-elements/notifications.html',
-      url:'/notifications'
-    })
-    .state('professor.performance',{
-      templateUrl:'views/ui-elements/typography.html',
-      url:'/typography'
-    })
-    .state('professor.statistics',{
-      templateUrl:'views/ui-elements/icons.html',
-      url:'/icons'
-    })
-    .state('professor.collaboration',{
-      templateUrl:'views/ui-elements/grid.html',
-      url:'/grid'
-    })
-    .state('dashboard.charts',{
-      templateUrl:'views/chart.html',
-      url:'/chart',
-      controller:'ChartCtrl',
-      resolve: {
-        loadMyFile:function($ocLazyLoad) {
-          return $ocLazyLoad.load({
-            name:'chart.js',
-            files:[
-              'bower_components/angular-chart.js/dist/angular-chart.min.js',
-              'bower_components/angular-chart.js/dist/angular-chart.css'
-            ]
-          }),
-          $ocLazyLoad.load({
-              name:'smartedApp',
-              files:['scripts/controllers/chartContoller.js']
-          })
+      .state('dashboard.addProfessor', {
+        templateUrl: 'views/admin/addProfessor.html',
+        controller: 'AddProfessorCtrl',
+        resolve: {
+          loadMyFiles: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: ['scripts/controllers/admin/addProfessorController.js']
+            })
+          }
         }
-      }
-    })
+      })
+
+      .state('course.students', {
+        templateUrl: 'views/form.html',
+        url: '/form'
+      })
+      .state('course.assignments', {
+        templateUrl: 'views/pages/blank.html',
+        url: '/blank'
+      })
+      .state('course.quizzes', {
+        templateUrl: 'views/table.html',
+        url: '/table'
+      })
+      .state('course.grades.upload', {
+        templateUrl: 'views/ui-elements/panels-wells.html',
+        url: '/panels-wells'
+      })
+      .state('course.files.all', {
+        templateUrl: 'views/ui-elements/buttons.html',
+        url: '/buttons'
+      })
+      .state('course.announcements.all', {
+        templateUrl: 'views/ui-elements/notifications.html',
+        url: '/notifications'
+      })
+      .state('professor.performance', {
+        templateUrl: 'views/ui-elements/typography.html',
+        url: '/typography'
+      })
+      .state('professor.statistics', {
+        templateUrl: 'views/ui-elements/icons.html',
+        url: '/icons'
+      })
+      .state('professor.collaboration', {
+        templateUrl: 'views/ui-elements/grid.html',
+        url: '/grid'
+      })
+      .state('dashboard.charts', {
+        templateUrl: 'views/chart.html',
+        url: '/chart',
+        controller: 'ChartCtrl',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'chart.js',
+              files: [
+                'bower_components/angular-chart.js/dist/angular-chart.min.js',
+                'bower_components/angular-chart.js/dist/angular-chart.css'
+              ]
+            }),
+              $ocLazyLoad.load({
+                name: 'smartedApp',
+                files: ['scripts/controllers/chartContoller.js']
+              })
+          }
+        }
+      })
   }]);
 
   //  Keep User Logged in on different navigations.
-  app.run(['$rootScope', '$location', '$cookieStore', '$interval', function run($rootScope, $location, $cookieStore, $interval) {
+  app.run(['$rootScope', '$location', '$cookieStore', '$interval','ngNotify', function run($rootScope, $location, $cookieStore, $interval, ngNotify) {
     $rootScope.globals = $cookieStore.get('globals') || {};
 
     var lastDigestRun = Date.now();
@@ -260,6 +270,15 @@
      });
      */
 
+    ngNotify.config({
+      theme: 'pitchy',
+      position: 'top',
+      duration: 3000,
+      type: 'grimace',
+      sticky: false,
+      button: true,
+      html: false
+    });
 
   }]);
 

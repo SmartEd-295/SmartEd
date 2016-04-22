@@ -6,20 +6,14 @@ myApp.controller('RegisterCtrl',['$scope', '$location', 'UserService' , 'AlertSe
 
     function($scope, $location, UserService, AlertService) {
 
-      var closeAlerts = function(){
-    		AlertService.clearFlashMessage($scope);
-    	}
-    	$scope.closeAlert = closeAlerts;
-    	closeAlerts();
-
     $scope.register = function() {
       console.log($scope.user);
 
       UserService.createUser($scope.user).success(function(data, status) {
-        AlertService.SuccessGlobal(data);
+        AlertService.displayMessage(data, 'success');
         $location.path('/login');
       }).error( function (data, status) {
-        AlertService.Error($scope, data);
+        AlertService.displayMessage(data, 'error');
       });
     	}
   }]);
