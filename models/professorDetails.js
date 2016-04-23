@@ -4,12 +4,13 @@ var mongoose = require('mongoose');
 
 module.exports = function UserModel() {
     var professorSchema = mongoose.Schema({
-        email : String,
-        classData: [{
-            id: String,
-            name: String
-        }]
-    },{
+        email: String,
+        semesterTerm: String,
+        semesterYear: Number,
+        subjectId: String,
+        subjectName: String,
+        status: Boolean
+    }, {
         collection: 'professorDetails'
     });
 

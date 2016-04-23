@@ -1,0 +1,29 @@
+<div class="col-lg-12">
+  <h3 class="page-header">Professor Details</h3>
+</div>
+
+
+<div id="profDetailsContainer" class="col-md-12">
+  <table ng-table="tableParams" class="table ng-table-responsive table-hover">
+    <tr ng-repeat="details in $data">
+      <td data-title="'Email'" sortable="'email'"><a href="" ng-click="viewPayment(payment.payment_id)" class="account-detail">
+        {{details.email}}</a>
+      </td>
+      <td data-title="'Term'" sortable="'semesterTerm'">
+        {{details.semesterTerm}}
+      </td>
+      <td data-title="'Year'" sortable="'semesterYear'">
+        {{details.semesterYear}}
+      </td>
+      <td data-title="'Subject #'" sortable="'subjectId'">
+        {{details.subjectId}}
+      </td>
+      <td data-title="'Title'" sortable="'subjectName'">
+        {{details.subjectName}}
+      </td>
+      <td data-title="'Status'" sortable="'status'">
+        {{details.status}}
+      </td>
+    </tr>
+  </table>
+</div>

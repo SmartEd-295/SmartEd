@@ -135,10 +135,8 @@ module.exports = function (router) {
         var password = req.body.password;
         ProfessorDetails.create({
             email: email,
-            classData: [{
-                id: courseId,
-                name: courseName
-            }]
+            subjectId: courseId,
+            subjectName: courseName
         }, function (err, doc) {
             if (err) {
                 console.log(err);

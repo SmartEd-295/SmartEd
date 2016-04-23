@@ -184,6 +184,24 @@
         }
       })
 
+      .state('dashboard.professorDetails', {
+        templateUrl: 'views/admin/professorDetails.html',
+        controller: 'ProfessorDetailsCtrl',
+        resolve: {
+          loadMyFiles: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: ['scripts/controllers/admin/professorDetailsController.js']
+            }),
+              $ocLazyLoad.load(
+                {
+                  name: 'ngTable',
+                  files: ['bower_components/ng-table/dist/ng-table.min.js']
+                })
+          }
+        }
+      })
+
       .state('course.students', {
         templateUrl: 'views/form.html',
         url: '/form'
@@ -260,7 +278,7 @@
   }]);
 
   //  Keep User Logged in on different navigations.
-  app.run(['$rootScope', '$location', '$cookieStore', '$interval','ngNotify', function run($rootScope, $location, $cookieStore, $interval, ngNotify) {
+  app.run(['$rootScope', '$location', '$cookieStore', '$interval', 'ngNotify', function run($rootScope, $location, $cookieStore, $interval, ngNotify) {
     $rootScope.globals = $cookieStore.get('globals') || {};
 
     var lastDigestRun = Date.now();

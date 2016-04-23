@@ -21,7 +21,8 @@
     "angular-chart.js": "~0.5.2",
     "angular-modal-service": "^0.9.10",
     "ng-notify": "^0.8.0",
-    "highcharts": "*"
+    "highcharts": "*",
+    "ng-table": "^0.8.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
