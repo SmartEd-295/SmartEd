@@ -17,7 +17,7 @@ myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertServic
       }
     }, {
       total: data.length,
-      getData: function($defer, params) {
+      getData: function ($defer, params) {
 
         var orderedData = params.sorting ?
           $filter('orderBy')(data, params.orderBy()) :
@@ -33,12 +33,12 @@ myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertServic
       }
     });
 
-    var refresh = function() {
-      AdminService.getAllProfessors().success( function (result, status) {
+    var refresh = function () {
+      AdminService.getAllProfessors().success(function (result, status) {
         data = result;
         $scope.tableParams.reload();
-      }).error( function (data, status) {
-
+      }).error(function (data, status) {
+        AlertService.displayBoxMessage(data, 'profDetailsContainer', 'error');
       });
     };
     refresh();

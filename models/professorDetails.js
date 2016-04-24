@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-module.exports = function UserModel() {
+var professorDetails = function() {
     var professorSchema = mongoose.Schema({
         email: String,
         semesterTerm: String,
@@ -16,3 +16,5 @@ module.exports = function UserModel() {
 
     return mongoose.model('professorDetails', professorSchema);
 };
+
+module.exports = new professorDetails();

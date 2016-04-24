@@ -1,7 +1,7 @@
 'use strict';
 
-var UserModel = require('../../models/user'),
-    ProfessorModel = require('../../models/professorDetails'),
+var User = require('../../models/user'),
+    ProfessorDetails = require('../../models/professorDetails'),
     constant = require('../../lib/constants'),
     utility = require('../../lib/utility'),
     sessionFilter = require('../../lib/sessionFilter'),
@@ -11,10 +11,6 @@ var UserModel = require('../../models/user'),
     base64url = require('base64url');
 
 module.exports = function (router) {
-
-    var User = new UserModel();
-    var ProfessorDetails = new ProfessorModel();
-
 
     /*	CREATE A NEW USER
      */

@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-module.exports = function UserModel() {
+var userDetails = function() {
 	 var userSchema = mongoose.Schema({
 	 	role : String,
 	 	firstName : String,
@@ -17,3 +17,5 @@ module.exports = function UserModel() {
 
 	 return mongoose.model('user', userSchema);
 };
+
+module.exports = new userDetails();
