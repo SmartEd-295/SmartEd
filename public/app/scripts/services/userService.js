@@ -74,4 +74,5 @@ myApp.service('UserService', ['$http', '$cookieStore', '$rootScope', function ($
       return undefined;
   };
 
+
 }]);

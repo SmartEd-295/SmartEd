@@ -15,21 +15,10 @@
             <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
               class="fa arrow"></span></a>
             <ul class="nav nav-second-level" collapse="false">
-              <li ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseid: 1111})" >CMPE 202</a>
+              <li ng-repeat="course in courseList" ui-sref-active="active">
+                <a ui-sref="dashboard.courseCharts({courseid: course.courseid})" >{{course.name}}</a>
               </li>
-              <li ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseid: 2222})" >CMPE 272</a>
-              </li>
-              <li ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseid: 3333})" >CMPE 273</a>
-              </li>
-              <li ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseid: 4444})" >CMPE 275</a>
-              </li>
-              <li ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseid: 5555})" >CMPE 239</a>
-              </li>
+
             </ul>
           </li>
 

@@ -108,16 +108,13 @@ angular.module('smartedApp')
 
 
     $scope.hc3dPieData = [
-          ['Bananas', 8],
-          ['Kiwi', 3],
-          ['Mixed nuts', 1],
-          ['Oranges', 6],
-          ['Apples', 8],
-          ['Pears', 4],
-          ['Clementines', 4],
-          ['Reddish (bag)', 1],
-          ['Grapes (bunch)', 1]
-        ];
+      ['Excellent', 8],
+      ['Very Good', 3],
+      ['Good', 3],
+      ['Average', 1],
+      ['Fair', 6],
+      ['Bad', 8]
+    ];
 
     var courseid = $stateParams.courseid;
     console.log('---------------> '+courseid);

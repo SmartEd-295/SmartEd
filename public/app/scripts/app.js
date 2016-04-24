@@ -255,14 +255,14 @@
                 {
                   name: 'highcharts',
                   files: [
-                    "/bower_components/highcharts/highcharts.js"
+                    "bower_components/highcharts/highcharts.js"
                   ]
                 }),
               $ocLazyLoad.load(
                 {
                   name: 'highcharts-3d',
                   files: [
-                    "/bower_components/highcharts/highcharts-3d.js"
+                    "bower_components/highcharts/highcharts-3d.js"
                   ]
                 }),
               $ocLazyLoad.load({

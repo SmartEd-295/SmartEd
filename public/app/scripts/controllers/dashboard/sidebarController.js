@@ -2,9 +2,9 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('SidebarCtrl', ['$scope', 'UserService',
+myApp.controller('SidebarCtrl', ['$scope', 'UserService', 'CourseService',
 
-  function ($scope, UserService) {
+  function ($scope, UserService, CourseService) {
 
     var currentRole = UserService.getCurrentUserRole();
 
@@ -35,10 +35,17 @@ myApp.controller('SidebarCtrl', ['$scope', 'UserService',
         $scope.multiCollapseVar = y;
     };
 
-    $scope.addProfessor = function(){
-      console.log("Came in Controller");
-      alert("Add my loving professor, thanks!");
-    };
 
+  $scope.courseList = [
+    {courseid : "1111", name : "CMPE 202"},
+    {courseid : "5555", name : "CMPE 272"},
+    {courseid : "3333", name : "CMPE 273"},
+    {courseid : "8888", name : "CMPE 275"},
+    {courseid : "0000", name : "CMPE 239"}
+  ];
+
+
+    var myList = CourseService.getAllCourses();
+    console.log('---------------> ' + myList);
 
   }]);
