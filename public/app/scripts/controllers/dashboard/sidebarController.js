@@ -45,7 +45,12 @@ myApp.controller('SidebarCtrl', ['$scope', 'UserService', 'CourseService',
   ];
 
 
-    var myList = CourseService.getAllCourses();
-    console.log('---------------> ' + myList);
+    var myList = CourseService.getAllCourses().success(function (data, status) {
+        //console.log(' SUCCESS ---------------> ' + JSON.stringify(data) + " : " + status) ;
+        $scope.courseList = data;
+    }).error(function (data, status) {
+        console.log(' ERROR ---------------> ' + data + " : ") ;
+    });
+
 
   }]);

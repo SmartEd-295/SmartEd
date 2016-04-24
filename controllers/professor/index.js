@@ -7,7 +7,22 @@ var User = require('../../models/user'),
 
 module.exports = function (router) {
 
-    router.get('/getProfessorCourseDetails', function (req, res) {
+    router.get('/getProfessorCourseDetails/:professorId', function (req, res) {
+        var profId = req.params.professorId;
+        console.log("in getprofessorcoursedetails function -----------> " + profId);
+        ProfessorDetails.find({email: profId}, function (err, docs) {
+            console.log(docs.length + " : " + err );
+            if(!err){
+
+                res.json(docs);
+
+            }else{
+                res.status(400).send(constant.MESSAGE_MAP.get('GET_SINGLE_PROF_COURSES_FAILED'));
+            }
+        });
+    });
+
+    router.get('/getProfessorCourseDetails/', function (req, res) {
         ProfessorDetails.find({}, function (err, docs) {
             if(!err){
                 res.json(docs);

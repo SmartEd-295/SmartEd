@@ -16,7 +16,7 @@
               class="fa arrow"></span></a>
             <ul class="nav nav-second-level" collapse="false">
               <li ng-repeat="course in courseList" ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseid: course.courseid})" >{{course.name}}</a>
+                <a ui-sref="dashboard.courseCharts({courseid: course.courseId})" >{{course.courseId}}</a>
               </li>
 
             </ul>

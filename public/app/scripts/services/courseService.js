@@ -6,8 +6,10 @@ myApp.service('CourseService', ['$http', 'UserService', 'CourseContentService', 
 
   this.getAllCourses = function () {
     console.log("in CourseService getallcourses ");
-    var userId =  UserService.getCurrentUser();
-    return $http.get('/courses/'+ userId  + '/getAllCourses');
+    //var userId =  UserService.getCurrentUser();
+    var userMail = UserService.getCurrentUser().userMail;
+    return $http.get('/professor/getProfessorCourseDetails/'+ userMail);
+    //return $http.get('/courses/'+ userId  + '/getAllCourses');
   };
 
   this.getCourseDetails = function (courseId) {
