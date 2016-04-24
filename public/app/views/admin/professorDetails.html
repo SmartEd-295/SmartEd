@@ -1,6 +1,6 @@
 <div class="col-lg-12">
   <h3 class="page-header">Professor Details</h3>
-  <button>Add</button>
+  <button id="assignCourse" class="btn btn-info" ng-click= "assignCourses()" >Assign Course</button>
 </div>
 
 
@@ -19,8 +19,9 @@
       <td data-title="'Course #'" sortable="'courseId'">
         {{details.courseId}}
       </td>
-      <td data-title="'Status'" sortable="'status'">
-        {{details.status}}
+      <td data-title="'Status'" >
+          <button class="btn btn-danger" ng-click="updateStatus(details.email, 'DEACTIVATE')" ng-show="details.status">Deactivate</button>
+          <button class="btn btn-primary" ng-click="updateStatus(details.email, 'ACTIVATE')" ng-show="!details.status">Activate</button>
       </td>
     </tr>
   </table>

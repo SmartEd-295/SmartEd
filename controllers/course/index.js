@@ -20,7 +20,7 @@ module.exports = function (router) {
                         'courseName': result.name,
                         'description': result.description,
                         'content': result.content,
-                        'displayName': result._id+' '+result.courseName
+                        'displayName': result._id+' '+result.name
                     };
                     courseList.push(course);
                 }

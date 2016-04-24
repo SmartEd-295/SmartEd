@@ -2,9 +2,9 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertService', 'ngTableParams', '$filter',
+myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertService', 'ngTableParams', '$filter','$uibModal',
 
-  function ($scope, AdminService, AlertService, ngTableParams, $filter) {
+  function ($scope, AdminService, AlertService, ngTableParams, $filter, $uibModal) {
 
     var data = [];
 
@@ -33,7 +33,7 @@ myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertServic
     });
 
     var refresh = function () {
-      AdminService.getAllProfessors().success(function (result, status) {
+      AdminService.getProfessorCourseDetails().success(function (result, status) {
         data = result;
         $scope.tableParams.reload();
       }).error(function (data, status) {
@@ -42,4 +42,60 @@ myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertServic
     };
     refresh();
 
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.animationsEnabled = true;
+
+    $scope.assignCourses = function(){
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'views/admin/assignCourse.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function () {
+
+      }, function () {
+
+      });
+    };
+
+    $scope.updateStatus = function(email, action){
+      alert(email+":"+action);
+    };
+
   }]);
+
+myApp.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', 'AdminService', function ($scope, $uibModalInstance, AdminService) {
+
+  var loadData = function(){
+    $scope.yearList = [2016, 2017, 2018];
+    $scope.termList = ['Spring', 'Summer', 'Fall'];
+
+    AdminService.getCourses().success(function (result, status) {
+      console.log(JSON.stringify(result));
+      $scope.courseList = result;
+    });
+
+    AdminService.getAllProfessors().success(function (result, status) {
+      console.log(JSON.stringify(result));
+      $scope.emailList = result;
+    });
+
+
+  }
+  loadData();
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+}]);

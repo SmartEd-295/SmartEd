@@ -17,8 +17,8 @@ module.exports = function (router) {
         });
     });
 
-    router.get('getAllProfessors', function(req, res){
-       User.find({role: constant.MESSAGE_MAP.get('PROFESSOR_ROLE')}, function(err, docs){
+    router.get('/getAllProfessors', function(req, res){
+       User.find({role: constant.MESSAGE_MAP.get('PROFESSOR_ROLE')},{email: 1, _id: 0}, function(err, docs){
            if(!err){
                res.json(docs);
            }else{

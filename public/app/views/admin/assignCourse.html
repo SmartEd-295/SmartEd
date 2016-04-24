@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <h3 class="modal-title">Add Course for Professor</h3>
+</div>
+
+
+<form name="addCourseForm" ng-submit="addCourse()" role="form">
+  <div class="modal-body">
+    <div class="row">
+
+      <div class="form-group col-md-6"
+           ng-class="{ 'has-error': addCourseForm.email.$dirty &&  addCourseForm.email.$error.required}">
+        <label for="email">Professor E-mail<span class="require-field">&nbsp;*</span></label>
+        <select name="email" id="email" class="form-control" ng-model="profDetail.email"
+                ng-options="item.email as item.email for item in emailList"
+                ng-change="loadCurrencies(account.payment_method)" required>
+          <option value="">Select mail</option>
+        </select>
+            <span class="help-block"
+                  ng-show="addCourseForm.email.$dirty && addCourseForm.email.$error.required">Email is required.</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6"
+           ng-class="{ 'has-error': addCourseForm.term.$dirty && addCourseForm.term.$error.required}">
+        <label for="term">Term<span class="require-field">&nbsp;*</span></label>
+        <select name="term" id="term" class="form-control" ng-model="profDetail.term"
+                ng-options="item as item for item in termList" required>
+          <option value="">Select Term</option>
+        </select>
+              <span class="help-block"
+                    ng-show="addCourseForm.term.$dirty && addCourseForm.term.$error.required">Term is required.</span>
+      </div>
+
+      <div class="form-group col-md-6"
+           ng-class="{ 'has-error': addCourseForm.year.$dirty && addCourseForm.year.$error.required}">
+        <label for="year">Year<span class="require-field">&nbsp;*</span></label>
+        <select name="year" id="year" class="form-control" ng-model="profDetail.year"
+                ng-options="item as item for item in yearList" required>
+          <option value="">Select Year</option>
+        </select>
+              <span class="help-block"
+                    ng-show="addCourseForm.year.$dirty && addCourseForm.year.$error.required">Year is required.</span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         ng-class="{ 'has-error': addCourseForm.course.$dirty && addCourseForm.course.$error.required}">
+      <label for="course">Course<span class="require-field">&nbsp;*</span></label>
+      <select name="course" id="course" class="form-control" ng-model="profDetail.course"
+              ng-options="item.courseId as item.displayName for item in courseList" required>
+        <option value="">Select Course</option>
+      </select>
+              <span class="help-block"
+                    ng-show="addCourseForm.course.$dirty && addCourseForm.course.$error.required">Course is required.</span>
+    </div>
+
+  </div>
+
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">Assign</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>
+
+

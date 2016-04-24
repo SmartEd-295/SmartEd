@@ -8,7 +8,17 @@ myApp.service('AdminService', ['$http', function ($http) {
     return $http.post('/user/registerProfessor', user);
   };
 
-  this.getAllProfessors = function (user) {
+  this.getProfessorCourseDetails = function () {
     return $http.get('/professor/getProfessorCourseDetails');
+  };
+
+  this.getAllProfessors = function () {
+    return $http.get('/professor/getAllProfessors');
+  };
+
+
+
+  this.getCourses = function () {
+    return $http.get('/course/getCourseDetails');
   };
 }]);
