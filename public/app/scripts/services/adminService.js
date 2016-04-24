@@ -9,6 +9,6 @@ myApp.service('AdminService', ['$http', function ($http) {
   };
 
   this.getAllProfessors = function (user) {
-    return $http.get('/admin/getProfessorDetails');
+    return $http.get('/professor/getProfessorCourseDetails');
   };
 }]);

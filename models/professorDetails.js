@@ -5,10 +5,9 @@ var mongoose = require('mongoose');
 var professorDetails = function() {
     var professorSchema = mongoose.Schema({
         email: String,
-        semesterTerm: String,
-        semesterYear: Number,
-        subjectId: String,
-        subjectName: String,
+        term: String,
+        year: Number,
+        courseId: String,
         status: Boolean
     }, {
         collection: 'professorDetails'

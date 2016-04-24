@@ -6,7 +6,6 @@ myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertServic
 
   function ($scope, AdminService, AlertService, ngTableParams, $filter) {
 
-    console.log("Controller loaded successfully");
     var data = [];
 
     $scope.tableParams = new ngTableParams({
