@@ -6,16 +6,22 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
 
   function ($scope, $state, UserService, CourseService) {
 
+    $scope.courseList = [];
     // dynamic sidebar logic
     var currentRole = UserService.getCurrentUserRole();
-    if (currentRole == 'Professor'){
+    if (currentRole == 'Professor') {
       $scope.userRole = "Professor";
-      $scope.goToState = "dashboard.professor";
 
+      $scope.goToState = "dashboard.professor";
+      CourseService.getAllCourses().success(function (data, status) {
+        $scope.courseList = data;
+      }).error(function (data, status) {
+        console.log(data);
+      });
     } else if (currentRole == 'Student') {
       $scope.userRole = "Student";
       $scope.goToState = "dashboard.student";
-    } else if(currentRole == 'Admin') {
+    } else if (currentRole == 'Admin') {
       $scope.userRole = "Admin";
       $scope.goToState = "dashboard.admin";
     }
@@ -23,20 +29,10 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
 
     // toggle dropdown logic
     $scope.collapseVar = 0;
-    $scope.check = function(x){
-      if(x==$scope.collapseVar)
+    $scope.check = function (x) {
+      if (x == $scope.collapseVar)
         $scope.collapseVar = 0;
       else
         $scope.collapseVar = x;
     };
-
-
-    // dynamic course list logic
-    $scope.courseList = [];
-    CourseService.getAllCourses().success(function (data, status) {
-        $scope.courseList = data;
-    }).error(function (data, status) {
-        console.log(data) ;
-    });
-
   }]);
