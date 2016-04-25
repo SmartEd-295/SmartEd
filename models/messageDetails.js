@@ -9,7 +9,7 @@ var messageDetails = function() {
         description: String,
         content: String
     }, {
-        collection: 'courseDetails'
+        collection: 'messageDetails'
     });
 
     return mongoose.model('messageDetails', courseSchema);
