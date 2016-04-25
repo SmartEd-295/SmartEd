@@ -173,6 +173,19 @@ module.exports = function (router) {
         });
     });
 
+    router.get('/isValidUser/:email', function (req, res) {
+        var email = req.params.email;
+
+        userExist(email, function (err, doc) {
+            if (err || doc === null) {
+                res.status(401).send(constant.MESSAGE_MAP.get('USER_SERVICE_UNAVAILABLE'));
+            }
+            else {
+                res.status(200).send(constant.MESSAGE_MAP.get('IS_VALID_USER'));
+            }
+        });
+    });
+
     function userExist(email, cb) {
         User.findOne({email: email}, function (err, doc) {
             cb(err, doc);

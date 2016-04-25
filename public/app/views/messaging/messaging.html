@@ -1,0 +1,40 @@
+<div class="container" style="padding: 40px;">
+  <ul class="nav nav-tabs">
+    <li ng-class="{active: activeTab == 'inbox'}">
+      <a ng-click="setupInboxContent()">Inbox</a>
+    </li>
+    <li ng-class="{active: activeTab == 'sent'}">
+      <a ng-click="setupSentContent()">Sent</a>
+    </li>
+  </ul>
+  <table ng-show="activeTab=='inbox'" class="table table-bordered table-condensed">
+    <thead>
+      <th>From</th>
+      <th>Subject</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="email in emails" ng-click="showPopup(email)">
+        <td>{{ email.fromUser }}</td>
+        <td>{{ email.subject }}</td>
+        <td>{{ email.messageTimestamp }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table ng-show="activeTab=='sent'" class="table table-bordered table-condensed">
+    <thead>
+    <th>To</th>
+    <th>Subject</th>
+    <th></th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="email in sentEmails" ng-click="showPopup(email)">
+        <td>{{ email.toUser }}</td>
+        <td>{{ email.subject }}</td>
+        <td>{{ email.messageTimestamp }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" ng-click="showComposePopup()">Compose</button>
+
+</div>

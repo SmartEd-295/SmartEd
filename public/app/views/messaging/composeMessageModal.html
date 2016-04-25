@@ -1,0 +1,21 @@
+
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="closeComposePopup()">&times;</button>
+      <h3>Compose Email</h3>
+    </div>
+    <div id="composeMessageContainer" class="modal-body">
+      <form>
+        <input type="text" placeholder="To" style="width:95%;"
+               ng-model="composeEmail.toUser"><br />
+        <input type="text" placeholder="Subject" style="width:95%;"
+               ng-model="composeEmail.subject"><br />
+                <textarea style="width:95%;" rows="10"
+                          ng-model="composeEmail.content"></textarea>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-warning" ng-click="closeComposePopup()">Cancel</button>
+      <button class="btn  btn-primary" ng-click="sendEmail()">Send</button>
+    </div>
+  </div>
+

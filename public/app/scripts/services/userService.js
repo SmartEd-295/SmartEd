@@ -74,5 +74,9 @@ myApp.service('UserService', ['$http', '$cookieStore', '$rootScope', function ($
       return undefined;
   };
 
+  this.isValidUser = function (email) {
+    return $http.get('/user/isValidUser/' + email);
+  };
+
 
 }]);

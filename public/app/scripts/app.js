@@ -234,9 +234,20 @@
         templateUrl: 'views/ui-elements/icons.html',
         url: '/icons'
       })
-      .state('professor.collaboration', {
-        templateUrl: 'views/ui-elements/grid.html',
-        url: '/grid'
+      .state('dashboard.collaboration', {
+        templateUrl: 'views/messaging/messaging.html',
+        url: '/collaborate',
+        controller: 'MessagingCtrl',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/messaging/messageController.js'
+              ]
+            })
+          }
+        }
       })
       .state('dashboard.courseCharts', {
         templateUrl: 'views/course/courseDetails.html',
