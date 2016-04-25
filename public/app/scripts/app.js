@@ -256,33 +256,12 @@
         resolve: {
           loadMyFile: function ($ocLazyLoad) {
             return $ocLazyLoad.load({
-              name: 'chart.js',
+              name: 'smartedApp',
               files: [
-                'bower_components/angular-chart.js/dist/angular-chart.min.js',
-                'bower_components/angular-chart.js/dist/angular-chart.css'
+                'scripts/controllers/course/courseDetailController.js',
+                'scripts/directives/charts/dashboardCharts.js'
               ]
-            }),
-              $ocLazyLoad.load(
-                {
-                  name: 'highcharts',
-                  files: [
-                    "bower_components/highcharts/highcharts.js"
-                  ]
-                }),
-              $ocLazyLoad.load(
-                {
-                  name: 'highcharts-3d',
-                  files: [
-                    "bower_components/highcharts/highcharts-3d.js"
-                  ]
-                }),
-              $ocLazyLoad.load({
-                name: 'smartedApp',
-                files: [
-                  'scripts/controllers/course/courseDetailController.js',
-                  'scripts/directives/charts/dashboardCharts.js'
-                ]
-              })
+            })
           }
         }
       })
