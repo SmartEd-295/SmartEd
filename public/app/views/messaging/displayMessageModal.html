@@ -4,11 +4,21 @@
   <h3>{{selectedEmail.subject}}</h3>
 </div>
 <div class="modal-body">
-  <strong>From:</strong> {{selectedEmail.fromUser}}<br />
-  <strong>To:</strong> {{selectedEmail.toUser}}<br />
-  <strong>Date:</strong> {{selectedEmail.date}}<br />
-  <br />
-  {{selectedEmail.content}}
+  <p>
+    <strong>From:</strong> {{selectedEmail.fromUser}}
+  </p>
+
+  <p>
+    <strong>To:</strong> {{selectedEmail.toUser}}
+  </p>
+
+  <p>
+    <strong>Date:</strong> {{selectedEmail.messageTimestamp}}
+  </p>
+
+  <p> {{selectedEmail.content}}</p>
+
+
 </div>
 
 <div class="modal-footer">
