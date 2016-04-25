@@ -17,6 +17,8 @@
         </select>
             <span class="help-block"
                   ng-show="addCourseForm.email.$dirty && addCourseForm.email.$error.required">Email is required.</span>
+        <span class="help-block"
+              ng-show="addCourseForm.email.$dirty && addCourseForm.email.$error.email">Enter valid Email.</span>
       </div>
     </div>
 

@@ -130,21 +130,23 @@ myApp.controller('MessagingCtrl', ['$scope', '$uibModal', 'MessageService', 'Ale
       UserService.isValidUser(toUser).success(function (data, status) {
         MessageService.sendMessage($scope.composeEmail)
           .success(function (data, status) {
-            AlertService.displayMessage(data.message, 'success');
+            AlertService.displayMessage(data, 'success');
             closeModal();
           })
           .error(function (data, status) {
-            AlertService.displayMessage(data.message, 'error');
+            AlertService.displayMessage(data, 'error');
           });
       }).error(function (data, status) {
-        AlertService.displayMessage(data.message, 'error');
+        AlertService.displayMessage(data, 'error');
       });
     };
 
     var closeModal = function() {
       modal.dismiss('cancel');
     };
-    $scope.closeComposePopup = closeModal();
+    $scope.closeComposePopup = function() {
+      closeModal();
+    };
 
   }])
   .controller('DisplayMessageCtrl', ['$scope', '$uibModalInstance', 'selectedEmail', 'activeTab',
