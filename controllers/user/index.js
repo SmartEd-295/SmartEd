@@ -112,7 +112,8 @@ module.exports = function (router) {
                             res.status(400).send(constant.MESSAGE_MAP.get('PROFESSOR_REGISTER_FAILED'));
                         }
                         else {
-                            addSubjectsForProfessor(req, res);
+                            res.status(200).send(constant.MESSAGE_MAP.get('PROFESSOR_REGISTER_SUCCESS'));
+                            utility.welcomeProfessorMail(email, password);
                         }
                     });
                 } else {
@@ -124,40 +125,19 @@ module.exports = function (router) {
         }
     });
 
-    var addSubjectsForProfessor = function (req, res) {
-        var email = req.body.email;
-        var courseName = req.body.courseName;
-        var courseId = req.body.courseId;
-        var password = req.body.password;
-        ProfessorDetails.create({
-            email: email,
-            subjectId: courseId,
-            subjectName: courseName
-        }, function (err, doc) {
-            if (err) {
-                console.log(err);
-                res.status(400).send(constant.MESSAGE_MAP.get('PROFESSOR_REGISTER_FAILED'));
-            }
-            else {
-                res.status(200).send(constant.MESSAGE_MAP.get('PROFESSOR_REGISTER_SUCCESS'));
-                utility.welcomeProfessorMail(email, password);
-            }
-        });
-    };
-
-    router.get('/verifyUser', function (req, res) {
+   router.get('/verifyUser', function (req, res) {
         var emailAddress = req.query.email;
         var applicationUrl = config.applicationUrl;
         User.update({email: emailAddress}, {$set: {isVerified: true}}, function (err, doc) {
-            if (err || doc === null) {
-                res.send('<center><br><br><h3>Some error occured in verification, please try again.</h3></center>');
-            }
-            else {
-                res.send('<center><br><br><br><h3>Email address verified.</h3>' +
-                    '<br><a href="' + applicationUrl + '">Login!</a>' +
-                    '</center>');
-            }
-        });
+           if (err || doc === null) {
+               res.send('<center><br><br><h3>Some error occured in verification, please try again.</h3></center>');
+           }
+           else {
+               res.send('<center><br><br><br><h3>Email address verified.</h3>' +
+                   '<br><a href="' + applicationUrl + '">Login!</a>' +
+                   '</center>');
+           }
+       });
     });
 
     router.get('/retrievePassword', function (req, res) {

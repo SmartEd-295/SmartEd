@@ -19,9 +19,13 @@
       <td data-title="'Course #'" sortable="'courseId'">
         {{details.courseId}}
       </td>
-      <td data-title="'Status'" >
-          <button class="btn btn-danger" ng-click="updateStatus(details.email, 'DEACTIVATE')" ng-show="details.status">Deactivate</button>
-          <button class="btn btn-primary" ng-click="updateStatus(details.email, 'ACTIVATE')" ng-show="!details.status">Activate</button>
+      <td data-title="'Current status'" sortable="'courseId'">
+        <span ng-show="details.status">Active</span>
+        <span ng-show="!details.status">In-Active</span>
+      </td>
+      <td data-title="'Action'" >
+          <button class="btn btn-danger" ng-click="updateStatus(details)" ng-show="details.status">Deactivate</button>
+          <button class="btn btn-primary" ng-click="updateStatus(details)" ng-show="!details.status">Activate</button>
       </td>
     </tr>
   </table>
