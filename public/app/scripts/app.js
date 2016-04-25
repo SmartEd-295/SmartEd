@@ -239,7 +239,7 @@
         url: '/grid'
       })
       .state('dashboard.courseCharts', {
-        templateUrl: 'views/courseChart.html',
+        templateUrl: 'views/course/courseDetails.html',
         url: '/course/:courseId',
         controller: 'ChartCtrl',
         resolve: {
@@ -268,7 +268,7 @@
               $ocLazyLoad.load({
                 name: 'smartedApp',
                 files: [
-                  'scripts/controllers/chartController.js',
+                  'scripts/controllers/course/courseDetailController.js',
                   'scripts/directives/charts/dashboardCharts.js'
                 ]
               })

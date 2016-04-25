@@ -16,7 +16,7 @@
               class="fa arrow"></span></a>
             <ul class="nav nav-second-level" collapse="collapseVar!=1">
               <li ng-repeat="course in courseList" ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseId: '{{course.courseId}}'})" >{{course.courseId}}</a>
+                <a ui-sref="dashboard.courseCharts({courseId: '{{course.courseId}}'})" >{{course.courseId}} {{course.term}}-{{course.year}}</a>
               </li>
 
             </ul>
@@ -91,11 +91,11 @@
           </li>
 
           <li ui-sref-active="active">
-          <a ui-sref="dashboard.addProfessor"><i class="fa fa-bar-chart-o fa-fw"></i>Add Professor</a>
+          <a ui-sref="dashboard.addProfessor"><i class="fa fa-user-plus fa-fw"></i>Add Professor</a>
         </li>
 
           <li ui-sref-active="active">
-            <a ui-sref="dashboard.professorDetails"><i class="fa fa-bar-chart-o fa-fw"></i>View Professors Details</a>
+            <a ui-sref="dashboard.professorDetails"><i class="fa fa-users  fa-fw"></i>Professors Details</a>
           </li>
 
           <li><a href="http://www.vishwadesai.com/"><i class="fa fa-user fa-fw"></i>Personal Page</a></li>

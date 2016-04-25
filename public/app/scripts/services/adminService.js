@@ -25,6 +25,6 @@ myApp.service('AdminService', ['$http', function ($http) {
   };
 
   this.getCourses = function () {
-    return $http.get('/course/getCourseDetails');
+    return $http.get('/course/getAllCourseDetails');
   };
 }]);

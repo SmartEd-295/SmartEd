@@ -6,15 +6,14 @@ myApp.service('CourseService', ['$http', 'UserService', 'CourseContentService', 
 
   this.getAllCourses = function () {
     var userMail = UserService.getCurrentUser().userMail;
-    return $http.get('/professor/getProfessorCourseDetails/'+ userMail);
-    //return $http.get('/courses/'+ userId  + '/getAllCourses');
+    return $http.get('/professor/getProfessorCourses/' + userMail);
   };
 
   this.getCourseDetails = function (courseId) {
-    return $http.get('/course/getCourseDetails/' + courseId );
+    return $http.get('/course/getCourseDetails/' + courseId);
   };
 
-  this.addCourseContent = function() {
+  this.addCourseContent = function () {
     return ContentService.addCourseContent(courseId, data);
   }
 }]);

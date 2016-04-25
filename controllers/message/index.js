@@ -34,7 +34,7 @@ module.exports = function (router) {
     });
 
     router.get('/getCourseDetails', function (req, res) {
-        CourseDetails.find({}, function (err, docs) {
+        MessageDetails.find({}, function (err, docs) {
             if(!err){
 
                 var courseList = [];
