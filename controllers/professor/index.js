@@ -9,7 +9,6 @@ module.exports = function (router) {
 
     router.get('/getProfessorCourseDetails/:professorId', function (req, res) {
         var profId = req.params.professorId;
-        console.log("in getprofessorcoursedetails function -----------> " + profId);
         ProfessorDetails.find({email: profId}, function (err, docs) {
             console.log(docs.length + " : " + err );
             if(!err){

@@ -7,7 +7,7 @@
  * Controller of the smartedApp
  */
 angular.module('smartedApp')
-  .controller('ChartCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+  .controller('ChartCtrl', ['$scope', '$stateParams', 'CourseService', function ($scope, $stateParams, CourseService) {
     $scope.line = {
 	    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 	    series: ['Series A', 'Series B'],
@@ -116,7 +116,14 @@ angular.module('smartedApp')
       ['Bad', 8]
     ];
 
-    var courseid = $stateParams.courseid;
-    console.log('---------------> '+courseid);
+    // load course data
+    var courseId = $stateParams.courseId;
+    console.log('---------------> '+courseId);
+    CourseService.getCourseDetails(courseId).success(function (data, status) {
+      console.log(' SUCCESS : ' + JSON.stringify(data)) ;
+      $scope.currentCourseData = data;
+    }).error(function (data, status) {
+      console.log(data) ;
+    });
 
 }]);

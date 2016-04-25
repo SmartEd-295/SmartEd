@@ -6,16 +6,16 @@ myApp.service('MessageService', ['$http', 'UserService', function ($http, UserSe
 
   this.getAllMesssages = function () {
     var userId =  UserService.getCurrentUser();
-    return $http.get('/messages/ ' + userId + ' /getAllMessages');
+    return $http.get('/message/getAllMessages' + userId );
   };
 
   this.getPersonalMessages = function () {
     var userId =  UserService.getCurrentUser();
-    return $http.get('/messages/ ' + userId + ' /getPersonalMessages');
+    return $http.get('/message/getPersonalMessages' + userId );
   };
 
   this.sendMessage = function (message) {
-    return $http.get('/messages/addMessage', message);
+    return $http.get('/message/addMessage', message);
   };
 
 }]);

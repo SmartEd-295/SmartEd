@@ -8,15 +8,15 @@
         <ul class="nav in" id="side-menu">
           <sidebar-search></sidebar-search>
           <li ui-sref-active="active">
-            <a ui-sref="professorDashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a ui-sref="{{goToState}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
 
           <li ng-class="{active: collapseVar==1}">{{dropDown}}
-            <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
+            <a ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
               class="fa arrow"></span></a>
-            <ul class="nav nav-second-level" collapse="false">
+            <ul class="nav nav-second-level" collapse="collapseVar!=1">
               <li ng-repeat="course in courseList" ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseid: course.courseId})" >{{course.courseId}}</a>
+                <a ui-sref="dashboard.courseCharts({courseId: '{{course.courseId}}'})" >{{course.courseId}}</a>
               </li>
 
             </ul>
@@ -45,10 +45,10 @@
             <a ui-sref="studentDashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
 
-          <li ng-class="{active: collapseVar==1}">{{dropDown}}
-            <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
+          <li ng-class="{active: collapseVar==2}">{{dropDown}}
+            <a href="" ng-click="check(2)"><i class="fa fa-wrench fa-fw"></i> Courses<span
               class="fa arrow"></span></a>
-            <ul class="nav nav-second-level" collapse="collapseVar!=1">
+            <ul class="nav nav-second-level" collapse="collapseVar!=2">
               <li ui-sref-active="active">
                 <a ui-sref="course.assignments.all">Assignments</a>
               </li>
@@ -87,7 +87,7 @@
           <sidebar-search></sidebar-search>
 
           <li ui-sref-active="active">
-            <a ui-sref="professorDashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a ui-sref="dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
 
           <li ui-sref-active="active">
@@ -108,7 +108,7 @@
 
 
   </div>
-  <!-- /.sidebar-collapse -->
+
 </div>
 
 

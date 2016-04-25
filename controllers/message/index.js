@@ -1,15 +1,15 @@
 'use strict';
 
-var CourseDetails = require('../../models/courseDetails'),
+var MessageDetails = require('../../models/messageDetails'),
     constant = require('../../lib/constants'),
     utility = require('../../lib/utility'),
     config = require('../../config/config.json');
 
 module.exports = function (router) {
 
-    router.get('/getCourseDetails/:courseId', function (req, res) {
-        var cid = req.params.courseId;
-        CourseDetails.find({_id: cid}, function (err, docs) {
+    router.get('/getAllMessages/:userId', function (req, res) {
+        var userId = req.params.userId;
+        MessageDetails.find({}, function (err, docs) {
             if(!err){
 
                 var courseList = [];

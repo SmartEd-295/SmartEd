@@ -2,24 +2,27 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('SidebarCtrl', ['$scope', 'UserService', 'CourseService',
+myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService',
 
-  function ($scope, UserService, CourseService) {
+  function ($scope, $state, UserService, CourseService) {
 
+    // dynamic sidebar logic
     var currentRole = UserService.getCurrentUserRole();
-
     if (currentRole == 'Professor'){
       $scope.userRole = "Professor";
+      $scope.goToState = "dashboard.professor";
+
     } else if (currentRole == 'Student') {
       $scope.userRole = "Student";
+      $scope.goToState = "dashboard.student";
     } else if(currentRole == 'Admin') {
       $scope.userRole = "Admin";
+      $scope.goToState = "dashboard.admin";
     }
 
 
+    // toggle dropdown logic
     $scope.collapseVar = 0;
-    $scope.multiCollapseVar = 0;
-
     $scope.check = function(x){
       if(x==$scope.collapseVar)
         $scope.collapseVar = 0;
@@ -27,30 +30,13 @@ myApp.controller('SidebarCtrl', ['$scope', 'UserService', 'CourseService',
         $scope.collapseVar = x;
     };
 
-    $scope.multiCheck = function(y){
 
-      if(y==$scope.multiCollapseVar)
-        $scope.multiCollapseVar = 0;
-      else
-        $scope.multiCollapseVar = y;
-    };
-
-
-  $scope.courseList = [
-    {courseid : "1111", name : "CMPE 202"},
-    {courseid : "5555", name : "CMPE 272"},
-    {courseid : "3333", name : "CMPE 273"},
-    {courseid : "8888", name : "CMPE 275"},
-    {courseid : "0000", name : "CMPE 239"}
-  ];
-
-
-    var myList = CourseService.getAllCourses().success(function (data, status) {
-        //console.log(' SUCCESS ---------------> ' + JSON.stringify(data) + " : " + status) ;
+    // dynamic course list logic
+    $scope.courseList = [];
+    CourseService.getAllCourses().success(function (data, status) {
         $scope.courseList = data;
     }).error(function (data, status) {
-        console.log(' ERROR ---------------> ' + data + " : ") ;
+        console.log(data) ;
     });
-
 
   }]);
