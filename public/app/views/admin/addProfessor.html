@@ -57,26 +57,6 @@
       <!--<span ng-show="addProfessorForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
     </div>
 
-    <br>
-
-    <div class="row">
-      <div class="form-group col-md-4"
-           ng-class="{ 'has-error': addProfessorForm.courseId.$dirty && addProfessorForm.courseId.$error.required }">
-        <input type="text" name="courseId" id="courseId" class="form-control" placeholder="Course Id (CMPE 239)"
-               ng-model="user.courseId" required/>
-        <span ng-show="addProfessorForm.courseId.$dirty && addProfessorForm.courseId.$error.required"
-              class="help-block">Course Id is required input.</span>
-      </div>
-
-      <div class="form-group col-md-8"
-           ng-class="{ 'has-error': addProfessorForm.courseName.$dirty && addProfessorForm.courseName.$error.required }">
-        <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course Name"
-               ng-model="user.courseName" required/>
-      <span ng-show="addProfessorForm.courseName.$dirty && addProfessorForm.courseName.$error.required"
-            class="help-block">Course Name is required input.</span>
-      </div>
-    </div>
-
     <br><br>
 
     <div class="form-actions">

@@ -16,7 +16,13 @@ myApp.service('AdminService', ['$http', function ($http) {
     return $http.get('/professor/getAllProfessors');
   };
 
+  this.assignCourse = function (professorCourseDetail) {
+    return $http.post('/professor/assignCourse', professorCourseDetail);
+  };
 
+  this.changeStatus = function (professorCourseDetail) {
+    return $http.post('/professor/changeStatus', professorCourseDetail);
+  };
 
   this.getCourses = function () {
     return $http.get('/course/getCourseDetails');
