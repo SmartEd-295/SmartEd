@@ -12,19 +12,18 @@
           </li>
 
           <li ng-class="{active: collapseVar==1}">{{dropDown}}
-            <a ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Courses<span
+            <a ng-click="check(1)"><i class="fa fa-files-o fa-fw"></i> Courses<span
               class="fa arrow"></span></a>
             <ul class="nav nav-second-level" collapse="collapseVar!=1">
               <li ng-repeat="course in courseList" ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseId: '{{course.courseId}}'})" >{{course.courseId}} {{course.term}}-{{course.year}}</a>
+                <a ui-sref="dashboard.courseCharts({courseId: '{{course.courseId}}', term:'{{course.term}}', year:'{{course.year}}'})" ><i class="fa fa-file-text fa-fw"></i>{{course.courseId}} {{course.term}}-{{course.year}}</a>
               </li>
 
             </ul>
           </li>
 
-
           <li ui-sref-active="active">
-            <a ui-sref="professor.performance"><i class="fa fa-bar-chart-o fa-fw"></i> Performance<span></span></a>
+            <a ui-sref="professor.performance"><i class="fa fa-line-chart  fa-fw"></i> Performance<span></span></a>
           </li>
           <li ui-sref-active="active">
             <a ui-sref="professor.statistics"><i class="fa fa-table fa-fw"></i> Statistics</a>

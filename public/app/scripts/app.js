@@ -251,7 +251,7 @@
       })
       .state('dashboard.courseCharts', {
         templateUrl: 'views/course/courseDetails.html',
-        url: '/course/:courseId',
+        url: '/course/:courseId/:term/:year',
         controller: 'ChartCtrl',
         resolve: {
           loadMyFile: function ($ocLazyLoad) {

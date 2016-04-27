@@ -118,7 +118,9 @@ angular.module('smartedApp')
 
     // load course data
     var courseId = $stateParams.courseId;
-    CourseService.getCourseDetails(courseId).success(function (data, status) {
+    var term = $stateParams.term;
+    var year = $stateParams.year;
+    CourseService.getCourseDetails(courseId, term, year).success(function (data, status) {
       $scope.currentCourseData = data;
     }).error(function (data, status) {
 

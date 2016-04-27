@@ -9,8 +9,8 @@ myApp.service('CourseService', ['$http', 'UserService', 'CourseContentService', 
     return $http.get('/professor/getProfessorCourses/' + userMail);
   };
 
-  this.getCourseDetails = function (courseId) {
-    return $http.get('/course/getCourseDetails/' + courseId);
+  this.getCourseDetails = function (courseId, term, year) {
+    return $http.get('/course/getCourseDetails',{params:{"courseId": courseId, "term": term, "year": year}});
   };
 
   this.addCourseContent = function () {

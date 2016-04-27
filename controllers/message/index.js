@@ -27,7 +27,7 @@ module.exports = function (router) {
                     messageList.push(message);
                 }
 
-                if(messageList.length == 0) {
+                if(messageList.length === 0) {
                     res.status(400).send(constant.MESSAGE_MAP.get('NO_MESSAGES_FOUND'));
                 } else {
                     res.json(messageList);
@@ -60,7 +60,7 @@ module.exports = function (router) {
                     messageList.push(message);
                 }
 
-                if(messageList.length == 0) {
+                if(messageList.length === 0) {
                     res.status(400).send(constant.MESSAGE_MAP.get('NO_SENT_MESSAGES_FOUND'));
                 } else {
                     res.json(messageList);
@@ -89,7 +89,7 @@ module.exports = function (router) {
                     };
                     messageList.push(message);
                 }
-                if(messageList.length == 0) {
+                if(messageList.length === 0) {
                     res.status(400).send(constant.MESSAGE_MAP.get('ERROR_NO_MESSAGE_FOUND'));
                 } else {
                     res.json(messageList);
