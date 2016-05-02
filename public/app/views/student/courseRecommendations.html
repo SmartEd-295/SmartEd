@@ -1,0 +1,15 @@
+<div class="col-md-12">
+  <table ng-table="tableParams" class="table ng-table-responsive table-hover">
+    <tr ng-repeat="recommendedCourse in recommendedCourseList">
+      <td data-title="'Course Id'" sortable="'courseId'" >
+        {{ recommendedCourse.courseId }}
+      </td>
+      <td data-title="'Course Name'" sortable="'courseName'" >
+        {{ recommendedCourse.courseName }}
+      </td>
+      <td data-title="'Grade Predicted'" sortable="'expectedGrade'">
+        {{ recommendedCourse.expectedGrade }}
+      </td>
+    </tr>
+  </table>
+</div>

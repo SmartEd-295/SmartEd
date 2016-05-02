@@ -30,12 +30,13 @@ myApp.service('UserService', ['$http', '$cookieStore', '$rootScope', function ($
     return $http.get('/user/retrievePassword?email=' + email);
   };
 
-  this.setCredentials = function (userId, email, role) {
+  this.setCredentials = function (userId, email, role, sjsuId) {
     $rootScope.globals = {
       currentUser: {
         userId: userId,
         userMail: email,
-        role: role
+        role: role,
+        sjsuId: sjsuId
       }
     };
     $cookieStore.put('globals', $rootScope.globals);

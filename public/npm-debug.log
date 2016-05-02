@@ -1,17 +1,21 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
-2 info using npm@1.4.28
-3 info using node@v0.10.40
-4 error Error: ENOENT, open '/Users/knbarve/Desktop/MyFiles/SmartEd/public/package.json'
-5 error If you need help, you may report this *entire* log,
-5 error including the npm and node versions, at:
-5 error     <http://github.com/npm/npm/issues>
-6 error System Darwin 15.4.0
-7 error command "node" "/usr/local/bin/npm" "start"
-8 error cwd /Users/knbarve/Desktop/MyFiles/SmartEd/public
-9 error node -v v0.10.40
-10 error npm -v 1.4.28
-11 error path /Users/knbarve/Desktop/MyFiles/SmartEd/public/package.json
-12 error code ENOENT
-13 error errno 34
-14 verbose exit [ 34, true ]
+1 verbose cli [ '/home/vishwarulz/.nvm/v0.10.4/bin/node',
+1 verbose cli   '/home/vishwarulz/.nvm/v0.10.4/bin/npm',
+1 verbose cli   'start' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.4
+4 verbose read json /home/vishwarulz/CMPE295/SmartEd/SmartEd/public/package.json
+5 error Error: ENOENT, open '/home/vishwarulz/CMPE295/SmartEd/SmartEd/public/package.json'
+6 error If you need help, you may report this log at:
+6 error     <http://github.com/isaacs/npm/issues>
+6 error or email it to:
+6 error     <npm-@googlegroups.com>
+7 error System Linux 3.13.0-85-generic
+8 error command "/home/vishwarulz/.nvm/v0.10.4/bin/node" "/home/vishwarulz/.nvm/v0.10.4/bin/npm" "start"
+9 error cwd /home/vishwarulz/CMPE295/SmartEd/SmartEd/public
+10 error node -v v0.10.4
+11 error npm -v 1.2.18
+12 error path /home/vishwarulz/CMPE295/SmartEd/SmartEd/public/package.json
+13 error code ENOENT
+14 error errno 34
+15 verbose exit [ 34, true ]

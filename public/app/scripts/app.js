@@ -265,6 +265,26 @@
           }
         }
       })
+      .state('dashboard.studentRecommendations', {
+        templateUrl: 'views/student/courseRecommendations.html',
+        url: '/student/recommendations',
+        controller: 'StudentCtrl',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/student/studentController.js'
+              ]
+            }),
+              $ocLazyLoad.load(
+                {
+                  name: 'ngTable',
+                  files: ['bower_components/ng-table/dist/ng-table.min.js']
+                })
+          }
+        }
+      })
   }]);
 
   //  Keep User Logged in on different navigations.
