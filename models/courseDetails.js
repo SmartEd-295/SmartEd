@@ -4,12 +4,12 @@ var mongoose = require('mongoose');
 
 var courseDetails = function() {
     var courseSchema = mongoose.Schema({
-        _id: String,
-        name: String,
-        description: String,
-        content: String
+        code: String,
+        canvasId: Number,
+        peoplesoftId: Number,
+        name: String
     }, {
-        collection: 'courseDetails'
+        collection: 'courseInfo'
     });
 
     return mongoose.model('courseDetails', courseSchema);

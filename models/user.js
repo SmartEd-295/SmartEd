@@ -19,3 +19,5 @@ var userDetails = function() {
 };
 
 module.exports = new userDetails();
+
+

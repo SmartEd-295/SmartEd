@@ -17,3 +17,5 @@ var messageDetails = function() {
 };
 
 module.exports = new messageDetails();
+
+

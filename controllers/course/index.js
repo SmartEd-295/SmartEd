@@ -15,7 +15,7 @@ module.exports = function (router) {
            //getGradeDetails(course, req, res);
         });
 
-        CourseDetails.findOne({_id: cid}, function (err, doc) {
+        CourseDetails.findOne({code: cid}, function (err, doc) {
             if(!err && doc !== null){
                 res.json(doc);
             }else{
@@ -25,7 +25,7 @@ module.exports = function (router) {
     });
 
     router.get('/getAllCourseDetails', function (req, res) {
-        CourseDetails.find({}, function (err, docs) {
+        CourseDetails.find({}).sort({code : -1}).exec(function (err, docs) {
             if(!err){
 
                 var courseList = [];
@@ -33,11 +33,9 @@ module.exports = function (router) {
                 for (var i = docs.length - 1; i >= 0; i--) {
                     var result = docs[i];
                     var course ={
-                        'courseId': result._id,
+                        'courseId': result.code,
                         'courseName': result.name,
-                        'description': result.description,
-                        'content': result.content,
-                        'displayName': result._id+' '+result.name
+                        'displayName': result.code+' '+result.name
                     };
                     courseList.push(course);
                 }

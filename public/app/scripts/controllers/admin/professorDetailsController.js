@@ -50,7 +50,6 @@ myApp.controller('ProfessorDetailsCtrl', ['$scope', 'AdminService', 'AlertServic
 
     $scope.assignCourses = function () {
       var modalInstance = $uibModal.open({
-        animation: $scope.animationsEnabled,
         templateUrl: 'views/admin/assignCourse.html',
         controller: 'AssignCourseCtrl',
         resolve: {
@@ -89,7 +88,6 @@ myApp.controller('AssignCourseCtrl', ['$scope', '$uibModalInstance', 'AdminServi
       $scope.emailList = emails;
 
       AdminService.getCourses().success(function (result, status) {
-        console.log(JSON.stringify(result));
         $scope.courseList = result;
       });
     };
