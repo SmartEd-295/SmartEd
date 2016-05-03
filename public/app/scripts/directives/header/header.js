@@ -5,7 +5,7 @@ angular.module('smartedApp')
 		return {
         templateUrl:'scripts/directives/header/header.html',
         restrict: 'E',
-        replace: true,
+        replace: true
     	}
 	});
 

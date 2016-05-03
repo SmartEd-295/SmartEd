@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{display}} Information:</h3>
+</div>
+
+<div id="studentDetailContainer" class="modal-body">
+  <form name="studentDetailsForm" ng-submit="getStudentDetails()" role="form">
+
+    <div class="row">
+      <div class="form-group col-md-5"
+           ng-class="{ 'has-error': studentDetailsForm.term.$dirty && studentDetailsForm.term.$error.required}">
+        <select name="term" id="term" class="form-control" ng-model="term"
+                ng-options="item as item for item in termList" required>
+          <option value="">Select Term</option>
+        </select>
+              <span class="help-block"
+                    ng-show="studentDetailsForm.term.$dirty && studentDetailsForm.term.$error.required">Term is required.</span>
+      </div>
+
+      <div class="form-group col-md-5"
+           ng-class="{ 'has-error': studentDetailsForm.year.$dirty && studentDetailsForm.year.$error.required}">
+        <select name="year" id="year" class="form-control" ng-model="year"
+                ng-options="item as item for item in yearList" required>
+          <option value="">Select Year</option>
+        </select>
+              <span class="help-block"
+                    ng-show="studentDetailsForm.year.$dirty && studentDetailsForm.year.$error.required">Year is required.</span>
+      </div>
+
+      <div class="form-group col-md-1">
+        <button type="submit" class="btn btn-primary col-md-offset-5">View</button>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div id="studentDataContainer"  style="height: 400px"></div>
+    </div>
+  </form>
+
+
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="cancel()">Close</button>
+</div>
+
+
+
+

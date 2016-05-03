@@ -5,7 +5,7 @@ angular.module('smartedApp')
 		return {
         templateUrl:'scripts/directives/header-notification/header-notification.html',
         restrict: 'E',
-        replace: true,
+        replace: true
     	}
 	});
 
