@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <table ng-table="tableParams" class="table ng-table-responsive table-hover">
-    <tr ng-repeat="recommendedCourse in recommendedCourseList">
+    <tr ng-repeat="recommendedCourse in recommendedCourseList" ng-click="openModal(recommendedCourse)">
       <td data-title="'Course Id'" sortable="'courseId'" >
         {{ recommendedCourse.courseId }}
       </td>

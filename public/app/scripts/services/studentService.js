@@ -9,4 +9,7 @@ myApp.service('StudentService', ['$http', 'UserService', function ($http, UserSe
     return $http.get('/student/getRecommendedCourses/' + userId );
   };
 
+  this.getUdacityCourses = function(courseName) {
+    return $http.get('/resources//getUdacityRecommendations/' + courseName );
+  }
 }]);

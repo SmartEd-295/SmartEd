@@ -1,0 +1,68 @@
+<style>
+  .course-summary-card, .course-summary-card img {
+    opacity: 0;
+    transition: opacity .3s ease-in;
+    width: 95%;
+  }
+  .row.row-gap-medium {
+    padding: 10px;
+  }
+</style>
+
+
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closePopup()">&times;</button>
+  <h3>Recommended Course Details</h3>
+</div>
+<div class="modal-body">
+  <p>
+    <i class="fa fa-chevron-right" ></i><strong> Course Id:</strong> {{ recommendedCourse.courseId }}
+  </p>
+
+  <p>
+    <i class="fa fa-chevron-right" ></i><strong> Course Name:</strong> {{ recommendedCourse.courseName }}
+  </p>
+
+  <p>
+    <i class="fa fa-chevron-right" ></i><strong > Expected Grade:</strong> {{ recommendedCourse.expectedGrade }}
+  </p>
+
+  <br/>
+  <p>
+    <i class="fa fa-chevron-right" ></i><strong> External References from Udacity </strong>
+  </p>
+  <div style="height: 200px; overflow-y: scroll;">
+
+    <div ng-repeat="udacityCourse in udacityCourses"  id="{{udacityCourse.key}}" class="course-summary-card row row-gap-medium" style="opacity: 1;">
+
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4 >
+              <a data-course-title="{{udacityCourse.title}}" href="{{udacityCourse.homepage}}">
+                {{udacityCourse.title}}
+              </a>
+            </h4>
+            <span style="text-align: right; font-style: italic;" class="h5">
+              <span data-course-level-label=""><strong>Level:</strong>{{udacityCourse.level}}</span>
+            </span>
+            <span class="h5">
+              <strong>Duration:</strong> {{udacityCourse.expected_duration}} {{udacityCourse.expected_duration_unit}}
+            </span>
+
+            <div data-course-short-summary="">
+              {{udacityCourse.short_summary}}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal-footer">
+
+</div>
