@@ -285,6 +285,22 @@
           }
         }
       })
+      .state('dashboard.studentCoursePerformance', {
+        templateUrl: 'views/course/courseDetails.html',
+        url: '/course/:courseId/:term/:year',
+        controller: 'StudentCtrl',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/course/studentController.js',
+                'scripts/directives/charts/dashboardCharts.js'
+              ]
+            })
+          }
+        }
+      })
   }]);
 
   //  Keep User Logged in on different navigations.
