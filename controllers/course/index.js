@@ -52,7 +52,9 @@ module.exports = function (router) {
         var term = req.query.term;
         var year = req.query.year;
 
-        utility.getCurrentTerm(term, year, function(termId){
+        var isRegularTerm = false;
+
+        utility.getCurrentTerm(term, year, isRegularTerm, function(termId){
             console.log('Name:'+name+' ,Term : '+termId);
 
             CourseMetaData.find({'Course Name': name, Term: termId}, function(err, docs){

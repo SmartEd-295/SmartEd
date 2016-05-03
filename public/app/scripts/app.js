@@ -77,10 +77,12 @@
                 files: [
                   'scripts/controllers/dashboard/dashboardController.js',
                   'scripts/controllers/dashboard/sidebarController.js',
+                  'scripts/controllers/dashboard/statsController.js',
                   'scripts/directives/header/header.js',
                   'scripts/directives/header-notification/header-notification.js',
                   'scripts/directives/sidebar/sidebar.js',
-                  'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
+                  'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
+                  'scripts/directives/stats/stats.js'
                 ]
               }),
               $ocLazyLoad.load(
@@ -128,8 +130,7 @@
                 name: 'smartedApp',
                 files: [
                   'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js',
-                  'scripts/directives/dashboard/stats/stats.js'
+                  'scripts/directives/chat/chat.js'
                 ]
               })
           }
@@ -145,8 +146,7 @@
                 name: 'smartedApp',
                 files: [
                   'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js',
-                  'scripts/directives/dashboard/stats/stats.js'
+                  'scripts/directives/chat/chat.js'
                 ]
               })
           }
@@ -156,15 +156,16 @@
       /* Admin State */
       .state('dashboard.admin', {
         templateUrl: 'views/dashboard/admin.html',
+        controller: 'AdminDashboardCtrl',
         resolve: {
           loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load(
               {
                 name: 'smartedApp',
                 files: [
+                  'scripts/controllers/admin/adminDashboardController.js',
                   'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js',
-                  'scripts/directives/dashboard/stats/stats.js'
+                  'scripts/directives/chat/chat.js'
                 ]
               })
           }

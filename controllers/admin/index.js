@@ -1,7 +1,6 @@
 'use strict';
 
-var User = require('../../models/user'),
-    ProfessorDetails = require('../../models/professorDetails'),
+var StudentDetails = require('../../models/studentVisualization'),
     constant = require('../../lib/constants'),
     utility = require('../../lib/utility'),
     sessionFilter = require('../../lib/sessionFilter'),
@@ -9,13 +8,33 @@ var User = require('../../models/user'),
 
 module.exports = function (router) {
 
-    //router.get('/getProfessorDetails', function (req, res) {
-    //    ProfessorDetails.find({}, function (err, docs) {
-    //        if(!err){
-    //            res.json(docs);
-    //        }else{
-    //            res.status(400).send(constant.MESSAGE_MAP.get("GET_ALL_PROFESSOR_FAILED"));
-    //        }
-    //    });
-    //});
+    router.get('/getStudentDetails', function (req, res) {
+        StudentDetails.find({term: 2160}).sort('type').exec(function (err, docs) {
+            if(!err){
+                res.json(docs);
+            }else{
+                res.status(400).send(constant.MESSAGE_MAP.get("GET_STUDENT_VISUALIZATION_FAILED"));
+            }
+        });
+    });
+
+    router.get('/getDetailsPerCategory', function(req, res){
+        var category = req.query.category;
+        var term = req.query.term;
+        var year = req.query.year;
+
+        console.log(category+":"+term+":"+year);
+
+        var isRegularTerm = true;
+        utility.getCurrentTerm(term, year, isRegularTerm, function(termId){
+            StudentDetails.findOne({type: category, term: termId}).exec(function(err, doc){
+                if(!err && doc !== null){
+                    console.log(JSON.stringify(doc));
+                    res.json(doc);
+                }else{
+                    res.status(400).send(constant.MESSAGE_MAP.get("GET_STUDENT_VISUALIZATION_PER_TERM_FAILED"))
+                }
+            });
+        });
+    });
 };

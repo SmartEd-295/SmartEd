@@ -27,4 +27,13 @@ myApp.service('AdminService', ['$http', function ($http) {
   this.getCourses = function () {
     return $http.get('/course/getAllCourseDetails');
   };
+
+  this.getStudentDetailedInfo = function(){
+    return $http.get('/admin/getStudentDetails');
+  };
+
+  this.getStudentInfoPerTerm = function(category, term, year){
+    return $http.get('/admin/getDetailsPerCategory', {params:{"category": category, "term": term, "year": year}});
+  };
+
 }]);
