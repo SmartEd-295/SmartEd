@@ -2,9 +2,10 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService', 'StudentService',
+myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService', 'StudentService', 'AlertService',
 
-  function ($scope, $state, UserService, CourseService, StudentService) {
+  function ($scope, $state, UserService, CourseService, StudentService, AlertService) {
+
 
     $scope.courseList = [];
     // dynamic sidebar logic
@@ -32,7 +33,6 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
     }
 
 
-    // toggle dropdown logic
     $scope.collapseVar = 0;
     $scope.check = function (x) {
       if (x == $scope.collapseVar)
@@ -40,4 +40,13 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
       else
         $scope.collapseVar = x;
     };
+
+    $scope.visitCourse = function (courseId, term, year) {
+      if (Number(year) > Number(new Date().getFullYear()) || Number(year) == Number(new Date().getFullYear())) {
+        AlertService.displayMessage('You can only see the performance of classes for past years.', 'error');
+      } else {
+        $state.go('dashboard.courseCharts', {courseId: courseId, term: term, year: year});
+      }
+    };
+
   }]);
