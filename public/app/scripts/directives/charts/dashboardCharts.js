@@ -1,11 +1,6 @@
   'use strict';
 
-/**
- * @ngdoc directive
- * @name izzyposWebApp.directive:adminPosHeader
- * @description
- * # adminPosHeader
- */
+
 angular.module('smartedApp')
   .directive('hcPieChart', function () {
     return {
@@ -43,32 +38,38 @@ angular.module('smartedApp')
   .directive('hc3dPieChart', function () {
   return {
     restrict: 'E',
-    template: '<div></div>',
+    template: '<div style="height: 400px"></div>',
     scope: {
-      title: '@',
+      title: '=',
+      subtitle: '=',
       data: '='
     },
-    link: function (scope, element) {
-      Highcharts.chart(element[0], {
+    link: function (scope, element, attrs) {
+      var chart = new Highcharts.chart(element[0], {
         chart: {
           type: 'pie',
           options3d: {
             enabled: true,
-            alpha: 45
+            alpha: 50,
+            beta: 0
           }
         },
         title: {
           text: scope.title
         },
+        subtitle: {
+          text: scope.subtitle
+        },
+        tooltip: {
+          pointFormat: '<b>{point.y}</b>'
+        },
         plotOptions: {
           pie: {
-            innerSize: 100,
-            depth: 45,
             allowPointSelect: true,
             cursor: 'pointer',
             dataLabels: {
               enabled: true,
-              format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+              format: '<b>{point.name}</b>: {point.y}'
             }
           }
         },
@@ -76,8 +77,18 @@ angular.module('smartedApp')
           data: scope.data
         }]
       });
+
+      scope.$watch("data", function (newValue) {
+        chart.series[0].setData(newValue, true);
+      }, true);
+
+      scope.$watch("title", function (newValue) {
+        chart.setTitle({text:newValue});
+      }, true);
+
+      scope.$watch("subtitle", function (newValue) {
+        chart.setTitle(null,{text:newValue});
+      }, true);
     }
   };
 });
-
-

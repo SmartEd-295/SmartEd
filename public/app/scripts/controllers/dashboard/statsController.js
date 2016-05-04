@@ -2,11 +2,9 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('StatsCtrl', ['$scope', '$state', 'UserService', 'CourseService', 'AdminService', '$uibModal',
+myApp.controller('StatsCtrl', ['$scope', '$state', '$uibModal',
 
-  function ($scope, $state, UserService, CourseService, AdminService, Modal) {
-
-
+  function ($scope, $state, Modal) {
     $scope.viewDetails = function () {
       var modalInstance = Modal.open({
         templateUrl: 'views/admin/studentInformation.html',
@@ -26,76 +24,47 @@ myApp.controller('StatsCtrl', ['$scope', '$state', 'UserService', 'CourseService
     }
   }]);
 
-myApp.controller('StudentDataCtrl', ['$scope', '$uibModalInstance', 'AdminService', 'AlertService', 'category', 'displayName',
-  function ($scope, modal, AdminService, AlertService, category, displayName) {
+myApp.controller('StudentDataCtrl', ['$scope', '$uibModalInstance', 'AdminService', 'AlertService', 'UtilityService', 'category', 'displayName',
+  function ($scope, modal, AdminService, AlertService, UtilityService, category, displayName) {
     $scope.display = displayName;
 
     var displayChart = function (result) {
+      var data = [];
+      var colors = UtilityService.getColors();
+      var brightness;
+      var dataLength = result.data.length;
 
-      var colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-          return {
-            radialGradient: {
-              cx: 0.5,
-              cy: 0.3,
-              r: 0.7
-            },
-            stops: [
-              [0, color],
-              [1, Highcharts.Color(color).brighten(-0.3).get('rgb')]
-            ]
-          };
-        }),
-        data = [],
-        j,
-        dataLength, brightness;
-      dataLength = result.data.length;
-      for (j = 0; j < dataLength; j += 1) {
-
+      for (var j = 0; j < dataLength; j += 1) {
         var obj = result.data[j];
         brightness = 0.2 - (j / dataLength) / 5;
-
-        data.push({
-          name: obj.name + " (" + obj.alias + ")",
-          y: obj.value,
-          color: Highcharts.Color(colors[j]).brighten(brightness).get()
-        });
+        var colorIndex = (j == 1 ? 9 : j);
+        if (j == 0) {
+          data.push({
+            name: obj.name + " (" + obj.alias + ")",
+            y: obj.value,
+            color: Highcharts.Color(colors[colorIndex]).brighten(brightness).get(),
+            sliced: true,
+            selected: true
+          });
+        } else {
+          data.push({
+            name: obj.name + " (" + obj.alias + ")",
+            y: obj.value,
+            color: Highcharts.Color(colors[colorIndex]).brighten(brightness).get()
+          });
+        }
       }
 
-      $('#studentDataContainer').highcharts({
-        chart: {
-          type: 'pie',
-          options3d: {
-            enabled: true,
-            alpha: 55,
-            beta: 0
-          }
-        },
-        title: {
-          text: "Student " + displayName + " Details"
-        },
-        subtitle: {
-          text: "Term: " + $scope.term + " " + $scope.year
-        },
-        tooltip: {
-          pointFormat: '<b>{point.y}</b>'
-        },
-        plotOptions: {
-          pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            depth: 35,
-            dataLabels: {
-              enabled: true,
-              format: '{point.name}'
-            }
-          }
-        },
-        series: [{
-          type: 'pie',
-          name: displayName,
-          data: data
-        }]
-      });
+      //$scope.chartTitle = "Student " + displayName + " Details";
+      //$scope.chartSubtitle = "Term: " + $scope.term + " " + $scope.year;
+      //$scope.chartData = data;
+
+      var title = "Student " + displayName + " Details",
+        subTitle = "Term: " + $scope.term + " " + $scope.year,
+        seriesName = displayName,
+        containerId = "studentDataContainer";
+
+      UtilityService.draw3dPieChart(containerId, title, subTitle, seriesName, data);
     };
 
     var fetchDetails = function () {
@@ -116,14 +85,11 @@ myApp.controller('StudentDataCtrl', ['$scope', '$uibModalInstance', 'AdminServic
     };
     loadData();
 
-
-    $scope.getStudentDetails = function(){
+    $scope.getStudentDetails = function () {
       fetchDetails();
     };
 
     $scope.cancel = function () {
       modal.dismiss('cancel');
     };
-
-
   }]);

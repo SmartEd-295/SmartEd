@@ -82,7 +82,8 @@
                   'scripts/directives/header-notification/header-notification.js',
                   'scripts/directives/sidebar/sidebar.js',
                   'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
-                  'scripts/directives/stats/stats.js'
+                  'scripts/directives/stats/stats.js',
+                  'scripts/directives/charts/dashboardCharts.js'
                 ]
               }),
               $ocLazyLoad.load(
@@ -295,8 +296,7 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/course/studentController.js',
-                'scripts/directives/charts/dashboardCharts.js'
+                'scripts/controllers/course/studentController.js'
               ]
             })
           }
