@@ -1,24 +1,24 @@
 'use strict';
 
 angular.module('smartedApp')
-    .directive('stats',function() {
-    	return {
-  		templateUrl:'scripts/directives/stats/stats.html',
-  		restrict:'E',
-  		replace:true,
+  .directive('stats', function () {
+    return {
+      templateUrl: 'scripts/directives/stats/stats.html',
+      restrict: 'E',
+      replace: true,
       controller: 'StatsCtrl',
-  		scope: {
+      scope: {
         'model': '=',
         'comments': '@',
         'number': '@',
         'category': '@',
         'name': '@',
         'colour': '@',
-        'details':'@',
-        'type':'@',
-        'goto':'@',
-        'action':'@'
-  		}
+        'details': '@',
+        'type': '@',
+        'goto': '@',
+        'action': '@'
+      }
 
-  	}
+    }
   });

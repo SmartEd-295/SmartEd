@@ -274,11 +274,11 @@
                 'scripts/directives/charts/dashboardCharts.js'
               ]
             }),
-            $ocLazyLoad.load(
-              {
-                name: 'ngTable',
-                files: ['bower_components/ng-table/dist/ng-table.min.js']
-              })
+              $ocLazyLoad.load(
+                {
+                  name: 'ngTable',
+                  files: ['bower_components/ng-table/dist/ng-table.min.js']
+                })
           }
         }
       })
@@ -291,8 +291,7 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/student/studentController.js',
-                'scripts/directives/charts/dashboardCharts.js'
+                'scripts/controllers/student/studentController.js'
               ]
             }),
               $ocLazyLoad.load(

@@ -5,8 +5,8 @@ var myApp = angular.module('smartedApp');
 myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope, ngNotify) {
   var service = {};
 
-  service.draw3dPieChart = function(containerId, title, subTitle, seriesName, data){
-    $('#'+containerId).highcharts({
+  service.draw3dPieChart = function (containerId, title, subTitle, seriesName, data) {
+    $('#' + containerId).highcharts({
       chart: {
         type: 'pie',
         options3d: {
@@ -19,7 +19,7 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
         text: title
       },
       subtitle: {
-        text:subTitle
+        text: subTitle
       },
       tooltip: {
         pointFormat: '<b>{point.y}</b>'
@@ -43,8 +43,8 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
     });
   };
 
-  service.draw3dDonutChart = function(containerId, title, subTitle, innerSeriesName, outerSeriesName, innerData, outerData){
-    $('#'+containerId).highcharts({
+  service.draw3dDonutChart = function (containerId, title, subTitle, innerSeriesName, outerSeriesName, innerData, outerData) {
+    $('#' + containerId).highcharts({
       chart: {
         type: 'pie',
         options3d: {
@@ -90,8 +90,8 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
     });
   };
 
-  service.draw3dBarChart = function(containerId, title, subTitle, firstSeriesName, firstData) {
-    $('#'+containerId).highcharts({
+  service.draw3dBarChart = function (containerId, title, subTitle, seriesName, data) {
+    $('#' + containerId).highcharts({
       chart: {
         type: 'column',
         margin: 75,
@@ -114,12 +114,13 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
         text: subTitle
       },
       series: [{
-        data: firstData
+        name: seriesName,
+        data: data
       }]
     });
   };
 
-  service.getColors = function(){
+  service.getColors = function () {
     return Highcharts.map(Highcharts.getOptions().colors, function (color) {
       return {
         radialGradient: {

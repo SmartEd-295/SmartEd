@@ -13,33 +13,31 @@ myApp.service('StudentService', ['$http', 'UserService', function ($http, UserSe
     return currentCourse;
   };
 
-
-
   this.getCourseRecommendations = function () {
-    var userId =  UserService.getCurrentUser().sjsuId;
-    return $http.get('/student/getRecommendedCourses/' + userId );
+    var userId = UserService.getCurrentUser().sjsuId;
+    return $http.get('/student/getRecommendedCourses/' + userId);
   };
 
-  this.getUdacityCourses = function(courseName) {
-    return $http.get('/resources//getUdacityRecommendations/' + courseName );
+  this.getUdacityCourses = function (courseName) {
+    return $http.get('/resources//getUdacityRecommendations/' + courseName);
   }
 
-  this.getEnrolledCourses = function(){
-    var userId =  UserService.getCurrentUser().userMail;
+  this.getEnrolledCourses = function () {
+    var userId = UserService.getCurrentUser().userMail;
     console.log("In student service Hit :-----> " + userId);
-    return $http.get('/student/getEnrolledCourses/' + userId );
+    return $http.get('/student/getEnrolledCourses/' + userId);
   };
 
-  this.getAssignments = function(courseId){
-    var userId =  UserService.getCurrentUser().userMail;
+  this.getAssignments = function (courseId) {
+    var userId = UserService.getCurrentUser().userMail;
     console.log("In student service Hit :-----> " + userId);
-    return $http.get('/student/getAssignments/' + courseId + '/' + userId );
+    return $http.get('/student/getAssignments/' + courseId + '/' + userId);
   };
 
-  this.getQuizzes = function(courseId){
-    var userId =  UserService.getCurrentUser().userMail;
+  this.getQuizzes = function (courseId) {
+    var userId = UserService.getCurrentUser().userMail;
     console.log("In student service Hit :-----> " + userId);
-    return $http.get('/student/getQuizzes/' + courseId + '/' + userId );
+    return $http.get('/student/getQuizzes/' + courseId + '/' + userId);
   };
 
 }]);
