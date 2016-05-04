@@ -252,7 +252,7 @@
         }
       })
       .state('dashboard.courseCharts', {
-        templateUrl: 'views/course/courseDetails.html',
+        templateUrl: 'views/professor/courseDetails.html',
         url: '/course/:courseId/:term/:year',
         controller: 'ChartCtrl',
         resolve: {
@@ -260,8 +260,7 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/course/courseDetailController.js',
-                'scripts/directives/charts/dashboardCharts.js'
+                'scripts/controllers/professor/courseDetailController.js'
               ]
             })
           }
@@ -288,7 +287,7 @@
         }
       })
       .state('dashboard.studentCoursePerformance', {
-        templateUrl: 'views/course/courseDetails.html',
+        templateUrl: 'views/professor/courseDetails.html',
         url: '/course/:courseId/:term/:year',
         controller: 'StudentCtrl',
         resolve: {
@@ -296,7 +295,6 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/course/studentController.js'
               ]
             })
           }

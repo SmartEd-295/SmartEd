@@ -11,6 +11,7 @@ module.exports = function (router) {
 
         // get course name from original request
         var cName = req.params.courseName;
+        cName = cName.toLowerCase();
         var filteredCourses = [];
 
         var callback = function(response) {
@@ -19,17 +20,21 @@ module.exports = function (router) {
                 str += chunk;
             });
             response.on('end', function () {
+                console.log("My Response>>>>>>>"+str);
                 var json_response = JSON.parse(str);
                 var courses = json_response.courses;
 
-                //console.log(cName + "-----------> "+ courses.length);
+                console.log(cName + "-----------> "+ courses.length);
                 // change filtering logic
                 for (var i = 0; i < courses.length; i++) {
-                    if(courses[i].title.indexOf(cName) > -1 || courses[i].summary.indexOf(cName) > -1 || courses[i].tracks.indexOf(cName) > -1) {
+                    var title = courses[i].title,
+                        summary = courses[i].summary,
+                        tracks = courses[i].tracks;
+                    if(title.indexOf(cName) > -1 || summary.indexOf(cName) > -1 || tracks.indexOf(cName) > -1) {
                         filteredCourses.push(courses[i]);
                     }
                 }
-                //console.log("-----------> "+ filteredCourses.length);
+                console.log("-----------> "+ filteredCourses.length);
 
                 res.json(courses);
             });

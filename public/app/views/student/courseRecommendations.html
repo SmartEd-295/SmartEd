@@ -1,10 +1,14 @@
-<div class="col-md-12">
+<div class="col-lg-12">
+  <h3 class="page-header">Recommended Courses</h3>
+</div>
+
+<div id="recommendationContainer" class="col-md-12">
   <table ng-table="tableParams" class="table ng-table-responsive table-hover">
-    <tr ng-repeat="recommendedCourse in recommendedCourseList" ng-click="openModal(recommendedCourse)">
-      <td data-title="'Course Id'" sortable="'courseId'" >
-        {{ recommendedCourse.courseId }}
+    <tr ng-repeat="recommendedCourse in $data">
+      <td data-title="'Course Id'" sortable="'courseId'"><a href="" ng-click="openModal(recommendedCourse)" class="professor-detail">
+        {{ recommendedCourse.courseId }}</a>
       </td>
-      <td data-title="'Course Name'" sortable="'courseName'" >
+      <td data-title="'Course Name'" sortable="'courseName'">
         {{ recommendedCourse.courseName }}
       </td>
       <td data-title="'Grade Predicted'" sortable="'expectedGrade'">
