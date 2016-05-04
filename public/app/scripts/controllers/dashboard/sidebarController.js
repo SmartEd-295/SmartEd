@@ -2,16 +2,15 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService',
+myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService', 'StudentService',
 
-  function ($scope, $state, UserService, CourseService) {
+  function ($scope, $state, UserService, CourseService, StudentService) {
 
     $scope.courseList = [];
     // dynamic sidebar logic
     var currentRole = UserService.getCurrentUserRole();
     if (currentRole == 'Professor') {
       $scope.userRole = "Professor";
-
       $scope.goToState = "dashboard.professor";
       CourseService.getAllCourses().success(function (data, status) {
         $scope.courseList = data;
@@ -21,6 +20,12 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
     } else if (currentRole == 'Student') {
       $scope.userRole = "Student";
       $scope.goToState = "dashboard.student";
+      StudentService.getEnrolledCourses().success(function (data, status) {
+        var parsedData = JSON.parse(data);
+        $scope.studentCourseList = parsedData;
+      }).error(function (data, status) {
+        console.log(data);
+      });
     } else if (currentRole == 'Admin') {
       $scope.userRole = "Admin";
       $scope.goToState = "dashboard.admin";

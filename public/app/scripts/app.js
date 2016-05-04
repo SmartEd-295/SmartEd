@@ -287,16 +287,23 @@
         }
       })
       .state('dashboard.studentCoursePerformance', {
-        templateUrl: 'views/professor/courseDetails.html',
-        url: '/course/:courseId/:term/:year',
-        controller: 'StudentCtrl',
+        templateUrl: 'views/student/studentCoursePerformance.html',
+        url: '/studentCoursePerformance/:course',
+        controller: 'StudentCoursePerformanceCtrl',
         resolve: {
           loadMyFile: function ($ocLazyLoad) {
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
+                'scripts/controllers/student/studentController.js',
+                'scripts/directives/charts/dashboardCharts.js'
               ]
-            })
+            }),
+            $ocLazyLoad.load(
+              {
+                name: 'ngTable',
+                files: ['bower_components/ng-table/dist/ng-table.min.js']
+              })
           }
         }
       })

@@ -77,5 +77,21 @@ myApp.controller('StudentCtrl', ['$scope', 'ngTableParams', '$filter', '$uibModa
       $scope.closePopup = function () {
         modal.dismiss('cancel');
       };
+  }])
+  .controller('StudentCoursePerformanceCtrl', ['$scope', 'ngTableParams', '$filter', '$uibModal', 'StudentService', 'AlertService', '$stateParams', 'CourseService',
+    function ($scope, ngTableParams, $filter, $uibModal, StudentService, AlertService, $stateParams, CourseService) {
 
+      $scope.hc3dPieData = [
+        ['Assignments', 8],
+        ['Quizzes', 3],
+        ['Midterm', 3],
+        ['Final', 3],
+        ['Labs', 6],
+        ['Project', 8]
+      ];
+
+      // load course data
+      var mCourse = $stateParams.course;
+      $scope.currentCourse = JSON.parse(mCourse);
+      console.log(" - i  student performance ctrl---------> : "+ JSON.parse(mCourse));
     }]);

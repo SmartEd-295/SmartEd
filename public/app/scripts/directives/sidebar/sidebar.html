@@ -48,8 +48,8 @@
             <a ng-click="check(1)"><i class="fa fa-files-o fa-fw"></i> Courses<span
               class="fa arrow"></span></a>
             <ul class="nav nav-second-level" collapse="collapseVar!=1">
-              <li ng-repeat="course in courseList" ui-sref-active="active">
-                <a ui-sref="dashboard.courseCharts({courseId: '{{course.courseId}}', term:'{{course.term}}', year:'{{course.year}}'})" ><i class="fa fa-file-text fa-fw"></i>{{course.courseId}} {{course.term}}-{{course.year}}</a>
+              <li ng-repeat="course in studentCourseList track by $index" ui-sref-active="active" ng-show="course.name" >
+                <a ui-sref="dashboard.studentCoursePerformance({course: '{{course}}'})" ><i class="fa fa-file-text fa-fw"></i>{{course.name}}</a>
               </li>
 
             </ul>
