@@ -12,4 +12,11 @@ myApp.service('StudentService', ['$http', 'UserService', function ($http, UserSe
   this.getUdacityCourses = function(courseName) {
     return $http.get('/resources//getUdacityRecommendations/' + courseName );
   }
+
+  this.getEnrolledCourses = function(){
+    var userId =  UserService.getCurrentUser().userMail;
+    console.log("In student service Hit :-----> " + userId);
+    return $http.get('/student/getEnrolledCourses/' + userId );
+  };
+
 }]);

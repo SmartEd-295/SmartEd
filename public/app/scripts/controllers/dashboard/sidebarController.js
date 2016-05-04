@@ -2,16 +2,16 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService', 'AlertService',
+myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService', 'StudentService', 'AlertService',
 
-  function ($scope, $state, UserService, CourseService, AlertService) {
+  function ($scope, $state, UserService, CourseService, StudentService, AlertService) {
+
 
     $scope.courseList = [];
     // dynamic sidebar logic
     var currentRole = UserService.getCurrentUserRole();
     if (currentRole == 'Professor') {
       $scope.userRole = "Professor";
-
       $scope.goToState = "dashboard.professor";
       CourseService.getAllCourses().success(function (data, status) {
         $scope.courseList = data;
@@ -21,6 +21,12 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
     } else if (currentRole == 'Student') {
       $scope.userRole = "Student";
       $scope.goToState = "dashboard.student";
+      StudentService.getEnrolledCourses().success(function (data, status) {
+        var parsedData = JSON.parse(data);
+        $scope.studentCourseList = parsedData;
+      }).error(function (data, status) {
+        console.log(data);
+      });
     } else if (currentRole == 'Admin') {
       $scope.userRole = "Admin";
       $scope.goToState = "dashboard.admin";
@@ -35,11 +41,11 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
         $scope.collapseVar = x;
     };
 
-    $scope.visitCourse = function(courseId, term, year){
-      if(Number(year) > Number(new Date().getFullYear()) || Number(year) == Number(new Date().getFullYear())){
+    $scope.visitCourse = function (courseId, term, year) {
+      if (Number(year) > Number(new Date().getFullYear()) || Number(year) == Number(new Date().getFullYear())) {
         AlertService.displayMessage('You can only see the performance of classes for past years.', 'error');
-      }else{
-        $state.go('dashboard.courseCharts', {courseId: courseId, term:term, year:year});
+      } else {
+        $state.go('dashboard.courseCharts', {courseId: courseId, term: term, year: year});
       }
     };
 
