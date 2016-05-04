@@ -57,12 +57,12 @@ module.exports = function (router) {
                     $match: {
                         term: Number(termId),
                         courseId: Number(courseId),
-                        subject: "CMPE"
+                        subject: 'CMPE'
                     }
                 },
                 {
                     $group: {
-                        _id: "$gpa",
+                        _id: '$gpa',
                         total: {$sum: 1}
                     }
                 }
@@ -71,8 +71,8 @@ module.exports = function (router) {
                     res.sendStatus(400);
                 }else{
                     var responseData = {
-                        "courseData": course,
-                        "chartData": result
+                        'courseData': course,
+                        'chartData': result
                     };
                     res.json(responseData);
                 }
@@ -82,5 +82,3 @@ module.exports = function (router) {
         });
     }
 };
-
-

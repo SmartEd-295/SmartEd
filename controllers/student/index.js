@@ -25,7 +25,7 @@ module.exports = function (router) {
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(body));
             }else{
-                console.log("In student ctrl failure :-----> " + userEmail);
+                console.log('In student ctrl failure :-----> ' + userEmail);
                 res.status(400).send(constant.MESSAGE_MAP.get('CANVAS_CONNECTION_FAILED'));
             }
         });
@@ -37,11 +37,11 @@ module.exports = function (router) {
 
         var courseId = req.params.courseId;
         var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_ASSIGNMENT_LIST');
-        apiUrl = apiUrl.replace(":course_id",courseId);
+        apiUrl = apiUrl.replace(':course_id',courseId);
 
         canvasConnectivity.getCanvasDetails(apiUrl, userEmail, function (err, body) {
             if(!err){
-                console.log("In student assignments API success :-----> " + body);
+                console.log('In student assignments API success :-----> ' + body);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(body));
             }else{
@@ -55,11 +55,11 @@ module.exports = function (router) {
 
         var courseId = req.params.courseId;
         var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_QUIZ_LIST');
-        apiUrl = apiUrl.replace(":course_id",courseId);
+        apiUrl = apiUrl.replace(':course_id',courseId);
 
         canvasConnectivity.getCanvasDetails(apiUrl, userEmail, function (err, body) {
             if(!err){
-                console.log("In student quizzes API success :-----> " + body);
+                console.log('In student quizzes API success :-----> ' + body);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(body));
             }else{

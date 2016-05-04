@@ -13,7 +13,7 @@ module.exports = function (router) {
             if(!err){
                 res.json(docs);
             }else{
-                res.status(400).send(constant.MESSAGE_MAP.get("GET_STUDENT_VISUALIZATION_FAILED"));
+                res.status(400).send(constant.MESSAGE_MAP.get('GET_STUDENT_VISUALIZATION_FAILED'));
             }
         });
     });
@@ -23,8 +23,6 @@ module.exports = function (router) {
         var term = req.query.term;
         var year = req.query.year;
 
-        console.log(category+":"+term+":"+year);
-
         var isRegularTerm = true;
         utility.getCurrentTerm(term, year, isRegularTerm, function(termId){
             StudentDetails.findOne({type: category, term: termId}).exec(function(err, doc){
@@ -32,7 +30,7 @@ module.exports = function (router) {
                     console.log(JSON.stringify(doc));
                     res.json(doc);
                 }else{
-                    res.status(400).send(constant.MESSAGE_MAP.get("GET_STUDENT_VISUALIZATION_PER_TERM_FAILED"))
+                    res.status(400).send(constant.MESSAGE_MAP.get('GET_STUDENT_VISUALIZATION_PER_TERM_FAILED'));
                 }
             });
         });
