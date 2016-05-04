@@ -42,8 +42,8 @@ myApp.controller('StudentCtrl', ['$scope', 'ngTableParams', '$filter', '$uibModa
       $scope.openModal = function (course) {
         var udacityData = [];
 
-        StudentService.getUdacityCourses(course.courseName).success(function (result, status) {
-          udacityData = result;
+        //StudentService.getUdacityCourses(course.courseName).success(function (result, status) {
+        //  udacityData = result;
 
           var modalInstance = $uibModal.open({
             animation: true,
@@ -61,9 +61,9 @@ myApp.controller('StudentCtrl', ['$scope', 'ngTableParams', '$filter', '$uibModa
 
           modalInstance.result.then(function () {
           });
-        }).error(function (data, status) {
-          AlertService.displayBoxMessage(data, 'recommendationContainer', 'error');
-        });
+        //}).error(function (data, status) {
+        //  AlertService.displayBoxMessage(data, 'recommendationContainer', 'error');
+        //});
 
 
       };
