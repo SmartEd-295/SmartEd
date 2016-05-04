@@ -90,6 +90,35 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
     });
   };
 
+  service.draw3dBarChart = function(containerId, title, subTitle, firstSeriesName, firstData) {
+    $('#'+containerId).highcharts({
+      chart: {
+        type: 'column',
+        margin: 75,
+        options3d: {
+          enabled: true,
+          alpha: 15,
+          beta: 15,
+          depth: 50
+        }
+      },
+      plotOptions: {
+        column: {
+          depth: 25
+        }
+      },
+      title: {
+        text: title
+      },
+      subtitle: {
+        text: subTitle
+      },
+      series: [{
+        data: firstData
+      }]
+    });
+  };
+
   service.getColors = function(){
     return Highcharts.map(Highcharts.getOptions().colors, function (color) {
       return {

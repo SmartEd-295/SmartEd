@@ -5,7 +5,7 @@ var myApp = angular.module('smartedApp');
 myApp.controller('StatsCtrl', ['$scope', '$state', '$uibModal',
 
   function ($scope, $state, Modal) {
-    $scope.viewDetails = function () {
+    var adminScreenChart = function() {
       var modalInstance = Modal.open({
         templateUrl: 'views/admin/studentInformation.html',
         controller: 'StudentDataCtrl',
@@ -21,6 +21,20 @@ myApp.controller('StatsCtrl', ['$scope', '$state', '$uibModal',
 
       modalInstance.result.then(function () {
       });
+    };
+
+
+    var studentPerformanceScreenCharts = function(actionState) {
+      $state.go(actionState);
+    };
+
+
+    $scope.viewDetails = function (action) {
+        if(action === undefined || action == "") {
+          adminScreenChart();
+        } else {
+          studentPerformanceScreenCharts(action);
+        }
     }
   }]);
 

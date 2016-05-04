@@ -203,31 +203,6 @@
           }
         }
       })
-
-      .state('course.students', {
-        templateUrl: 'views/form.html',
-        url: '/form'
-      })
-      .state('course.assignments', {
-        templateUrl: 'views/pages/blank.html',
-        url: '/blank'
-      })
-      .state('course.quizzes', {
-        templateUrl: 'views/table.html',
-        url: '/table'
-      })
-      .state('course.grades.upload', {
-        templateUrl: 'views/ui-elements/panels-wells.html',
-        url: '/panels-wells'
-      })
-      .state('course.files.all', {
-        templateUrl: 'views/ui-elements/buttons.html',
-        url: '/buttons'
-      })
-      .state('course.announcements.all', {
-        templateUrl: 'views/ui-elements/notifications.html',
-        url: '/notifications'
-      })
       .state('professor.performance', {
         templateUrl: 'views/ui-elements/typography.html',
         url: '/typography'
@@ -289,7 +264,7 @@
       .state('dashboard.studentCoursePerformance', {
         templateUrl: 'views/student/studentCoursePerformance.html',
         url: '/studentCoursePerformance/:course',
-        controller: 'StudentCoursePerformanceCtrl',
+        controller: 'StudentCoursePerformanceMainCtrl',
         resolve: {
           loadMyFile: function ($ocLazyLoad) {
             return $ocLazyLoad.load({
@@ -304,6 +279,48 @@
                 name: 'ngTable',
                 files: ['bower_components/ng-table/dist/ng-table.min.js']
               })
+          }
+        }
+      })
+      .state('dashboard.assignments', {
+        templateUrl: 'views/student/studentAssignmentPerformance.html',
+        url: '/course/assignments',
+        controller: 'StudentAssignmentPerformanceCtrl',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/student/studentController.js',
+                'scripts/directives/charts/dashboardCharts.js'
+              ]
+            }),
+              $ocLazyLoad.load(
+                {
+                  name: 'ngTable',
+                  files: ['bower_components/ng-table/dist/ng-table.min.js']
+                })
+          }
+        }
+      })
+      .state('dashboard.quizzes', {
+        templateUrl: 'views/student/studentQuizPerformance.html',
+        controller: 'StudentQuizPerformanceCtrl',
+        url: '/course/quizzes',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/student/studentController.js',
+                'scripts/directives/charts/dashboardCharts.js'
+              ]
+            }),
+              $ocLazyLoad.load(
+                {
+                  name: 'ngTable',
+                  files: ['bower_components/ng-table/dist/ng-table.min.js']
+                })
           }
         }
       })

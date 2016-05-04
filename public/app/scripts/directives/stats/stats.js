@@ -16,7 +16,8 @@ angular.module('smartedApp')
         'colour': '@',
         'details':'@',
         'type':'@',
-        'goto':'@'
+        'goto':'@',
+        'action':'@'
   		}
 
   	}
