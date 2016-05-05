@@ -1,11 +1,101 @@
 <div class="row">
   <div class="col-lg-12">
-    <h3 class="page-header">Assignment Overview</h3>
+    <h3 class="page-header">Assignments Overview</h3>
   </div>
 </div>
 
-<div class="row">
-  <div id="studentAssignmentPerformanceContainer" class="col-md-8-offset-2" style="height: 500px"></div>
+<div style="margin-top: 10px;" class="row">
+    <div ng-repeat="assignment in assignmentList">
+      <div class="panel-group" id="assignment-panel">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="javascript:;" data-parent="#assignment-panel" data-target="#assignment{{$index+1}}">
+              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{assignment.name}}
+            </a>
+          </h4>
+        </div>
+
+        <div id="assignment{{$index+1}}" class="panel-collapse collapse">
+
+          <div class="panel-body">
+            <div style="margin-top: 10px;" class="row">
+              <div class="col-md-8">
+                <span style="font-size: 1.3em;">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  <strong>Description</strong>
+                </span>
+                <hr/>
+                <p ng-show="assignment.description" ng-bind-html="assignment.description"></p>
+                <p ng-hide="assignment.description" >
+                  Sorry. No details available.
+                </p>
+
+              </div>
+              <div class="col-md-4">
+                <p style="font-size: 1em;">
+                  <strong>Max Points: </strong><em>{{assignment.points_possible}} {{assignment.grading_type}}</em>
+                </p>
+                <p ng-if="assignment.created_at">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <strong>Created at :</strong> {{assignment.created_at}}
+                </p>
+                <p ng-if="assignment.due_at" >
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <strong>Due at :</strong> {{assignment.due_at}}
+                </p>
+              </div>
+            </div>
+
+            <div style="margin-top: 20px;" class="row">
+              <div class="col-md-8">
+                <span style="font-size: 1.3em;">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  <strong>Submission</strong>
+                </span>
+                <hr/>
+                <div  ng-show="assignment.submission">
+                  <p><i style="color: green; font-size:30px;" class="fa fa-check-square-o" aria-hidden="true"></i> You have successfully submitted the assignment.</p>
+                  <p>Kindly review the submission <a target="_blank" href="{{assignment.html_url}}">here</a></p>
+                </div>
+                <div  ng-hide="assignment.submission">
+                  <p><i style="color: red; font-size:30px;" class="fa fa-times-circle-o" aria-hidden="true"></i> You have not submitted the assignment.</p>
+                  <p>Kindly submit the assignment <a target="_blank" href="{{assignment.html_url}}">here</a></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+      </div>
+    </div>
 </div>
 
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Scores & Performance</h4>
+        <hr/>
+      </div>
+      <div id="studentAssignmentPerformanceContainer" class="col-md-8-offset-2" style="min-height: 0px; max-height: 500px;"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Submissions & Timeline</h4>
+        <hr/>
+      </div>
+      <div id="studentSubmissionTimelineContainer" class="col-md-8-offset-2" style="min-height: 0px; ax-height: 500px;"></div>
+    </div>
+  </div>
+</div>

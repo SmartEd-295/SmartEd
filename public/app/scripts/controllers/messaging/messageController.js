@@ -108,7 +108,7 @@ myApp.controller('MessagingCtrl', ['$scope', '$uibModal', 'MessageService', 'Ale
         composeEmail.toUser = returnEmail.fromUser;
         composeEmail.fromUser = returnEmail.toUser;
         composeEmail.subject = "Re: " + returnEmail.subject;
-        composeEmail.content = returnEmail.content + "\n >>>>>>>>>>>>>> \n";
+        composeEmail.content = returnEmail.content;
 
         $scope.showComposePopup(composeEmail);
       }, function () {

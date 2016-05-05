@@ -90,7 +90,7 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
     });
   };
 
-  service.draw3dBarChart = function (containerId, title, subTitle, seriesName, data) {
+  service.draw3dBarChart = function (containerId, title, subTitle, seriesName1, data1, seriesName2, data2 ) {
     $('#' + containerId).highcharts({
       chart: {
         type: 'column',
@@ -114,8 +114,13 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
         text: subTitle
       },
       series: [{
-        name: seriesName,
-        data: data
+        name: seriesName1,
+        data: data1,
+        stack: 0
+      },{
+        name: seriesName2,
+        data: data2,
+        stack: 1
       }]
     });
   };
