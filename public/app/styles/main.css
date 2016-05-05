@@ -1,6 +1,12 @@
 /* Space out content a bit */
 body {
-    padding-bottom: 20px;
+  font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #f7f7f7;
+  position: relative;
+  margin: 0px;
+  font-size: 12px;
+  padding: 0px;
+  overflow-x: hidden;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -80,4 +86,33 @@ body {
 .nav>li.active>a {
 text-decoration: none;
 background-color: #eee;
+}
+
+.smart-header{
+  background-color: #222;
+  padding: 7px 0;
+}
+
+
+#smartHeader .navbar-default.navbar-shrink .navbar-brand {
+  font-size: 1.5em;
+}
+
+.smart-brand{
+  color: #fed136;
+  font-size: 1.7em;
+  font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+  margin-left: 70px;
+}
+
+.header-top-items{
+  color: #ffffff;
+}
+
+#smartHeader .navbar-default .nav li a {
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #fff;
 }
