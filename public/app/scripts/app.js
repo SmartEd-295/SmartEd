@@ -24,8 +24,8 @@
       })
       .state('login', {
         controller: 'LoginCtrl',
-        templateUrl: 'views/userManagement/login.html',
         url: '/login',
+        templateUrl: 'views/userManagement/login.html',
         resolve: {
           loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load({
@@ -39,8 +39,8 @@
       })
       .state('signUp', {
         controller: 'RegisterCtrl',
-        templateUrl: 'views/userManagement/register.html',
         url: '/signUp',
+        templateUrl: 'views/userManagement/register.html',
         resolve: {
           loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load(

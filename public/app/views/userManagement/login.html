@@ -1,18 +1,22 @@
 <link href="styles/agency.css" rel="stylesheet">
+
 <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
   <div class="container">
     <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand page-scroll" ui-sref="home">SmartEd</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-
-
         <li>
           <a class="page-scroll" ui-sref="home">Home</a>
         </li>
-
         <li>
           <a class="page-scroll" ui-sref="signUp">SignUp</a>
         </li>
@@ -21,50 +25,56 @@
   </div>
 </nav>
 
-<div class="row" style="margin-top: 100px">
+<div class="container" style="min-height: 600px;">
 
-  <div class="col-md-4 col-md-offset-4">
-    <div class="login-panel panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">Welcome to SmartEd </h3>
-      </div>
-      <div id="mycontainer" class="panel-body">
-        <form name="form" ng-submit="login()" role="form">
+  <div class="row" style="margin-top: 100px">
 
-          <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required}">
-            <input type="text" name="username" id="username" class="form-control" placeholder="E-mail"
-                   ng-model="user.email" required/>
+    <div class="col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Welcome to SmartEd </h3>
+        </div>
+        <div id="mycontainer" class="panel-body">
+          <form name="form" ng-submit="login()" role="form">
+
+            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required}">
+              <input type="text" name="username" id="username" class="form-control" placeholder="E-mail"
+                     ng-model="user.email" required/>
             <span class="help-block"
                   ng-show="form.username.$dirty && form.username.$error.required">E-mail is required.</span>
-          </div>
+            </div>
 
 
-          <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-            <input type="password" placeholder="Password" name="password" id="password" class="form-control"
-                   ng-model="user.password" required/>
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
-          </div>
+            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+              <input type="password" placeholder="Password" name="password" id="password" class="form-control"
+                     ng-model="user.password" required/>
+              <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+            </div>
 
-          <div class="form-actions">
-            <a href="" ng-click="forgotPassword();" class="btn btn-link">Forgot Password</a>
-            <br>
-            <button type="submit" class="btn btn-info btn-block">SignIn</button>
-          </div>
+            <div class="form-actions">
+              <a href="" ng-click="forgotPassword();" class="btn btn-link">Forgot Password</a>
+              <br>
+              <button type="submit" class="btn btn-info btn-block">SignIn</button>
+            </div>
 
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <nav class="navbar navbar-default navbar-fixed-bottom topnav"
-       role="navigation">
-    <div class="container topnav" style="font-size: x-small;">
 
-      <p>
-        <b>WARNING:</b> EACH TIME YOU LOGIN TO SMARTED PORTAL YOU ARE
-        ACKNOWLEDGING YOU HAVE SPECIFIC AUTHORIZATION TO ACCESS OR USE THIS PORTAL. ALL CONNECTIONS TO THIS SYSTEM ARE
-        LOGGED AND MONITORED.
-        UNAUTHORIZED USE WILL BE PROSECUTED.
-      </p>
-    </div>
-  </nav>
+  </div>
 </div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="copyright"><b>WARNING:</b> EACH TIME YOU LOGIN TO SMARTED PORTAL YOU ARE
+      ACKNOWLEDGING YOU HAVE SPECIFIC AUTHORIZATION TO ACCESS OR USE THIS PORTAL. ALL CONNECTIONS TO THIS SYSTEM ARE
+      LOGGED AND MONITORED.
+      UNAUTHORIZED USE WILL BE PROSECUTED. <b>Copyright &copy; SmartEd 2016</b></span>
+      </div>
+
+    </div>
+  </div>
+</footer>

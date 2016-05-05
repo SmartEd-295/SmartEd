@@ -2,17 +2,20 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
   <div class="container">
     <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand page-scroll" ui-sref="home">SmartEd</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-
-
         <li>
           <a class="page-scroll" ui-sref="home">Home</a>
         </li>
-
         <li>
           <a class="page-scroll" ui-sref="login">Login</a>
         </li>
@@ -21,88 +24,89 @@
   </div>
 </nav>
 
-<div class="row" style="margin-top: 50px">
+<div class="container" style="min-height: 600px;">
+  <div class="row" style="margin-top: 50px">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">SignUp</h3>
+        </div>
 
-  <div class="col-md-4 col-md-offset-4">
-    <div class="login-panel panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">SignUp</h3>
-      </div>
+        <div class="panel-body">
+          <form name="registerForm" ng-submit="register()" role="form">
 
-      <div class="panel-body">
-        <form name="registerForm" ng-submit="register()" role="form">
+            <div class="form-group"
+                 ng-class="{ 'has-error': registerForm.username.$dirty && registerForm.username.$error.required}">
+              <input type="email" name="username" id="username" class="form-control" placeholder="SJSU E-mail"
+                     ng-model="user.email" required/>
+              <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.required">E-mail is required input.</span>
+              <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.email">Please enter a valid email address.</span>
+            </div>
 
-          <div class="form-group"
-               ng-class="{ 'has-error': registerForm.username.$dirty && registerForm.username.$error.required}">
-            <input type="email" name="username" id="username" class="form-control" placeholder="SJSU E-mail"
-                   ng-model="user.email" required/>
-            <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.required">E-mail is required input.</span>
-            <span class="help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.email">Please enter a valid email address.</span>
-          </div>
+            <div class="form-group"
+                 ng-class="{ 'has-error': registerForm.studentId.$dirty && registerForm.studentId.$error.required }">
+              <input type="number" name="studentId" id="studentId" class="form-control" placeholder="Student ID"
+                     ng-model="user.studentId" required/>
+              <span ng-show="registerForm.studentId.$dirty && registerForm.studentId.$error.required"
+                    class="help-block">Student Id is required input.</span>
+            </div>
 
-          <div class="form-group"
-               ng-class="{ 'has-error': registerForm.studentId.$dirty && registerForm.studentId.$error.required }">
-            <input type="number" name="studentId" id="studentId" class="form-control" placeholder="Student ID"
-                   ng-model="user.studentId" required/>
-            <span ng-show="registerForm.studentId.$dirty && registerForm.studentId.$error.required" class="help-block">Student Id is required input.</span>
-          </div>
+            <div class="form-group"
+                 ng-class="{ 'has-error': registerForm.firstName.$dirty && registerForm.firstName.$error.required }">
+              <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name"
+                     ng-model="user.firstName" required/>
+              <span ng-show="registerForm.firstName.$dirty && registerForm.firstName.$error.required"
+                    class="help-block">First Name is required input.</span>
+            </div>
 
-          <div class="form-group"
-               ng-class="{ 'has-error': registerForm.firstName.$dirty && registerForm.firstName.$error.required }">
-            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name"
-                   ng-model="user.firstName" required/>
-            <span ng-show="registerForm.firstName.$dirty && registerForm.firstName.$error.required" class="help-block">First Name is required input.</span>
-          </div>
+            <div class="form-group"
+                 ng-class="{ 'has-error': registerForm.lastName.$dirty && registerForm.lastName.$errord.required }">
+              <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
+                     ng-model="user.lastName" required/>
+              <span ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
+            </div>
 
-          <div class="form-group"
-               ng-class="{ 'has-error': registerForm.lastName.$dirty && registerForm.lastName.$errord.required }">
-            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
-                   ng-model="user.lastName" required/>
-            <span ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
-          </div>
+            <div class="form-group"
+                 ng-class="{ 'has-error': registerForm.password.$dirty && registerForm.password.$error.required}">
+              <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="user.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                     ng-model="user.password" required/>
+              <span ng-show="registerForm.password.$dirty && registerForm.password.$error.required" class="help-block">Password is required input.</span>
+              <!--<span ng-show="registerForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+            </div>
 
-          <div class="form-group"
-               ng-class="{ 'has-error': registerForm.password.$dirty && registerForm.password.$error.required}">
-            <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="user.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
-            <input type="password" name="password" id="password" class="form-control" placeholder="Password"
-                   ng-model="user.password" required/>
-            <span ng-show="registerForm.password.$dirty && registerForm.password.$error.required" class="help-block">Password is required input.</span>
-            <!--<span ng-show="registerForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
-          </div>
-
-          <div class="form-group"
-               ng-class="{ 'has-error': registerForm.rePassword.$dirty && registerForm.rePassword.$error.required}">
-            <input type="password" name="rePassword" id="rePassword" class="form-control" placeholder="Retype Password"
-                   ng-model="user.rePassword" required password-verify="user.password"/>
-            <!--<span ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
+            <div class="form-group"
+                 ng-class="{ 'has-error': registerForm.rePassword.$dirty && registerForm.rePassword.$error.required}">
+              <input type="password" name="rePassword" id="rePassword" class="form-control"
+                     placeholder="Retype Password"
+                     ng-model="user.rePassword" required password-verify="user.password"/>
+              <!--<span ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
             <span class="help-block"
                   ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.passwordVerify">Retype Password : password did not match.</span>
-          </div>
+            </div>
 
-          <div class="form-actions">
-            <a ui-sref="login" class="btn btn-link">Go to Login</a>
-            <button type="submit" class="btn btn-info btn-block">Register</button>
-          </div>
+            <div class="form-actions">
+              <a ui-sref="login" class="btn btn-link">Go to Login</a>
+              <button type="submit" class="btn btn-info btn-block">Register</button>
+            </div>
 
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-
-  <nav class="navbar navbar-default navbar-fixed-bottom topnav"
-       role="navigation">
-    <div class="container topnav" style="font-size: x-small;">
-      <BR>
-      <p>
-        <b>WARNING:</b> EACH TIME YOU LOGIN TO SMARTED PORTAL YOU ARE
-        ACKNOWLEDGING YOU HAVE SPECIFIC AUTHORIZATION TO ACCESS OR USE THIS PORTAL. ALL CONNECTIONS TO THIS SYSTEM ARE
-        LOGGED AND MONITORED.
-        UNAUTHORIZED USE WILL BE PROSECUTED.
-      </p>
-    </div>
-  </nav>
 </div>
 
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="copyright"><b>WARNING:</b> EACH TIME YOU LOGIN TO SMARTED PORTAL YOU ARE
+      ACKNOWLEDGING YOU HAVE SPECIFIC AUTHORIZATION TO ACCESS OR USE THIS PORTAL. ALL CONNECTIONS TO THIS SYSTEM ARE
+      LOGGED AND MONITORED.
+      UNAUTHORIZED USE WILL BE PROSECUTED. <b>Copyright &copy; SmartEd 2016</b></span>
+      </div>
 
-
-
+    </div>
+  </div>
+</footer>

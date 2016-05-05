@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
   <title>SmartEd</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Declaration of CSS files-->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
@@ -15,9 +16,6 @@
   <link rel="stylesheet" href="bower_components/ng-notify/dist/ng-notify.min.css" type="text/css">
   <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" type="text/css">
 
-  <!-- <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/sb-admin-2.css">
-  <link rel="stylesheet" href="styles/timeline.css"> -->
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/sb-admin-2.css">
 
@@ -28,23 +26,6 @@
         type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function () {
-          (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-  </script>
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -54,7 +35,7 @@
 
 </head>
 
-<body>
+<body class="index">
 
     <div ng-app="smartedApp">
 
@@ -80,23 +61,6 @@
     <script src="bower_components/highcharts/highcharts-3d.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 
-    <script src=""></script>
-    <script src=""></script>
-    <script src=""></script>
-    <script src=""></script>
-    <script src=""></script>
-    <script src=""></script>
-    <script src=""></script>
-    <script src=""></script>
-    <script src=""></script>
-
-
-    <!-- Declaration of Controllers-->
-    <!--<script src="scripts/controllers/userManagement/registerController.js"></script>-->
-
-    <!-- Declaration of Directives-->
-    <!--<script src="scripts/directives/appDirective.js"></script>-->
-
     <!-- Declaration of Main Application JS, which takes care of routes and redirection-->
     <script src="scripts/app.js"></script>
 
@@ -113,7 +77,6 @@
     <script src="scripts/services/studentService.js"></script>
     <script src="scripts/services/courseContentService.js"></script>
     <script src="scripts/services/utilityService.js"></script>
-
 </body>
 
 </html>
