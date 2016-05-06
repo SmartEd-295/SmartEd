@@ -2,51 +2,63 @@
 
 var myApp = angular.module('smartedApp');
 
-// Quiz performance
-myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', 'ngTableParams', 'StudentService', 'AlertService', 'UtilityService',
-  function ($scope, $filter, ngTableParams, StudentService, AlertService, UtilityService) {
+// student Quiz controller
+myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', '$sce', 'ngTableParams', 'StudentService', 'AlertService', 'UtilityService',
+  function ($scope, $filter, $sce, ngTableParams, StudentService, AlertService, UtilityService) {
 
+
+    // Flag to display visualizations or not
+    $scope.displayStats1 = true;
+    $scope.displayStats2 = true;
+
+    // load course data
     var mCourse = StudentService.getCurrentCourse();
     $scope.currentCourse = mCourse;
     console.log(" - StudentQuizPerformanceCtrl---------> : " + mCourse);
 
-    // Quizzes
+    //Quizzes
     var quizList = [];
     var getAllQuizzes = function () {
       StudentService.getQuizzes(mCourse.id).success(function (data, status) {
+        // assignment list from response
         quizList = JSON.parse(data);
-        //displayChart(quizList);
-        console.log(" - i  student performance getallquizzes ctrl---------> : " + JSON.parse(data) + " : " + quizList.length);
+
+        // manipulate any assignment data
+
+        // load data to chart
+        $scope.quizList = quizList;
+
       }).error(function (data, status) {
         AlertService.displayBoxMessage(data, 'studentQuizPerformanceContainer', 'error');
       });
-
     };
-    getAllQuizzes();
+    getAllAssignments();
 
 
-    var displayChart = function (result) {
-      var title = "Quizzes",
-        seriesName = "Your Performance",
-        containerId = "studentQuizPerformanceContainer";
+    /*// load table with data code
+     var loadTableData = function() {
+     $scope.tableParams = new ngTableParams({
+     page: 1,
+     count: 10
+     }, {
+     total: assignmentList.length,
+     getData: function ($defer, params) {
 
-      var data = [];
-      var dataLength = result.length;
+     var orderedData = params.sorting ?
+     $filter('orderBy')(assignmentList, params.orderBy()) :
+     assignmentList;
+     orderedData = params.filter ?
+     $filter('filter')(orderedData, params.filter()) :
+     orderedData;
 
-      for (var j = 0; j < dataLength; j += 1) {
-        var obj = result[j];
-        if (j == 0) {
-          data.push(obj.submission);
-        } else {
-          data.push({
-            name: obj.name + " (" + obj.alias + ")",
-            y: obj.value
-          });
-        }
-      }
+     var resultData = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
 
-      UtilityService.draw3dBarChart(containerId, title, seriesName, data);
-    };
+     params.total(orderedData.length);
+     $defer.resolve(resultData);
+     }
+     });
 
+     $scope.tableParams.reload();
+     };*/
 
   }]);

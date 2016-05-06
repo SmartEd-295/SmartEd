@@ -168,6 +168,7 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
       },
 
       tooltip: {
+
       },
 
       plotOptions: {
