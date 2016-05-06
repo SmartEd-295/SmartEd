@@ -291,7 +291,7 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/student/studentController.js'
+                'scripts/controllers/student/assignmentController.js'
               ]
             }),
               $ocLazyLoad.load(
@@ -311,7 +311,7 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/student/studentController.js',
+                'scripts/controllers/student/quiController.js',
                 'scripts/directives/charts/dashboardCharts.js'
               ]
             }),

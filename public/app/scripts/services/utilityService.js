@@ -141,6 +141,59 @@ myApp.service('UtilityService', ['$rootScope', 'ngNotify', function ($rootScope,
     })
   };
 
+  service.drawAssignmentTimeline = function(containerId, title, subTitle, categoriesArray, yAxisLabel, seriesName, data) {
+    $('#'+containerId).highcharts({
+      chart: {
+        type: 'columnrange',
+        inverted: true
+      },
+
+      title: {
+        text: title
+      },
+
+      subtitle: {
+        text: subTitle
+      },
+
+      xAxis: {
+        categories: categoriesArray
+      },
+
+      yAxis: {
+        title: {
+          text: yAxisLabel
+        },
+        type: 'datetime'
+      },
+
+      tooltip: {
+      },
+
+      plotOptions: {
+        columnrange: {
+          dataLabels: {
+            enabled: true,
+            formatter: function () {
+              return new Date(this.y).toDateString();
+            },
+            y: 0
+          }
+        }
+      },
+
+      legend: {
+        enabled: false
+      },
+
+      series: [{
+        name: seriesName,
+        data: data
+      }]
+
+    });
+  };
+
   return service;
 
 }]);

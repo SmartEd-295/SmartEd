@@ -96,6 +96,11 @@ myApp.controller('StudentCoursePerformanceMainCtrl', ['$scope', '$stateParams', 
 // student Assignment controller
 myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce', 'ngTableParams', 'StudentService', 'AlertService', 'UtilityService',
   function ($scope, $filter, $sce, ngTableParams, StudentService, AlertService, UtilityService) {
+
+
+    // Flag to display visualizations or not
+    $scope.displayStats = true;
+
     // load course data
     var mCourse = StudentService.getCurrentCourse();
     $scope.currentCourse = mCourse;
@@ -172,6 +177,8 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
 
       if(!(data1 === undefined || data1.length == 0))
         UtilityService.draw3dBarChart(containerId, title, subTitle, seriesName1, data1, seriesName2, data2);
+      else
+        $scope.displayStats = false;
     };
 
   }]);

@@ -1,9 +1,18 @@
+
+
 <div class="row">
   <div class="col-lg-12">
     <h3 class="page-header">Assignments Overview</h3>
   </div>
 </div>
 
+<div ng-hide="assignmentList" id="assignmentLoadingWrapper">
+  <strong>
+    <i class="fa fa-spinner" aria-hidden="true"></i> Assignments Loading . . .
+  </strong>
+</div>
+
+<div id="assignmentWrapper" ng-show="assignmentList">
 <div style="margin-top: 10px;" class="row">
     <div ng-repeat="assignment in assignmentList">
       <div class="panel-group" id="assignment-panel">
@@ -75,7 +84,7 @@
 </div>
 
 
-<div class="row">
+<div ng-if="displayStats1" class="row">
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
@@ -88,7 +97,7 @@
 </div>
 
 
-<div class="row">
+<div ng-if="displayStats2"  class="row">
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
@@ -99,3 +108,6 @@
     </div>
   </div>
 </div>
+
+</div>
+
