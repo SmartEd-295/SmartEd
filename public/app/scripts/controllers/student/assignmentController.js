@@ -3,9 +3,8 @@
 var myApp = angular.module('smartedApp');
 
 // student Assignment controller
-myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce', 'ngTableParams', 'StudentService', 'AlertService', 'UtilityService',
-  function ($scope, $filter, $sce, ngTableParams, StudentService, AlertService, UtilityService) {
-
+myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce', 'StudentService', 'AlertService', 'UtilityService',
+  function ($scope, $filter, $sce, StudentService, AlertService, UtilityService) {
 
     // Flag to display visualizations or not
     $scope.displayStats1 = true;
@@ -14,7 +13,6 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
     // load course data
     var mCourse = StudentService.getCurrentCourse();
     $scope.currentCourse = mCourse;
-    console.log(" - StudentAssignmentPerformanceCtrl---------> : " + mCourse);
 
     //Assignments
     var assignmentList = [];
@@ -24,7 +22,7 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
         assignmentList = JSON.parse(data);
 
         // manipulate any assignment data
-        for(var i=0; i< assignmentList.length; i++) {
+        for (var i = 0; i < assignmentList.length; i++) {
           assignmentList[i].description = $sce.trustAsHtml(assignmentList[i].description);
         }
 
@@ -40,36 +38,10 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
     getAllAssignments();
 
 
-    /*// load table with data code
-    var loadTableData = function() {
-      $scope.tableParams = new ngTableParams({
-        page: 1,
-        count: 10
-      }, {
-        total: assignmentList.length,
-        getData: function ($defer, params) {
-
-          var orderedData = params.sorting ?
-            $filter('orderBy')(assignmentList, params.orderBy()) :
-            assignmentList;
-          orderedData = params.filter ?
-            $filter('filter')(orderedData, params.filter()) :
-            orderedData;
-
-          var resultData = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-
-          params.total(orderedData.length);
-          $defer.resolve(resultData);
-        }
-      });
-
-      $scope.tableParams.reload();
-    };*/
-
-
     // display bar chart
     var displayBarChart = function (result) {
-      var title = "Assignment Details",
+      console.log("Display Bar Chart >>>>>>>>");
+      var title = "Scores & Performance",
         subTitle = mCourse.name,
         seriesName1 = "Your Score",
         seriesName2 = "Max Score",
@@ -81,7 +53,7 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
 
       for (var j = 0; j < dataLength; j += 1) {
         var obj = result[j];
-        if(!(obj === undefined || obj.submission === undefined || obj.submission.score === undefined)) {
+        if (!(obj === undefined || obj.submission === undefined || obj.submission.score === undefined)) {
           var scoreVal = obj.submission.score;
           if (!(scoreVal === undefined || scoreVal == '' || scoreVal == null)) {
             data1.push(scoreVal);
@@ -90,16 +62,15 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
         }
       }
 
-      if(!(data1 === undefined || data1.length == 0))
+      if (!(data1 === undefined || data1.length == 0))
         UtilityService.draw3dBarChart(containerId, title, subTitle, seriesName1, data1, seriesName2, data2);
       else
         $scope.displayStats1 = false;
     };
 
-
     // display timeline chart
     var displayTimelineChart = function (result) {
-      var title = "Assignment Timeline Details",
+      var title = "Submissions Timeline",
         subTitle = mCourse.name,
         yAxisLabel = "Timeline Range",
         seriesName = "Dates",
@@ -111,8 +82,8 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
 
       for (var j = 0; j < dataLength; j += 1) {
         var obj = result[j];
-        if(!(obj === undefined)) {
-          categories.push('Assignment '+ (j+1));
+        if (!(obj === undefined)) {
+          categories.push('Assignment ' + (j + 1));
 
           var startDate = new Date(obj.created_at);
           var endDate = new Date(obj.due_at);
@@ -120,13 +91,13 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
           dateRangeEntry.push(startDate.getTime());
           dateRangeEntry.push(endDate.getTime());
 
-          if (!(startDate === undefined || endDate === undefined  || dateRangeEntry === undefined)) {
+          if (!(startDate === undefined || endDate === undefined || dateRangeEntry === undefined)) {
             data.push(dateRangeEntry);
           }
         }
       }
 
-      if(!(data === undefined || data.length == 0))
+      if (!(data === undefined || data.length == 0))
         UtilityService.drawAssignmentTimeline(containerId, title, subTitle, categories, yAxisLabel, seriesName, data);
       else
         $scope.displayStats2 = false;

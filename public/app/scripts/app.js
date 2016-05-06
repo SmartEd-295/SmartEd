@@ -78,6 +78,7 @@
                   'scripts/controllers/dashboard/dashboardController.js',
                   'scripts/controllers/dashboard/sidebarController.js',
                   'scripts/controllers/dashboard/statsController.js',
+                  'scripts/controllers/student/assignmentController.js',
                   'scripts/directives/header/header.js',
                   'scripts/directives/header-notification/header-notification.js',
                   'scripts/directives/sidebar/sidebar.js',
@@ -285,22 +286,7 @@
       .state('dashboard.assignments', {
         templateUrl: 'views/student/studentAssignmentPerformance.html',
         url: '/course/assignments',
-        controller: 'StudentAssignmentPerformanceCtrl',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/student/assignmentController.js'
-              ]
-            }),
-              $ocLazyLoad.load(
-                {
-                  name: 'ngTable',
-                  files: ['bower_components/ng-table/dist/ng-table.min.js']
-                })
-          }
-        }
+        controller: 'StudentAssignmentPerformanceCtrl'
       })
       .state('dashboard.quizzes', {
         templateUrl: 'views/student/studentQuizPerformance.html',
