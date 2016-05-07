@@ -297,7 +297,7 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/student/quiController.js',
+                'scripts/controllers/student/quizController.js',
                 'scripts/directives/charts/dashboardCharts.js'
               ]
             }),
@@ -306,6 +306,22 @@
                   name: 'ngTable',
                   files: ['bower_components/ng-table/dist/ng-table.min.js']
                 })
+          }
+        }
+      })
+      .state('dashboard.grades', {
+        templateUrl: 'views/student/studentGradesPerformance.html',
+        controller: 'StudentGradesPerformanceCtrl',
+        url: '/course/grades',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/student/gradesController.js',
+                'scripts/directives/charts/dashboardCharts.js'
+              ]
+            })
           }
         }
       })

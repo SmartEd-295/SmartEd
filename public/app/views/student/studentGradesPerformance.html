@@ -1,0 +1,30 @@
+
+<div class="row">
+  <div class="col-lg-12">
+    <h3 class="page-header">Grades Overview</h3>
+  </div>
+</div>
+
+<div ng-hide="displayStats" class="row">
+  <div class="col-md-12">
+    <strong>
+      <i class="fa fa-times-circle-o" aria-hidden="true"></i> Sorry ... Statistics Not Available for this course !!
+    </strong>
+  </div>
+</div>
+
+<div ng-if="displayStats" class="row">
+
+  <div ng-hide="currentCourseData" id="assignmentLoadingWrapper">
+    <strong>
+      <i class="fa fa-spinner" aria-hidden="true"></i> Course Statistics Loading . . .
+    </strong>
+  </div>
+
+  <div class="col-md-12">
+      <div id="studentGradesPerformanceContainer" class="col-md-8-offset-2" style="min-height: 0px; max-height: 500px;"></div>
+  </div>
+</div>
+
+</div>
+

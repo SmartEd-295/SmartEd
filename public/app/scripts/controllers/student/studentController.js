@@ -6,6 +6,10 @@ myApp.controller('StudentCtrl', ['$scope', 'ngTableParams', '$filter', '$uibModa
   function ($scope, ngTableParams, $filter, $uibModal, StudentService, AlertService) {
 
     // Recommendation Screen
+    //flag to display error message if no recommendations found
+    $scope.showRecommendationTable = false;
+
+    //course list
     var recommendedCourseList = [];
 
     $scope.tableParams = new ngTableParams({
@@ -32,7 +36,11 @@ myApp.controller('StudentCtrl', ['$scope', 'ngTableParams', '$filter', '$uibModa
     var loadData = function () {
       StudentService.getCourseRecommendations().success(function (data, status) {
         recommendedCourseList = data.recommendations;
-        $scope.tableParams.reload();
+
+        if(!(recommendedCourseList === undefined || recommendedCourseList.length == 0)) {
+          $scope.showRecommendationTable = true;
+          $scope.tableParams.reload();
+        }
       }).error(function (data, status) {
         AlertService.displayBoxMessage(data, 'recommendationContainer', 'error');
       });

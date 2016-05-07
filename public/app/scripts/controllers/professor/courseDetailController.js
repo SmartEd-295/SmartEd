@@ -48,7 +48,6 @@ angular.module('smartedApp')
       var course = result.courseData;
       $scope.currentCourseData = course;
       displayChart(result.chartData, course)
-      console.log();
     }).error(function (data, status) {
 
     });

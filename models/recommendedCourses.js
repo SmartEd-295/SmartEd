@@ -8,7 +8,8 @@ var recommendedCourses = function() {
         recommendations: [{
             courseId: String,
             expectedGrade: String,
-            courseName: String
+            courseName: String,
+            courseCode: String
         }]
     }, {
         collection: 'recommendedCourses'
