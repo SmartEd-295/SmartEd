@@ -41,7 +41,6 @@ module.exports = function (router) {
 
         canvasConnectivity.getCanvasDetails(apiUrl, userEmail, function (err, body) {
             if(!err){
-                console.log('In student assignments API success :-----> ' + body);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(body));
             }else{
@@ -67,4 +66,58 @@ module.exports = function (router) {
             }
         });
     });
+
+
+    router.get('/getActivityStream/:userMail', function (req, res) {
+        var userMail = req.params.userMail;
+
+        var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_USER_ACTIVITY_STREAM');
+        apiUrl = apiUrl.replace(':user_id',userMail);
+
+        canvasConnectivity.getCanvasDetails(apiUrl, userMail, function (err, body) {
+            if(!err){
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(body));
+            }else{
+                res.status(400).send(constant.MESSAGE_MAP.get('CANVAS_CONNECTION_FAILED'));
+            }
+        });
+    });
+
+
+    router.get('/getToDoList/:userMail', function (req, res) {
+        var userMail = req.params.userMail;
+
+        var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_USER_TODO_LIST');
+
+        canvasConnectivity.getCanvasDetails(apiUrl, userMail, function (err, body) {
+            if(!err){
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(body));
+            }else{
+                res.status(400).send(constant.MESSAGE_MAP.get('CANVAS_CONNECTION_FAILED'));
+            }
+        });
+    });
+
+
+
+    // end point doesnt exist
+    router.get('/getMissingSubmissions/:userMail', function (req, res) {
+        var userMail = req.params.userMail;
+
+        var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_MISSING_SUBMISSIONS');
+        apiUrl = apiUrl.replace(':user_id',userMail);
+
+        canvasConnectivity.getCanvasDetails(apiUrl, userMail, function (err, body) {
+            if(!err){
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(body));
+            }else{
+                res.status(400).send(constant.MESSAGE_MAP.get('CANVAS_CONNECTION_FAILED'));
+            }
+        });
+    });
+
+
 };

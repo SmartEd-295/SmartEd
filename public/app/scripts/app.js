@@ -77,6 +77,7 @@
                 files: [
                   'scripts/controllers/dashboard/dashboardController.js',
                   'scripts/controllers/dashboard/sidebarController.js',
+                  'scripts/controllers/dashboard/headerController.js',
                   'scripts/controllers/dashboard/statsController.js',
                   'scripts/controllers/student/assignmentController.js',
                   'scripts/directives/header/header.js',
@@ -331,6 +332,37 @@
           }
         }
       })
+      .state('dashboard.submissions', {
+        templateUrl: 'views/student/studentSubmissionPerformance.html',
+        controller: 'StudentSubmissionPerformanceCtrl',
+        url: '/course/submissions',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/student/submissionController.js',
+                'scripts/directives/charts/dashboardCharts.js'
+              ]
+            })
+          }
+        }
+      })
+      .state('dashboard.userProfile', {
+        templateUrl: 'views/userManagement/userProfile.html',
+        controller: 'UserProfileCtrl',
+        url: '/user/profile',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/userManagement/userProfileController.js'
+              ]
+            })
+          }
+        }
+      });
   }]);
 
   //  Keep User Logged in on different navigations.

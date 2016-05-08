@@ -80,4 +80,10 @@ myApp.service('UserService', ['$http', '$cookieStore', '$rootScope', function ($
   };
 
 
+  this.getUserCanvasProfile = function() {
+      var email = this.getCurrentUser().userMail;
+      return $http.get('/user/getUserCanvasProfile/' + email);
+  };
+
+
 }]);

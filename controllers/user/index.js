@@ -186,6 +186,24 @@ module.exports = function (router) {
         });
     });
 
+
+    router.get('/getUserCanvasProfile/:email', function (req, res) {
+        var email = req.params.email;
+
+        var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_USER_PROFILE');
+        apiUrl = apiUrl.replace(':user_id',email);
+
+        canvasConnectivity.getCanvasDetails(apiUrl, email, function (err, body) {
+            if(!err){
+                console.log('In getUserCanvasProfile API success :-----> ');
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(body));
+            }else{
+                res.status(400).send(constant.MESSAGE_MAP.get('CANVAS_CONNECTION_FAILED'));
+            }
+        });
+    });
+
     function userExist(email, cb) {
         User.findOne({email: email}, function (err, doc) {
             cb(err, doc);

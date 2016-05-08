@@ -45,7 +45,7 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
         subTitle = mCourse.name,
         seriesName1 = "Your Score",
         seriesName2 = "Max Score",
-        containerId = "studentAssignmentPerformanceContainer";
+        containerId = "studentAssignmentGradesContainer";
 
       var data1 = [];
       var data2 = [];

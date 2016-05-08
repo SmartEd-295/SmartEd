@@ -24,20 +24,38 @@ myApp.service('StudentService', ['$http', 'UserService', function ($http, UserSe
 
   this.getEnrolledCourses = function () {
     var userId = UserService.getCurrentUser().userMail;
-    console.log("In student service Hit :-----> " + userId);
     return $http.get('/student/getEnrolledCourses/' + userId);
   };
 
   this.getAssignments = function (courseId) {
     var userId = UserService.getCurrentUser().userMail;
-    console.log("In student service Hit :-----> " + userId);
     return $http.get('/student/getAssignments/' + courseId + '/' + userId);
   };
 
   this.getQuizzes = function (courseId) {
     var userId = UserService.getCurrentUser().userMail;
-    console.log("In student service Hit :-----> " + userId);
     return $http.get('/student/getQuizzes/' + courseId + '/' + userId);
   };
+
+  this.getToDoList = function () {
+    var userMail = UserService.getCurrentUser().userMail;
+    return $http.get('/student/getToDoList/' + userMail);
+  };
+
+
+  this.getActivityStream = function () {
+    var userMail = UserService.getCurrentUser().userMail;
+    return $http.get('/student/getActivityStream/' + userMail);
+  };
+
+
+
+
+  /////////////////////////////////////////// end point doesnt exist
+  this.getMissingSubmissions = function () {
+    var userMail = UserService.getCurrentUser().userMail;
+    return $http.get('/student/getMissingSubmissions/' + userMail);
+  };
+
 
 }]);
