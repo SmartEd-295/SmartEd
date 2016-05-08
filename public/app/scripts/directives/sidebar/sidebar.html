@@ -6,7 +6,7 @@
 
       <div ng-switch-when="Professor">
         <ul class="nav in" id="side-menu">
-          <sidebar-search></sidebar-search>
+
           <li ui-sref-active="active">
             <a ui-sref="{{goToState}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
@@ -16,7 +16,8 @@
               class="fa arrow"></span></a>
             <ul class="nav nav-second-level" collapse="collapseVar!=1">
               <li ng-repeat="course in courseList" ui-sref-active="active">
-                <a href="" ng-click="visitCourse(course.courseId, course.term, course.year)" ><i class="fa fa-file-text fa-fw"></i>{{course.courseId}} {{course.term}}-{{course.year}}</a>
+                <a href="" ng-click="visitCourse(course.courseId, course.term, course.year)"><i
+                  class="fa fa-file-text fa-fw"></i>{{course.courseId}} {{course.term}}-{{course.year}}</a>
               </li>
 
             </ul>
@@ -36,10 +37,9 @@
       </div>
 
 
-
       <div ng-switch-when="Student">
         <ul class="nav in" id="side-menu">
-          <sidebar-search></sidebar-search>
+
           <li ui-sref-active="active">
             <a ui-sref="{{goToState}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
@@ -48,8 +48,9 @@
             <a ng-click="check(1)"><i class="fa fa-files-o fa-fw"></i> Courses<span
               class="fa arrow"></span></a>
             <ul class="nav nav-second-level" collapse="collapseVar!=1">
-              <li ng-repeat="course in studentCourseList track by $index" ui-sref-active="active" ng-show="course.name" >
-                <a ui-sref="dashboard.studentCoursePerformance({course: '{{course}}'})" ><i class="fa fa-file-text fa-fw"></i>{{course.name}}</a>
+              <li ng-repeat="course in studentCourseList track by $index" ui-sref-active="active" ng-show="course.name">
+                <a ui-sref="dashboard.studentCoursePerformance({course: '{{course}}'})"><i
+                  class="fa fa-file-text fa-fw"></i>{{course.name}}</a>
               </li>
 
             </ul>
@@ -66,31 +67,28 @@
       </div>
 
 
-
       <div ng-switch-when="Admin">
         <ul class="nav in" id="side-menu">
-          <sidebar-search></sidebar-search>
 
           <li ui-sref-active="active">
             <a ui-sref="{{goToState}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
 
           <li ui-sref-active="active">
-          <a ui-sref="dashboard.addProfessor"><i class="fa fa-user-plus fa-fw"></i>Add Professor</a>
-        </li>
+            <a ui-sref="dashboard.courseGradeDetails"><i class="fa fa-paper-plane  fa-fw"></i>Grades Per Course</a>
+          </li>
 
           <li ui-sref-active="active">
             <a ui-sref="dashboard.professorDetails"><i class="fa fa-users  fa-fw"></i>Professors Details</a>
           </li>
 
-          <li><a href="http://www.vishwadesai.com/"><i class="fa fa-user fa-fw"></i>Personal Page</a></li>
+          <li ui-sref-active="active">
+            <a ui-sref="dashboard.addProfessor"><i class="fa fa-user-plus fa-fw"></i>Add Professor</a>
+          </li>
         </ul>
       </div>
 
-
-
     </div>
-
 
   </div>
 

@@ -81,6 +81,7 @@
                   'scripts/controllers/student/assignmentController.js',
                   'scripts/directives/header/header.js',
                   'scripts/directives/header-notification/header-notification.js',
+                  'scripts/directives/tableau-chart/tableau-chart.js',
                   'scripts/directives/sidebar/sidebar.js',
                   'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                   'scripts/directives/stats/stats.js',
@@ -204,6 +205,11 @@
           }
         }
       })
+
+      .state('dashboard.courseGradeDetails', {
+        templateUrl: 'views/admin/gradesByCourse.html'
+      })
+
       .state('professor.performance', {
         templateUrl: 'views/ui-elements/typography.html',
         url: '/typography'
