@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('smartedApp')
-	.directive('header',function(){
+	.directive('headerBar',function(){
 		return {
-        templateUrl:'scripts/directives/header/header.html',
+        templateUrl:'scripts/directives/header-bar/header-bar.html',
         restrict: 'E',
         replace: true
     	}

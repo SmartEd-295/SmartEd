@@ -80,7 +80,7 @@
                   'scripts/controllers/dashboard/headerController.js',
                   'scripts/controllers/dashboard/statsController.js',
                   'scripts/controllers/student/assignmentController.js',
-                  'scripts/directives/header/header.js',
+                  'scripts/directives/header-bar/header-bar.js',
                   'scripts/directives/header-notification/header-notification.js',
                   'scripts/directives/tableau-chart/tableau-chart.js',
                   'scripts/directives/sidebar/sidebar.js',
