@@ -1,20 +1,34 @@
 <ul id="headerItems" class="nav navbar-top-links navbar-right header-top-items">
+  <style>
+    .menuMessageSubject {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-    <!-- /.MESSAGES dropdown  -->
-    <li  ng-if="userRole == 'Student'" class="dropdown">
+    .errorMessageMenuItem {
+      height: 100px;
+      text-align: center;
+      padding-top: 30px;
+      font-style: italic;
+    }
+  </style>
+
+  <!-- /.MESSAGES dropdown  -->
+    <li  ng-if="userRole == 'Student' || userRole == 'Professor'" class="dropdown">
         <a class="dropdown-toggle header-top-items" data-toggle="dropdown">
             <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul ng-show="messageList" class="dropdown-menu dropdown-messages">
             <li ng-repeat-start="message in messageList">
-                  <a href="#">
+                  <a  ui-sref="dashboard.collaboration">
                       <div>
                           <strong>{{message.fromUser}}</strong>
                           <span class="pull-right text-muted">
                               <em>{{ message.messageTimestamp }}</em>
                           </span>
                       </div>
-                      <div>{{message.subject}}</div>
+                      <div class="menuMessageSubject">{{message.subject}}</div>
                   </a>
               </li>
               <li ng-repeat-end class="divider"></li>
@@ -25,9 +39,11 @@
                 </a>
             </li>
         </ul>
-        <ul ng-hide="messageList">
-          <li>
-            <p>SmartEd Inbox Empty</p>
+        <ul class="dropdown-menu dropdown-messages" ng-hide="messageList">
+          <li class="errorMessageMenuItem">
+            <a class="text-muted" href="">
+                SmartEd Inbox Empty . .
+            </a>
           </li>
         </ul>
         <!-- /.dropdown-messages -->
@@ -40,31 +56,27 @@
         </a>
         <ul ng-show="activityStream" class="dropdown-menu dropdown-tasks">
               <li ng-repeat-start="activity in activityStream track by $index" >
-                  <a href="#">
+                  <a href="">
                       <div>
                           <p>
                               <strong>{{activity.type}}</strong>
-                              <span class="pull-right text-muted">{{activity.count - activity.unread_count}} / {{activity.count}} Complete</span>
+                              <span class="pull-right text-muted">{{activity.count - activity.unread_count}} / {{activity.count}} complete</span>
                           </p>
                           <div class="progress progress-striped active">
-                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{activity.read_count}}" aria-valuemin="0" aria-valuemax="{{activity.count}}" style="width: 40%">
-                                  <span class="sr-only">{{activity.count - activity.unread_count}} / {{activity.count}} Complete (success)</span>
+                              <div style="width: {{progressBarWidth[$index]}}%" class="progress-bar {{progressBarClass[$index]}}" role="progressbar" aria-valuenow="{{activity.count - activity.unread_count}}" aria-valuemin="0" aria-valuemax="{{activity.count}}" style="width: 40%">
+                                  {{activity.count - activity.unread_count}} / {{activity.count}} complete
                               </div>
                           </div>
                       </div>
                   </a>
               </li>
               <li ng-repeat-end class="divider"></li>
-            <li>
-                <a class="text-center" href="#">
-                    <strong>See All Tasks</strong>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
         </ul>
-        <ul ng-hide="activityStream">
-          <li>
-            <p>SmartEd Activity Stream Empty</p>
+        <ul class="dropdown-menu dropdown-tasks" ng-hide="activityStream">
+          <li class="errorMessageMenuItem">
+            <a class="text-muted" href="">
+              SmartEd Activity Stream Empty . .
+            </a>
           </li>
         </ul>
         <!-- /.dropdown-tasks -->
@@ -82,28 +94,24 @@
               <div>
                 <i ng-if="task.type=='grading'" class="fa fa-check-square-o fa-fw"></i>
                 <i ng-if="task.type=='submitting'" class="fa fa-upload fa-fw"></i>
-                <span>
+                <span >
                   <strong ng-if="task.assignment" >{{task.assignment.name}}</strong>
                 </span>
+                <br/>
+                <span class="text-muted small">{{task.assignment.due_at}}</span>
 
-                <span class="pull-right text-muted small">{{task.assignment.due_at}}</span>
+                <span class="text-muted pull-right"><i class="fa fa-times-circle-o fa-fw"></i></span>
               </div>
             </a>
-            <a href="{{task.ignore}}">
-              <i class="fa fa-times-circle-o fa-fw"></i>
-            </a>
+
           </li>
           <li ng-repeat-end class="divider"></li>
-          <li>
-            <a class="text-center" href="#">
-              <strong>See All Pending Tasks</strong>
-              <i class="fa fa-angle-right"></i>
-            </a>
-          </li>
       </ul>
-      <ul ng-hide="toDoList">
-        <li>
-          <p>SmartEd TO-DO List Empty</p>
+      <ul class="dropdown-menu dropdown-alerts" ng-hide="toDoList">
+        <li class="errorMessageMenuItem">
+          <a class="text-muted" href="">
+            SmartEd TO-DO List Empty . .
+          </a>
         </li>
       </ul>
       <!-- /.dropdown-alerts -->
@@ -118,7 +126,7 @@
         <ul class="dropdown-menu dropdown-user">
             <li><a ui-sref="dashboard.userProfile"><i class="fa fa-user fa-fw"></i> User Profile</a>
             </li>
-            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            <li><a href=""><i class="fa fa-gear fa-fw"></i> Settings</a>
             </li>
             <li class="divider"></li>
             <li><a ui-sref="login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
