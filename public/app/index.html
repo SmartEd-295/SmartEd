@@ -8,16 +8,15 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Declaration of CSS files-->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/sb-admin-2.css">
+  <link rel="stylesheet" href="styles/timeline.css">
   <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.min.css">
   <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="bower_components/ng-notify/dist/ng-notify.min.css" type="text/css">
   <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" type="text/css">
-
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/sb-admin-2.css">
 
   <!-- Custom Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -26,12 +25,46 @@
         type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/json3/lib/json3.min.js"></script>
+  <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+  <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+  <script src="bower_components/Chart.js/Chart.min.js"></script>
+
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/ng-notify/dist/ng-notify.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <script src="bower_components/highcharts/highcharts.js"></script>
+  <script src="bower_components/highcharts/highcharts-3d.js"></script>
+  <script src="bower_components/highcharts/highcharts-more.js"></script>
+  <script src="bower_components/highcharts/modules/exporting.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+  <script src="app/js/tableau-2.js"></script>
+  <script type="text/javascript" src="http://public.tableausoftware.com/javascripts/api/tableau_v8.js"></script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+  <script src="scripts/app.js"></script>
+  <script src="js/sb-admin-2.js"></script>
+
+  <script src="scripts/services/userService.js"></script>
+  <script src="scripts/services/alertService.js"></script>
+  <script src="scripts/services/adminService.js"></script>
+  <script src="scripts/services/courseService.js"></script>
+  <script src="scripts/services/messageService.js"></script>
+  <script src="scripts/services/studentService.js"></script>
+  <script src="scripts/services/courseContentService.js"></script>
+  <script src="scripts/services/utilityService.js"></script>
 
 </head>
 
@@ -43,44 +76,6 @@
 
     </div>
 
-    <!-- Declaration of default bower and other JS files-->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
-    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/ng-notify/dist/ng-notify.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="bower_components/highcharts/highcharts.js"></script>
-    <script src="bower_components/highcharts/highcharts-3d.js"></script>
-    <script src="bower_components/highcharts/highcharts-more.js"></script>
-    <script src="bower_components/highcharts/modules/exporting.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-    <script src="app/js/tableau-2.js"></script>
-    <script type="text/javascript" src="http://public.tableausoftware.com/javascripts/api/tableau_v8.js"></script>
-
-    <!-- Declaration of Main Application JS, which takes care of routes and redirection-->
-    <script src="scripts/app.js"></script>
-
-
-    <!-- Declaration if main theme file-->
-    <script src="js/sb-admin-2.js"></script>
-
-    <!-- Declaration of Services-->
-    <script src="scripts/services/userService.js"></script>
-    <script src="scripts/services/alertService.js"></script>
-    <script src="scripts/services/adminService.js"></script>
-    <script src="scripts/services/courseService.js"></script>
-    <script src="scripts/services/messageService.js"></script>
-    <script src="scripts/services/studentService.js"></script>
-    <script src="scripts/services/courseContentService.js"></script>
-    <script src="scripts/services/utilityService.js"></script>
 </body>
 
 </html>

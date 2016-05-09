@@ -211,6 +211,14 @@
         templateUrl: 'views/admin/gradesByCourse.html'
       })
 
+      .state('dashboard.adminAverageQuiz', {
+        templateUrl: 'views/admin/averageQuizScoreAdmin.html'
+      })
+
+      .state('dashboard.adminDetailedQuiz', {
+        templateUrl: 'views/admin/detailedQuizPerformanceAdmin.html'
+      })
+
       .state('professor.performance', {
         templateUrl: 'views/ui-elements/typography.html',
         url: '/typography'
