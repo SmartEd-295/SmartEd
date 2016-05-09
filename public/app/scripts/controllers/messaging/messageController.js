@@ -2,19 +2,24 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('MessagingCtrl', ['$scope', '$uibModal', 'MessageService', 'AlertService',
+myApp.controller('MessagingCtrl', ['$scope', '$filter',  '$uibModal', 'MessageService', 'AlertService',
 
-  function ($scope, $uibModal, MessageService, AlertService) {
+  function ($scope, $filter, $uibModal, MessageService, AlertService) {
 
     $scope.activeTab = "inbox";
     var composeMail = {};
 
-
+    var inboxMessageList = [];
     // fetch message list
     var loadMessages = function() {
       MessageService.getAllMesssages()
         .success(function (data, status) {
-          $scope.emails = data;
+          inboxMessageList = data;
+          for(var i=0; i < inboxMessageList.length; i++) {
+            var tStamp = inboxMessageList[i].messageTimestamp;
+            inboxMessageList[i].messageTimestamp = $filter('date')(tStamp, "MM/dd/yyyy");
+          }
+          $scope.emails = inboxMessageList;
         })
         .error(function (data, status) {
           AlertService.displayMessage(data.message, 'error');
@@ -22,11 +27,17 @@ myApp.controller('MessagingCtrl', ['$scope', '$uibModal', 'MessageService', 'Ale
     };
     loadMessages();
 
+    var sentMessageList = [];
     // fetch sent message list
     var loadSentMessages = function() {
       MessageService.getAllSentMesssages()
         .success(function (data, status) {
-          $scope.sentEmails = data;
+          sentMessageList = data;
+          for(var i=0; i < sentMessageList.length; i++) {
+            var tStamp = sentMessageList[i].messageTimestamp;
+            sentMessageList[i].messageTimestamp = $filter('date')(tStamp, "MM/dd/YYYY");
+          }
+          $scope.sentEmails = sentMessageList;
         })
         .error(function (data, status) {
           AlertService.displayMessage(data.message, 'error');

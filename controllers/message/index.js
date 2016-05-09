@@ -9,7 +9,7 @@ module.exports = function (router) {
 
     router.get('/getAllMessages/:userId', function (req, res) {
         var userId = req.params.userId;
-        MessageDetails.find({toUser: userId}).sort({'messageTimestamp': 'desc'})
+        MessageDetails.find({toUser: userId}).sort({'messageTimestamp': 'asc'})
             .exec( function (err, docs) {
             if(!err){
 
@@ -43,7 +43,7 @@ module.exports = function (router) {
 
     router.get('/getAllSentMessages/:userId', function (req, res) {
         var userId = req.params.userId;
-        MessageDetails.find({toUser: userId}).sort({'messageTimestamp': 'desc'})
+        MessageDetails.find({fromUser: userId}).sort({'messageTimestamp': 'asc'})
             .exec(function (err, docs) {
             if(!err){
 

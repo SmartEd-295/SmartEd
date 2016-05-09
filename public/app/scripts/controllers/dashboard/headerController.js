@@ -96,6 +96,8 @@ myApp.controller('HeaderNotificationCtrl', ['$scope', '$filter', 'StudentService
       loadMessages();
       getToDoList();
       getActivityStream();
+    } else if (currentRole == 'Professor') {
+      loadMessages();
     }
 
   }]);

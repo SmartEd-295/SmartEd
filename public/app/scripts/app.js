@@ -365,7 +365,8 @@
             return $ocLazyLoad.load({
               name: 'smartedApp',
               files: [
-                'scripts/controllers/userManagement/userProfileController.js'
+                'scripts/controllers/userManagement/userProfileController.js',
+                'styles/profile.css'
               ]
             })
           }

@@ -4,12 +4,7 @@ var myApp = angular.module('smartedApp');
 
 // student Quiz controller
 myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', '$sce', 'ngTableParams', 'StudentService', 'AlertService', 'UtilityService',
-  function ($scope, $filter, $sce, ngTableParams, StudentService, AlertService, UtilityService) {
-
-
-    // Flag to display visualizations or not
-    $scope.displayStats1 = true;
-    $scope.displayStats2 = true;
+  function ($scope, $filter, $sce, ngTableParams, StudentService, AlertService) {
 
     // load course data
     var mCourse = StudentService.getCurrentCourse();
@@ -23,7 +18,10 @@ myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', '$sce', 'ng
         // assignment list from response
         quizList = JSON.parse(data);
 
-        // manipulate any assignment data
+        // manipulate any quiz data
+        for (var i = 0; i < quizList.length; i++) {
+          quizList[i].description = $sce.trustAsHtml(quizList[i].description);
+        }
 
         // load data to chart
         $scope.quizList = quizList;
@@ -32,33 +30,6 @@ myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', '$sce', 'ng
         AlertService.displayBoxMessage(data, 'studentQuizPerformanceContainer', 'error');
       });
     };
-    getAllAssignments();
-
-
-    /*// load table with data code
-     var loadTableData = function() {
-     $scope.tableParams = new ngTableParams({
-     page: 1,
-     count: 10
-     }, {
-     total: assignmentList.length,
-     getData: function ($defer, params) {
-
-     var orderedData = params.sorting ?
-     $filter('orderBy')(assignmentList, params.orderBy()) :
-     assignmentList;
-     orderedData = params.filter ?
-     $filter('filter')(orderedData, params.filter()) :
-     orderedData;
-
-     var resultData = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-
-     params.total(orderedData.length);
-     $defer.resolve(resultData);
-     }
-     });
-
-     $scope.tableParams.reload();
-     };*/
+    getAllQuizzes();
 
   }]);

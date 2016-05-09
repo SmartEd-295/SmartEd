@@ -5,21 +5,30 @@
   </div>
 </div>
 
-<div ng-hide="quizList" id="quizLoadingWrapper">
-  <strong>
-    <i class="fa fa-spinner" aria-hidden="true"></i> Quizzes Loading . . .
-  </strong>
-</div>
+<div id="studentQuizPerformanceContainer">
+
+  <div ng-hide="quizList" id="quizLoadingWrapper">
+    <strong>
+      <i class="fa fa-spinner" aria-hidden="true"></i> Quizzes Loading . . .
+    </strong>
+  </div>
+
+
 
 <div id="quizWrapper" ng-show="quizList">
-  <div style="margin-top: 10px;" class="row">
+  <div ng-if="quizList.length == 0">
+    <strong>
+      <i class="fa fa-times-circle-o" aria-hidden="true"></i> No Quizzes Available . .
+    </strong>
+  </div>
+  <div ng-if="quizList.length > 0" style="margin-top: 10px;" class="row">
     <div ng-repeat="quiz in quizList">
       <div class="panel-group" id="quiz-panel">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" href="javascript:;" data-parent="#quiz-panel" data-target="#quiz{{$index+1}}">
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{quiz.name}}
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{quiz.title}}
               </a>
             </h4>
           </div>
@@ -29,6 +38,7 @@
             <div class="panel-body">
               <div style="margin-top: 10px;" class="row">
                 <div class="col-md-8">
+
                 <span style="font-size: 1.3em;">
                   <i class="fa fa-file-text-o" aria-hidden="true"></i>
                   <strong>Description</strong>
@@ -41,9 +51,6 @@
 
                 </div>
                 <div class="col-md-4">
-                  <p style="font-size: 1em;">
-                    <strong>Max Points: </strong><em>{{quiz.points_possible}} {{quiz.grading_type}}</em>
-                  </p>
                   <p ng-if="quiz.created_at">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                     <strong>Created at :</strong> {{quiz.created_at}}
@@ -57,19 +64,37 @@
 
               <div style="margin-top: 20px;" class="row">
                 <div class="col-md-8">
-                <span style="font-size: 1.3em;">
-                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                  <strong>Submission</strong>
-                </span>
+                  <span style="font-size: 1.3em;">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    <strong>Details</strong>
+                  </span>
                   <hr/>
-                  <div  ng-show="quiz.submission">
-                    <p><i style="color: green; font-size:30px;" class="fa fa-check-square-o" aria-hidden="true"></i> You have successfully submitted the quiz.</p>
-                    <p>Kindly review the submission <a target="_blank" href="{{quiz.html_url}}">here</a></p>
-                  </div>
-                  <div  ng-hide="quiz.submission">
-                    <p><i style="color: red; font-size:30px;" class="fa fa-times-circle-o" aria-hidden="true"></i> You have not submitted the quiz.</p>
-                    <p>Kindly submit the quiz <a target="_blank" href="{{quiz.html_url}}">here</a></p>
-                  </div>
+                  <p style="font-size: 1em;">
+                    <strong>Max Points: </strong><em>{{quiz.points_possible}}</em>
+                  </p>
+                  <p ng-if="quiz.question_count" style="font-size: 1em;">
+                    <strong>Number of Questions: </strong><em>{{quiz.question_count}}</em>
+                  </p>
+                  <p ng-if="quiz.allowed_attempts" style="font-size: 1em;">
+                    <strong>Number of Attempts: </strong><em>{{quiz.allowed_attempts}}</em>
+                  </p>
+                  <p ng-if="quiz.time_limit" style="font-size: 1em;">
+                    <strong>Time Limit: </strong><em>{{quiz.time_limit}} minutes</em>
+                  </p>
+                </div>
+              </div>
+
+              <div style="margin-top: 20px;" class="row">
+                <div class="col-md-8">
+                  <span style="font-size: 1.3em;">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    <strong>Submission</strong>
+                  </span>
+                  <hr/>
+                  <p style="font-size: 1em;">
+                    <strong>Submit your quiz </strong>
+                    <a href="{{quiz.html_url}}"> here</a>
+                  </p>
                 </div>
               </div>
 
@@ -84,3 +109,4 @@
 
 </div>
 
+</div>

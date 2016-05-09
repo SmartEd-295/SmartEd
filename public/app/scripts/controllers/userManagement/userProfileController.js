@@ -6,6 +6,8 @@ myApp.controller('UserProfileCtrl', ['$scope', '$location', 'UserService', 'Aler
 
   function ($scope, UserService, AlertService) {
 
+    // load data from user service
+
     UserService.getUserCanvasProfile().success(function (data, status) {
         console.log(data);
       })
