@@ -3,7 +3,7 @@
 var myApp = angular.module('smartedApp');
 
 // student Quiz controller
-myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', '$sce', 'ngTableParams', 'StudentService', 'AlertService', 'UtilityService',
+myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', '$sce', 'ngTableParams', 'StudentService', 'AlertService',
   function ($scope, $filter, $sce, ngTableParams, StudentService, AlertService) {
 
     // load course data

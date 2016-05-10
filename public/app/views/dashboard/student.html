@@ -42,4 +42,31 @@
   </div>
 
 
+  <div class="row">
+    <div ng-show="course.course_code" ng-repeat="course in dashboardStudentCourseList" class="col-lg-3 col-md-6">
+      <div class="panel panel-{{colorList[$index]}}">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-file-text-o fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <div class="huge"></div>
+              <div><b>{{course.name}}</b></div>
+            </div>
+          </div>
+        </div>
+        <a ui-sref="dashboard.studentCoursePerformance({course: '{{course}}'})">
+          <div class="panel-footer">
+            <span class="pull-left">View Details</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
 </div>

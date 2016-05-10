@@ -5,4 +5,38 @@
   </div>
 </div>
 
-<angular-filemanager></angular-filemanager>
+<div id="filesContainer" class="col-md-12">
+  <div ng-show="displayLoading" id="filesLoadingWrapper">
+    <strong>
+      <i class="fa fa-spinner" aria-hidden="true"></i> Files Loading . . .
+    </strong>
+  </div>
+
+  <div ng-hide="displayLoading">
+    <div ng-show="displayEmptyFileList" id="filesEmptyWrapper">
+      <strong>
+        <i class="fa fa-times-circle-o" aria-hidden="true"></i> No Files Found . . .
+      </strong>
+    </div>
+
+    <table ng-hide="displayEmptyFileList" ng-table="tableParams" class="table ng-table-responsive table-hover">
+      <tr ng-repeat="details in $data">
+        <td data-title="'File Name'" ><a href="{{details.url}}">
+          {{details.display_name}}</a>
+        </td>
+        <td data-title="'Size(bytes)'">
+          {{details.size}}
+        </td>
+        <td data-title="'Last Updated'" >
+          {{details.updated_at}}
+        </td>
+        <td data-title="'Download'" >
+          <a taget="_blank" href="{{details.url}}">
+            <i class="fa fa-file" aria-hidden="true"></i>
+            <i class="fa fa-download" aria-hidden="true"></i>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
