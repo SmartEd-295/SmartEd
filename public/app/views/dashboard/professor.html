@@ -1,39 +1,89 @@
-<div>
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">PROFESSOR</h1>
+<div id="userProfileContainer" class="container" style="margin-top: 20px; margin-bottom: 20px;">
+  <div class="row panel">
+    <div class="col-md-4 bg_blur ">
     </div>
-  </div>
-
-  <div class="row">
-
-    <stats number="6" comments="New comments!" colour="primary" type="comments"></stats>
-    <stats number="12" comments="New tasks!" colour="primary" type="user"></stats>
-    <stats number="18" comments="New orders!" colour="yellow" type="shopping-cart"></stats>
-    <stats number="24" comments="Support tickets!" colour="red" type="support"></stats>
-
-  </div>
-
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <i class="fa fa-clock-o fa-fw"></i> Dashboard
-        </div>
-
+    <div class="col-md-8  col-xs-12">
+      <img src="http://data2.whicdn.com/images/139218968/large.jpg" class="img-thumbnail picture hidden-xs" />
+      <img src="http://data2.whicdn.com/images/139218968/large.jpg" class="img-thumbnail visible-xs picture_mob" />
+      <div class="profile-header">
+        <h1>{{currentUser.firstName}} {{currentUser.lastName}}</h1>
       </div>
     </div>
+  </div>
 
-    <div class="col-lg-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <i class="fa fa-bell fa-fw"></i> Notifications Panel
-        </div>
 
-        <notifications></notifications>
+  <div class="row" style="margin-top: 50px">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Update Profile</h3>
       </div>
 
-      <chat></chat>
+      <div class="panel-body">
+        <form name="updateForm" ng-submit="update()" role="form">
+
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.username.$dirty && updateForm.username.$error.required}">
+            <input type="email" name="username" id="username" class="form-control" placeholder="SJSU E-mail"
+                   ng-model="currentUser.email" readonly/>
+          </div>
+
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.studentId.$dirty && updateForm.studentId.$error.required }">
+            <input type="number" name="studentId" id="studentId" class="form-control" placeholder="Student ID"
+                   ng-model="currentUser.sjsuId" readonly/>
+          </div>
+
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.firstName.$dirty && updateForm.firstName.$error.required }">
+            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name"
+                   ng-model="currentUser.firstName" required/>
+            <span ng-show="updateForm.firstName.$dirty && updateForm.firstName.$error.required"
+                  class="help-block">First Name is required input.</span>
+          </div>
+
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.lastName.$dirty && updateForm.lastName.$errord.required }">
+            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
+                   ng-model="currentUser.lastName" required/>
+            <span ng-show="updateForm.lastName.$dirty && updateForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
+          </div>
+
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.oldPassword.$dirty && updateForm.oldPassword.$error.required}">
+            <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="currentUser.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
+            <input type="password" name="oldPassword" id="oldPassword" class="form-control" placeholder="Old Password"
+                   ng-model="currentUser.oldPassword" required/>
+            <span ng-show="updateForm.oldPassword.$dirty && updateForm.oldPassword.$error.required" class="help-block">Old Password is required input.</span>
+            <!--<span ng-show="updateForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+          </div>
+
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.newPassword.$dirty && updateForm.newPassword.$error.required}">
+            <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="currentUser.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
+            <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="Password"
+                   ng-model="currentUser.newPassword" />
+            <span ng-show="updateForm.newPassword.$dirty && updateForm.newPassword.$error.required" class="help-block">New Password is required input.</span>
+            <!--<span ng-show="updateForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+          </div>
+
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.rePassword.$dirty && updateForm.rePassword.$error.required}">
+            <input type="password" name="rePassword" id="rePassword" class="form-control"
+                   placeholder="Retype Password"
+                   ng-model="currentUser.rePassword" password-verify="currentUser.newPassword"/>
+            <!--<span ng-show="updateForm.rePassword.$dirty && updateForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
+            <span class="help-block"
+                  ng-show="updateForm.rePassword.$dirty && updateForm.rePassword.$error.passwordVerify">Retype Password : password did not match.</span>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-info btn-default">Update</button>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
+
+
 </div>

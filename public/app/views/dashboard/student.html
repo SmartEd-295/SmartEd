@@ -1,39 +1,45 @@
-<div>
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">STUDENT</h1>
+<div id="userProfileContainer" class="container">
+  <div class="row panel">
+    <div class="col-md-4 bg_blur ">
     </div>
-  </div>
-
-  <div class="row">
-
-    <stats number="6" comments="New comments!" colour="primary" type="comments"></stats>
-    <stats number="12" comments="New tasks!" colour="primary" type="user"></stats>
-    <stats number="18" comments="New orders!" colour="yellow" type="shopping-cart"></stats>
-    <stats number="24" comments="Support tickets!" colour="red" type="support"></stats>
-
-  </div>
-
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <i class="fa fa-clock-o fa-fw"></i> Dashboard
-        </div>
-
+    <div class="col-md-8  col-xs-12">
+      <img src="http://data2.whicdn.com/images/139218968/large.jpg" class="img-thumbnail picture hidden-xs" />
+      <img src="http://data2.whicdn.com/images/139218968/large.jpg" class="img-thumbnail visible-xs picture_mob" />
+      <div class="profile-header">
       </div>
     </div>
+  </div>
 
-    <div class="col-lg-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <i class="fa fa-bell fa-fw"></i> Notifications Panel
-        </div>
 
-        <notifications></notifications>
+  <div class="row" style="margin-top: 50px">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Bio Profile</h3>
       </div>
 
-      <chat></chat>
+      <div class="panel-body">
+        <div style="margin-top: 10px;" class="row">
+          <div class="col-md-12">
+            <span style="font-size: 1.3em;">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <strong>Details</strong>
+            </span>
+            <hr/>
+            <p >
+              <strong>Name : </strong>{{currentUser.firstName}} {{currentUser.lastName}}
+            </p>
+            <p >
+              <strong>Email : </strong>{{currentUser.email}}
+            </p>
+            <p >
+              <strong>SJSU ID : </strong>{{currentUser.sjsuId}}
+            </p>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+
 </div>

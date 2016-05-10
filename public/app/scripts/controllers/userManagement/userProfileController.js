@@ -20,7 +20,7 @@ myApp.controller('UserProfileCtrl', ['$scope', 'UserService', 'AlertService',
           matchPassword = data.password;
         })
         .error(function (data, status) {
-          AlertService.displayBoxMessage(data.message, 'error');
+          AlertService.displayMessage(data.message, 'error');
         });
     };
     getUserDetails();
@@ -31,22 +31,19 @@ myApp.controller('UserProfileCtrl', ['$scope', 'UserService', 'AlertService',
 
       if($scope.currentUser.oldPassword != encodedPassword) {
         var errMsg = 'Incorrect Old Password. Please enter again.';
-        AlertService.displayBoxMessage(errMsg, 'error');
+        AlertService.displayMessage(errMsg, 'error');
       } else {
         if($scope.currentUser.newPassword === undefined || $scope.currentUser.newPassword == '') {
-          if($scope.currentUser.newPassword  == $scope.currentUser.rePassword ) {
-
             $scope.currentUser.newPassword = atob($scope.currentUser.password);
-            UserService.updateUser($scope.currentUser).success(function (data, status) {
-              AlertService.displayBoxMessage(data, 'success');
-            }).error(function (data, status) {
-              AlertService.displayBoxMessage(data, 'error');
-            });
-
-          } else {
-            AlertService.displayBoxMessage('Passwords do not match', 'error');
-          }
         }
+
+        UserService.updateUser($scope.currentUser).success(function (data, status) {
+          AlertService.displayMessage(data, 'success');
+        }).error(function (data, status) {
+          AlertService.displayMessage(data, 'error');
+        });
+
+
       }
     }
 

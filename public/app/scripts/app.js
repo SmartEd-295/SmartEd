@@ -127,14 +127,17 @@
       /* Professor States  */
       .state('dashboard.professor', {
         templateUrl: 'views/dashboard/professor.html',
+        controller: 'ProfessorDashboardCtrl',
         resolve: {
           loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load(
               {
                 name: 'smartedApp',
                 files: [
+                  'scripts/controllers/dashboard/dashboardController.js',
                   'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js'
+                  'scripts/directives/chat/chat.js',
+                  'styles/profile.css'
                 ]
               })
           }
@@ -143,14 +146,17 @@
       /* Student States  */
       .state('dashboard.student', {
         templateUrl: 'views/dashboard/student.html',
+        controller: 'StudentDashboardCtrl',
         resolve: {
           loadMyFiles: function ($ocLazyLoad) {
             return $ocLazyLoad.load(
               {
                 name: 'smartedApp',
                 files: [
+                  'scripts/controllers/dashboard/dashboardController.js',
                   'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js'
+                  'scripts/directives/chat/chat.js',
+                  'styles/profile.css'
                 ]
               })
           }
@@ -335,6 +341,21 @@
               files: [
                 'scripts/controllers/student/gradesController.js',
                 'scripts/directives/charts/dashboardCharts.js'
+              ]
+            })
+          }
+        }
+      })
+      .state('dashboard.files', {
+        templateUrl: 'views/files/courseFiles.html',
+        controller: 'FilesCtrl',
+        url: '/course/files',
+        resolve: {
+          loadMyFile: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/files/filesController.js'
               ]
             })
           }
