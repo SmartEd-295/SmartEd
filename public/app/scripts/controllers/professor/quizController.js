@@ -13,9 +13,9 @@ myApp.controller('QuizCtrl', ['$scope', '$stateParams', 'CourseService', 'AlertS
         console.log(JSON.stringify(data));
         $scope.courseName = data.name;
         $scope.courseCode = data.code;
-        var nameArray = [];
-        nameArray.push(data.name);
-        $scope.filterData = nameArray;
+        var tempData = (data.peoplesoftId).toString();
+        console.log(">>>>"+tempData);
+        $scope.filterData = tempData;
       }).error(function (data, status) {
         console.log(data);
       });

@@ -45,6 +45,10 @@ angular.module("smartedApp")
           console.log("Error: No URL was specified for Tableau Viz");
           return;
         }
+
+        var dash;
+        var typeOfSheet;
+        var currentSheet;
         // Create the dashboard
         function createViz() {
           viz = new tableauSoftware.Viz(vizTarget, scope.url, {
@@ -53,8 +57,13 @@ angular.module("smartedApp")
             'hideTabs': 'showTabs' in attrs ? false : true,
             'hideToolbar': 'showToolbar' in attrs ? false : true,
             'onFirstInteractive': function () {
+              dash = viz.getWorkbook().getActiveSheet();
+              typeOfSheet = dash.getSheetType();
+              //currentSheet = dash.getWorksheets();
               applyFilters();
               scope.$watch('filters', function (newValue, oldValue) {
+                console.log("Got The Vale >>>>>"+JSON.stringify(newValue)+">>>>"+JSON.stringify(oldValue));
+                scope.filters = newValue;
                 applyFilters();
               }, true);
             }
@@ -77,18 +86,21 @@ angular.module("smartedApp")
         });
         // Define a function to apply filters to dashboard
         function applyFilters() {
-          var dash = viz.getWorkbook().getActiveSheet();
+          console.log("find out why??????"+viz);
           var filtersArr = Object.keys(scope.filters);
           for (var i = 0; i < filtersArr.length; i++) {
             var filterValue = scope.filters[filtersArr[i]];
             // If it's a dashboard, we need to filter each sheet individually.
-            if (dash.getSheetType() === 'dashboard') {
-              var sheets = dash.getWorksheets();
+
+            console.log("My VALUE>>>>"+filterValue);
+
+            if (typeOfSheet === 'dashboard') {
+              var sheets = currentSheet;
               for (var j = 0; j < sheets.length; j++) {
                 applyFilterToSheet(sheets[j], filtersArr[i], filterValue)
               }
             }
-            if (dash.getSheetType() === 'worksheet') {
+            if (typeOfSheet === 'worksheet') {
               applyFilterToSheet(dash, filtersArr[i], filterValue)
             }
           }
