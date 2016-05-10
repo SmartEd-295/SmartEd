@@ -208,11 +208,8 @@ module.exports = function (router) {
         var email = req.body.email;
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
-        var password = req.body.newPassword;
 
-        var hash = new Buffer(password).toString('base64');
-
-        User.update({email: email}, {$set: {firstName: firstName, lastName: lastName, password: hash}}, function (err, doc) {
+        User.update({email: email}, {$set: {firstName: firstName, lastName: lastName}}, function (err, doc) {
             if (err || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('PROFILE_UPDATE_FAILED'));
             }

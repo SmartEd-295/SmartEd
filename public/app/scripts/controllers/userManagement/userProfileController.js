@@ -25,26 +25,39 @@ myApp.controller('UserProfileCtrl', ['$scope', 'UserService', 'AlertService',
     };
     getUserDetails();
 
-    $scope.update = function() {
-      console.log('--------> in update ' + JSON.stringify($scope.currentUser));
+
+
+    $scope.changePassword = function() {
+      console.log('--------> in changePassword ' + JSON.stringify($scope.currentUser));
       var encodedPassword = atob(matchPassword);
 
       if($scope.currentUser.oldPassword != encodedPassword) {
         var errMsg = 'Incorrect Old Password. Please enter again.';
         AlertService.displayMessage(errMsg, 'error');
       } else {
-        if($scope.currentUser.newPassword === undefined || $scope.currentUser.newPassword == '') {
-            $scope.currentUser.newPassword = atob($scope.currentUser.password);
+        console.log($scope.currentUser.rePassword  +"!= " +$scope.currentUser.password )
+        if($scope.currentUser.rePassword  != $scope.currentUser.password ) {
+          var errMsg = 'Passwords do not match. Please try again.';
+          AlertService.displayMessage(errMsg, 'error');
+        } else {
+          UserService.updatePassword($scope.currentUser).success(function (data, status) {
+            AlertService.displayMessage(data, 'success');
+          }).error(function (data, status) {
+            AlertService.displayMessage(data, 'error');
+          });
         }
+      }
 
+    };
+
+
+      $scope.update = function() {
+        console.log('--------> in update ' + JSON.stringify($scope.currentUser));
         UserService.updateUser($scope.currentUser).success(function (data, status) {
           AlertService.displayMessage(data, 'success');
         }).error(function (data, status) {
           AlertService.displayMessage(data, 'error');
         });
-
-
-      }
-    }
+      };
 
   }])
