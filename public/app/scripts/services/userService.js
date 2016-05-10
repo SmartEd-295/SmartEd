@@ -98,4 +98,9 @@ myApp.service('UserService', ['$http', '$cookieStore', '$rootScope', function ($
   };
 
 
+  this.getRandomUser = function() {
+    return $http.get('https://randomuser.me/api/');
+  };
+
+
 }]);

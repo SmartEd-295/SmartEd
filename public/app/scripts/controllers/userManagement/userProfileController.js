@@ -60,4 +60,15 @@ myApp.controller('UserProfileCtrl', ['$scope', 'UserService', 'AlertService',
         });
       };
 
+
+
+    var getRandomImage = function() {
+      UserService.getRandomUser().success(function (data, status) {
+        var userData = data;
+        console.log(userData);
+        $scope.imageUrl = userData.results[0].picture.large;
+      }).error(function (data, status) {
+      });
+    };
+
   }])
