@@ -80,6 +80,8 @@
                   'scripts/controllers/dashboard/headerController.js',
                   'scripts/controllers/dashboard/statsController.js',
                   'scripts/controllers/student/assignmentController.js',
+                  'scripts/controllers/professor/quizController.js',
+                  'scripts/controllers/professor/showCoursesController.js',
                   'scripts/directives/header-bar/header-bar.js',
                   'scripts/directives/header-notification/header-notification.js',
                   'scripts/directives/tableau-chart/tableau-chart.js',
@@ -223,6 +225,18 @@
 
       .state('dashboard.adminDetailedQuiz', {
         templateUrl: 'views/admin/detailedQuizPerformanceAdmin.html'
+      })
+
+      .state('dashboard.professorAverageQuiz', {
+        templateUrl: 'views/professor/averageQuizScoreProfessor.html',
+        url: '/professor/averageQuiz/:courseId',
+        controller: 'QuizCtrl'
+      })
+
+      .state('dashboard.professorDetailedQuiz', {
+        templateUrl: 'views/professor/detailedQuizPerformanceProfessor.html',
+        url: '/professor/detailedQuiz/:courseId',
+        controller: 'QuizCtrl'
       })
 
       .state('professor.performance', {
@@ -392,7 +406,11 @@
             })
           }
         }
-      });
+      }).state('dashboard.showAllCourses', {
+      templateUrl: 'views/professor/showAllCourses.html',
+      controller: 'ShowCoursesCtrl',
+      url: '/professor/courses/:action'
+    });
   }]);
 
   //  Keep User Logged in on different navigations.

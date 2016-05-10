@@ -9,7 +9,7 @@ module.exports = function (router) {
 
     router.get('/getProfessorCourses/:professorId', function (req, res) {
         var profId = req.params.professorId;
-        ProfessorDetails.find({email: profId}, function (err, docs) {
+        ProfessorDetails.find({email: profId, status: true}, function (err, docs) {
             if(!err){
                 res.json(docs);
             }else{

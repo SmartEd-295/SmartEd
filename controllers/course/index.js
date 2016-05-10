@@ -8,11 +8,22 @@ var CourseDetails = require('../../models/courseDetails'),
 
 module.exports = function (router) {
 
-    router.get('/getCourseDetails', function (req, res) {
+    router.get('/getCourseWithGradeDetails', function (req, res) {
         var cid = req.query.courseId;
         CourseDetails.findOne({code: cid}, function (err, doc) {
             if (!err && doc !== null) {
                 getGradeDetails(doc, req, res);
+            } else {
+                res.sendStatus(400);
+            }
+        });
+    });
+
+    router.get('/getCourseDetails', function (req, res) {
+        var cid = req.query.courseId;
+        CourseDetails.findOne({code: cid}, function (err, doc) {
+            if (!err && doc !== null) {
+                res.json(doc);
             } else {
                 res.sendStatus(400);
             }

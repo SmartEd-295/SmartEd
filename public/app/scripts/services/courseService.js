@@ -10,7 +10,11 @@ myApp.service('CourseService', ['$http', 'UserService', 'CourseContentService', 
   };
 
   this.getCourseDetails = function (courseId, term, year) {
-    return $http.get('/course/getCourseDetails',{params:{"courseId": courseId, "term": term, "year": year}});
+    return $http.get('/course/getCourseWithGradeDetails',{params:{"courseId": courseId, "term": term, "year": year}});
+  };
+
+  this.getDetailsForQuiz = function (courseId) {
+    return $http.get('/course/getCourseDetails',{params:{"courseId": courseId}});
   };
 
   this.addCourseContent = function () {

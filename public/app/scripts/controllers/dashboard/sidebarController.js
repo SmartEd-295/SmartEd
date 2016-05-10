@@ -2,36 +2,36 @@
 
 var myApp = angular.module('smartedApp');
 
-myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseService', 'StudentService', 'AlertService',
+myApp.controller('SidebarCtrl', ['$scope', 'UserService', 'StudentService',
 
-  function ($scope, $state, UserService, CourseService, StudentService, AlertService) {
+  function ($scope, UserService, StudentService) {
 
-
-    $scope.courseList = [];
-    // dynamic sidebar logic
     var currentRole = UserService.getCurrentUserRole();
-    if (currentRole == 'Professor') {
-      $scope.userRole = "Professor";
-      $scope.goToState = "dashboard.professor";
-      CourseService.getAllCourses().success(function (data, status) {
-        $scope.courseList = data;
-      }).error(function (data, status) {
-        console.log(data);
-      });
-    } else if (currentRole == 'Student') {
-      $scope.userRole = "Student";
-      $scope.goToState = "dashboard.student";
+
+    var loadStudentCourses = function () {
       StudentService.getEnrolledCourses().success(function (data, status) {
         var parsedData = JSON.parse(data);
         $scope.studentCourseList = parsedData;
       }).error(function (data, status) {
         console.log(data);
       });
-    } else if (currentRole == 'Admin') {
-      $scope.userRole = "Admin";
-      $scope.goToState = "dashboard.admin";
-    }
+    };
 
+    switch (currentRole) {
+      case 'Admin':
+        $scope.userRole = "Admin";
+        $scope.goToState = "dashboard.admin";
+        break;
+      case 'Professor':
+        $scope.userRole = "Professor";
+        $scope.goToState = "dashboard.professor";
+        break;
+      case 'Student':
+        $scope.userRole = "Student";
+        $scope.goToState = "dashboard.student";
+        loadStudentCourses();
+        break;
+    }
 
     $scope.collapseVar = 0;
     $scope.check = function (x) {
@@ -39,14 +39,6 @@ myApp.controller('SidebarCtrl', ['$scope', '$state', 'UserService', 'CourseServi
         $scope.collapseVar = 0;
       else
         $scope.collapseVar = x;
-    };
-
-    $scope.visitCourse = function (courseId, term, year) {
-      if (Number(year) > Number(new Date().getFullYear()) || Number(year) == Number(new Date().getFullYear())) {
-        AlertService.displayMessage('You can only see the performance of classes for past years.', 'error');
-      } else {
-        $state.go('dashboard.courseCharts', {courseId: courseId, term: term, year: year});
-      }
     };
 
   }]);

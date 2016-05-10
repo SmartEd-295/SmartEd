@@ -1,21 +1,15 @@
 <div style="height: 800px;">
   <div class="col-lg-12">
-    <h3 class="page-header">Review Course Wise Grade Details</h3>
+    <h3 class="page-header">Detailed Score for Quizzes for {{courseName}}</h3>
   </div>
 
   <p>
-    <i class="fa fa-chevron-right"></i> The graph below depicts the grades for students for a particular course over the
-    years <b>(2010-2015)</b>.
-  </p>
-
-  <p>
-    <i class="fa fa-chevron-right"></i> Click on the Course Name column to view details for different terms.
+    <i class="fa fa-chevron-right"></i> The graph below depicts the detailed score for each quiz in {{courseCode}}: {{courseName}}
   </p>
 
   <br/>
-
   <tableau-chart height="'600px'"
-                 url="'https://public.tableau.com/views/Termwisecoursegradedistribution2/Sheet1?:embed=y&:display_count=yes&:showTabs=y'"
-                 filters="{}">
+                 url="'https://public.tableau.com/views/Coursewisequizgradedistributionforprof/Sheet5?:embed=y&:display_count=yes&:showTabs=y'"
+                 filters="{'Name':['Web and Data Mining']}">
   </tableau-chart>
 </div>
