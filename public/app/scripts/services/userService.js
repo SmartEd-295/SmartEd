@@ -86,4 +86,16 @@ myApp.service('UserService', ['$http', '$cookieStore', '$rootScope', function ($
   };
 
 
+  this.getUserDetails = function() {
+    console.log("----------> in getUserDetails service call");
+
+    var email = this.getCurrentUser().userMail;
+    return $http.get('/user/getUserDetails/' + email);
+  };
+
+  this.updateUser = function (user) {
+    return $http.post('/user/updateProfile', user);
+  };
+
+
 }]);

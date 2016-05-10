@@ -187,6 +187,41 @@ module.exports = function (router) {
     });
 
 
+    router.get('/getUserDetails/:email', function (req, res) {
+        var email = req.params.email;
+        console.log("----------> in getUserDetails API call " + email);
+
+        userExist(email, function (err, doc) {
+            if (err || doc === null) {
+                res.status(401).send(constant.MESSAGE_MAP.get('USER_SERVICE_UNAVAILABLE'));
+            }
+            else {
+                console.log("----------> in getUserDetails API call " + doc);
+
+                res.json(doc);
+            }
+        });
+    });
+
+
+    router.post('/updateProfile', function (req, res) {
+        var email = req.body.email;
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var password = req.body.newPassword;
+
+        var hash = new Buffer(password).toString('base64');
+
+        User.update({email: email}, {$set: {firstName: firstName, lastName: lastName, password: hash}}, function (err, doc) {
+            if (err || doc === null) {
+                res.status(401).send(constant.MESSAGE_MAP.get('PROFILE_UPDATE_FAILED'));
+            }
+            else {
+                res.status(200).send(constant.MESSAGE_MAP.get('PROFILE_UPDATE_SUCCESS'));
+            }
+        });
+    });
+
     router.get('/getUserCanvasProfile/:email', function (req, res) {
         var email = req.params.email;
 
