@@ -189,14 +189,14 @@ module.exports = function (router) {
 
     router.get('/getUserDetails/:email', function (req, res) {
         var email = req.params.email;
-        console.log("----------> in getUserDetails API call " + email);
+        console.log('---------> in getUserDetails API call ' + email);
 
         userExist(email, function (err, doc) {
             if (err || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_SERVICE_UNAVAILABLE'));
             }
             else {
-                console.log("----------> in getUserDetails API call " + doc);
+                console.log('----------> in getUserDetails API call ' + doc);
 
                 res.json(doc);
             }

@@ -10,7 +10,7 @@ module.exports = function (router) {
         var userEmail = req.params.userEmail;
 
         var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_ALL_FILES');
-        apiUrl = apiUrl.replace(":course_id", courseId);
+        apiUrl = apiUrl.replace(':course_id', courseId);
         canvasConnectivity.getCanvasDetails(apiUrl, userEmail, function (err, body) {
             if(!err){
                 //console.log("In student index API success :-----> " + body);
