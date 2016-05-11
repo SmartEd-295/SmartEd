@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "Test",
   "author": "kb",
-  "main": "index.js",
+ "main": "index.js",
   "scripts": {
+	"postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install",
     "test": "grunt test",
     "start": "node index.js"
   },
