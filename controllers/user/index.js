@@ -23,6 +23,7 @@ module.exports = function (router) {
 
         var hash = new Buffer(password).toString('base64');
 
+		email = email.toLowerCase();
         if (email.indexOf(constant.MESSAGE_MAP.get('DOMAIN')) > -1) {
             userExist(email, function (error, doc) {
                 if (error || doc === null) {
@@ -65,6 +66,7 @@ module.exports = function (router) {
         var userEmail = req.body.email;
         var password = req.body.password;
 
+		userEmail = userEmail.toLowerCase();
         userExist(userEmail, function (error, doc) {
             if (error || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_NOT_EXIST'));
@@ -94,7 +96,7 @@ module.exports = function (router) {
         var professorId = req.body.professorId;
 
         var hash = new Buffer(password).toString('base64');
-
+		email = email.toLowerCase();
         if (email.indexOf(constant.MESSAGE_MAP.get('DOMAIN')) > -1) {
             userExist(email, function (error, doc) {
                 if (error || doc === null) {
@@ -128,6 +130,7 @@ module.exports = function (router) {
    router.get('/verifyUser', function (req, res) {
         var emailAddress = req.query.email;
         var applicationUrl = config.applicationUrl;
+		emailAddress = emailAddress.toLowerCase();
         User.update({email: emailAddress}, {$set: {isVerified: true}}, function (err, doc) {
            if (err || doc === null) {
                res.send('<center><br><br><h3>Some error occured in verification, please try again.</h3></center>');
@@ -142,6 +145,7 @@ module.exports = function (router) {
 
     router.get('/retrievePassword', function (req, res) {
         var userEmail = req.query.email;
+		userEmail = userEmail.toLowerCase();
         userExist(userEmail, function (error, doc) {
             if (error || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_NOT_EXIST'));
@@ -161,6 +165,7 @@ module.exports = function (router) {
         var email = req.body.email;
         var password = req.body.password;
 
+		email = email.toLowerCase();
         var hash = new Buffer(password).toString('base64');
 
         User.update({email: email}, {$set: {password: hash}}, function (err, doc) {
@@ -176,6 +181,7 @@ module.exports = function (router) {
     router.get('/isValidUser/:email', function (req, res) {
         var email = req.params.email;
 
+		email = email.toLowerCase();
         userExist(email, function (err, doc) {
             if (err || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_SERVICE_UNAVAILABLE'));
@@ -189,6 +195,7 @@ module.exports = function (router) {
 
     router.get('/getUserDetails/:email', function (req, res) {
         var email = req.params.email;
+		email = email.toLowerCase();
         console.log('---------> in getUserDetails API call ' + email);
 
         userExist(email, function (err, doc) {
@@ -208,7 +215,7 @@ module.exports = function (router) {
         var email = req.body.email;
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
-
+		email = email.toLowerCase();
         User.update({email: email}, {$set: {firstName: firstName, lastName: lastName}}, function (err, doc) {
             if (err || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('PROFILE_UPDATE_FAILED'));
@@ -222,6 +229,7 @@ module.exports = function (router) {
     router.get('/getUserCanvasProfile/:email', function (req, res) {
         var email = req.params.email;
 
+		email = email.toLowerCase();
         var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_USER_PROFILE');
         apiUrl = apiUrl.replace(':user_id',email);
 
@@ -237,6 +245,7 @@ module.exports = function (router) {
     });
 
     function userExist(email, cb) {
+		email = email.toLowerCase();
         User.findOne({email: email}, function (err, doc) {
             cb(err, doc);
         });
