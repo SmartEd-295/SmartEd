@@ -12,11 +12,11 @@ module.exports = function (router) {
         var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_ALL_FILES');
         apiUrl = apiUrl.replace(':course_id', courseId);
         canvasConnectivity.getCanvasDetails(apiUrl, userEmail, function (err, body) {
-            if(!err){
+            if (!err) {
                 //console.log("In student index API success :-----> " + body);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(body));
-            }else{
+            } else {
                 res.status(400).send(constant.MESSAGE_MAP.get('CANVAS_CONNECTION_FAILED'));
             }
         });

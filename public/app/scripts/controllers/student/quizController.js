@@ -3,13 +3,12 @@
 var myApp = angular.module('smartedApp');
 
 // student Quiz controller
-myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$filter', '$sce', 'ngTableParams', 'StudentService', 'AlertService',
-  function ($scope, $filter, $sce, ngTableParams, StudentService, AlertService) {
+myApp.controller('StudentQuizPerformanceCtrl', ['$scope', '$sce', 'StudentService', 'AlertService',
+  function ($scope, $sce, StudentService, AlertService) {
 
     // load course data
     var mCourse = StudentService.getCurrentCourse();
     $scope.currentCourse = mCourse;
-    console.log(" - StudentQuizPerformanceCtrl---------> : " + mCourse);
 
     //Quizzes
     var quizList = [];

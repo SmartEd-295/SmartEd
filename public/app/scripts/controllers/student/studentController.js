@@ -37,7 +37,7 @@ myApp.controller('StudentCtrl', ['$scope', 'ngTableParams', '$filter', '$uibModa
       StudentService.getCourseRecommendations().success(function (data, status) {
         recommendedCourseList = data.recommendations;
 
-        if(!(recommendedCourseList === undefined || recommendedCourseList.length == 0)) {
+        if (!(recommendedCourseList === undefined || recommendedCourseList.length == 0)) {
           $scope.showRecommendationTable = true;
           $scope.tableParams.reload();
         }

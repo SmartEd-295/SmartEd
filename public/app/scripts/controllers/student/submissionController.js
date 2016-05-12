@@ -3,8 +3,8 @@
 var myApp = angular.module('smartedApp');
 
 // student Assignment controller
-myApp.controller('StudentSubmissionPerformanceCtrl', ['$scope', '$filter', '$sce', 'StudentService', 'AlertService', 'UtilityService',
-  function ($scope, $filter, $sce, StudentService, AlertService, UtilityService) {
+myApp.controller('StudentSubmissionPerformanceCtrl', ['$scope', '$sce', 'StudentService', 'AlertService',
+  function ($scope, $sce, StudentService, AlertService) {
 
     // load course data
     var mCourse = StudentService.getCurrentCourse();

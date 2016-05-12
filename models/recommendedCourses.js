@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose');
 
-var recommendedCourses = function() {
+/* -------------------------------------------------------------COLLECTION TO STORE STUDENTS' RECOMMENDED COURSES-------------------------------------------------------------------------------------*/
+var recommendedCourses = function () {
     var courseRecommendationSchema = mongoose.Schema({
         studentId: String,
         recommendations: [{

@@ -4,6 +4,7 @@ var externalResourceAPI = require('../../lib/externalResourceAPI');
 
 module.exports = function (router) {
 
+    /* ----------------------------------------------------------------GET UDACITY COURSE DETAILS FOR THE GIVEN COURSE----------------------------------------------------------------------------------*/
     router.get('/getUdacityRecommendations/:courseName', function (req, res) {
 
         // get course name from original request

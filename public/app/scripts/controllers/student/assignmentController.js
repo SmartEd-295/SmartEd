@@ -3,8 +3,8 @@
 var myApp = angular.module('smartedApp');
 
 // student Assignment controller
-myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce', 'StudentService', 'AlertService', 'UtilityService',
-  function ($scope, $filter, $sce, StudentService, AlertService, UtilityService) {
+myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$sce', 'StudentService', 'AlertService', 'UtilityService',
+  function ($scope, $sce, StudentService, AlertService, UtilityService) {
 
     // Flag to display visualizations or not
     $scope.displayStats1 = true;
@@ -40,7 +40,6 @@ myApp.controller('StudentAssignmentPerformanceCtrl', ['$scope', '$filter', '$sce
 
     // display bar chart
     var displayBarChart = function (result) {
-      console.log("Display Bar Chart >>>>>>>>");
       var title = "Scores & Performance",
         subTitle = mCourse.name,
         seriesName1 = "Your Score",

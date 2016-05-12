@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose');
 
-var courseMetaData = function() {
+/* -------------------------------------------------------COLLECTION FOR PEOPLESOFT COURSE DATA-------------------------------------------------------------------------------------------*/
+var courseMetaData = function () {
     var courseSchema = mongoose.Schema({
         studentId: Number,
         term: Number,
@@ -20,8 +21,3 @@ var courseMetaData = function() {
 };
 
 module.exports = new courseMetaData();
-
-
-
-
-

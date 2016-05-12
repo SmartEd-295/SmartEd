@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose');
 
-var professorDetails = function() {
+/* ---------------------------------------------------COLLECTION FOR STORING COURSES ASSIGNED TO PROFESSORS-----------------------------------------------------------------------------------------------*/
+var professorDetails = function () {
     var professorSchema = mongoose.Schema({
         email: String,
         term: String,

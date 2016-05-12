@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose');
 
-var courseDetails = function() {
+/* ---------------------------------------------------------COLLECTION FOR ALL CMPE SUPPORTED COURSES-----------------------------------------------------------------------------------------*/
+var courseDetails = function () {
     var courseSchema = mongoose.Schema({
         code: String,
         canvasId: Number,

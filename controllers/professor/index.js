@@ -7,6 +7,7 @@ var User = require('../../models/user'),
 
 module.exports = function (router) {
 
+    /* -----------------------------------------------------------GET ASSIGNED ACTIVE COURSES FOR PROFESSOR---------------------------------------------------------------------------------------*/
     router.get('/getProfessorCourses/:professorId', function (req, res) {
         var profId = req.params.professorId;
         ProfessorDetails.find({email: profId, status: true}, function (err, docs) {
@@ -18,6 +19,7 @@ module.exports = function (router) {
         });
     });
 
+    /* --------------------------------------------------------GET ALL PROFESSORS' ASSIGNED COURSES------------------------------------------------------------------------------------------*/
     router.get('/getProfessorCourseDetails', function (req, res) {
         ProfessorDetails.find({}, function (err, docs) {
             if (!err) {
@@ -28,6 +30,7 @@ module.exports = function (router) {
         });
     });
 
+    /* ------------------------------------------------GET PROFESSOR EMAILS FROM THE USER COLLECTION--------------------------------------------------------------------------------------------------*/
     router.get('/getAllProfessors', function (req, res) {
         User.find({role: constant.MESSAGE_MAP.get('PROFESSOR_ROLE'), isVerified: true})
             .select('email')
@@ -40,12 +43,14 @@ module.exports = function (router) {
         });
     });
 
+    /* ------------------------------------------------------ASSIGN A COURSE TO SELECTED PROFESSOR--------------------------------------------------------------------------------------------*/
     router.post('/assignCourse', function (req, res) {
         var email = req.body.email;
         var term = req.body.term;
         var course = req.body.course;
         var year = req.body.year;
 
+        email = email.toLocaleLowerCase();
         ProfessorDetails.find({email: email, courseId: course, term: term, year: year}, function (err, docs) {
             if (!err && docs.length > 0) {
                 res.status(400).send(constant.MESSAGE_MAP.get('COURSE_PRESENT'));
@@ -68,6 +73,7 @@ module.exports = function (router) {
         });
     });
 
+    /* -------------------------------------------------------CHANGE STATUS OF THE ASSIGNED COURSE-------------------------------------------------------------------------------------------*/
     router.post('/changeStatus', function (req, res) {
         var email = req.body.email;
         var courseId = req.body.courseId;
@@ -76,6 +82,7 @@ module.exports = function (router) {
 
         var updatedStatus = !(status);
 
+        email = email.toLocaleLowerCase();
         ProfessorDetails.update({email: email, courseId: courseId}, {$set: {status: updatedStatus}}, function (err, doc) {
 
             if (err || doc === null) {

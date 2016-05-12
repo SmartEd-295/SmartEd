@@ -3,8 +3,8 @@
     <div class="col-md-4 bg_blur ">
     </div>
     <div class="col-md-8  col-xs-12">
-      <img src="https://unsplash.it/500/?random" class="img-thumbnail picture hidden-xs" />
-      <img src="https://unsplash.it/500/?random" class="img-thumbnail visible-xs picture_mob" />
+      <img src="https://unsplash.it/500/?random" class="img-thumbnail picture hidden-xs"/>
+      <img src="https://unsplash.it/500/?random" class="img-thumbnail visible-xs picture_mob"/>
       <div class="profile-header">
         <h1>{{currentUser.firstName}} {{currentUser.lastName}}</h1>
       </div>
@@ -16,79 +16,86 @@
       <div class="col-md-6">
         <h3>Details</h3>
         <form name="updateForm" ng-submit="update()" role="form">
-            <div class="form-group"
-                 ng-class="{ 'has-error': updateForm.username.$dirty && updateForm.username.$error.required}">
-              <label>User Name</label><input type="email" name="username" id="username" class="form-control" placeholder="SJSU E-mail"
-                     ng-model="currentUser.email" readonly/>
-            </div>
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.username.$dirty && updateForm.username.$error.required}">
+            <label>User Name</label><input type="email" name="username" id="username" class="form-control"
+                                           placeholder="SJSU E-mail"
+                                           ng-model="currentUser.email" readonly/>
+          </div>
 
-            <div class="form-group"
-                 ng-class="{ 'has-error': updateForm.studentId.$dirty && updateForm.studentId.$error.required }">
-              <label>SJSU ID</label><input type="number" name="studentId" id="studentId" class="form-control" placeholder="Student ID"
-                     ng-model="currentUser.sjsuId" readonly/>
-            </div>
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.studentId.$dirty && updateForm.studentId.$error.required }">
+            <label>SJSU ID</label><input type="number" name="studentId" id="studentId" class="form-control"
+                                         placeholder="Student ID"
+                                         ng-model="currentUser.sjsuId" readonly/>
+          </div>
 
-            <div class="form-group"
-                 ng-class="{ 'has-error': updateForm.firstName.$dirty && updateForm.firstName.$error.required }">
-              <label>First Name</label><input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name"
-                     ng-model="currentUser.firstName" required/>
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.firstName.$dirty && updateForm.firstName.$error.required }">
+            <label>First Name</label><input type="text" name="firstName" id="firstName" class="form-control"
+                                            placeholder="First Name"
+                                            ng-model="currentUser.firstName" required/>
                 <span ng-show="updateForm.firstName.$dirty && updateForm.firstName.$error.required"
                       class="help-block">First Name is required input.</span>
-            </div>
+          </div>
 
-            <div class="form-group"
-                 ng-class="{ 'has-error': updateForm.lastName.$dirty && updateForm.lastName.$errord.required }">
-              <label>Last Name</label><input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name"
-                     ng-model="currentUser.lastName" required/>
-              <span ng-show="updateForm.lastName.$dirty && updateForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
-            </div>
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.lastName.$dirty && updateForm.lastName.$errord.required }">
+            <label>Last Name</label><input type="text" name="lastName" id="lastName" class="form-control"
+                                           placeholder="Last Name"
+                                           ng-model="currentUser.lastName" required/>
+            <span ng-show="updateForm.lastName.$dirty && updateForm.lastName.$error.required" class="help-block">Last Name is required input.</span>
+          </div>
 
-            <div class="col-md-6">
-              <div class="form-actions">
-                <button type="submit" class="btn btn-info">Update</button>
-              </div>
+          <div class="col-md-6">
+            <div class="form-actions">
+              <button type="submit" class="btn btn-info">Update</button>
             </div>
+          </div>
         </form>
-        <br /><br/>
+        <br/><br/>
       </div>
       <div class="col-md-6">
         <h3>Change Your Password</h3>
         <form name="changePasswordForm" ng-submit="changePassword()" role="form">
-            <div class="form-group"
-                 ng-class="{ 'has-error': updateForm.oldPassword.$dirty && updateForm.oldPassword.$error.required}">
-              <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="currentUser.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
-              <label>Old Password</label><input type="password" name="oldPassword" id="oldPassword" class="form-control" placeholder="Old Password"
-                     ng-model="currentUser.oldPassword" required/>
-              <span ng-show="updateForm.oldPassword.$dirty && updateForm.oldPassword.$error.required" class="help-block">Old Password is required input.</span>
-              <!--<span ng-show="updateForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
-            </div>
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.oldPassword.$dirty && updateForm.oldPassword.$error.required}">
+            <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="currentUser.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
+            <label>Old Password</label><input type="password" name="oldPassword" id="oldPassword" class="form-control"
+                                              placeholder="Old Password"
+                                              ng-model="currentUser.oldPassword" required/>
+            <span ng-show="updateForm.oldPassword.$dirty && updateForm.oldPassword.$error.required" class="help-block">Old Password is required input.</span>
+            <!--<span ng-show="updateForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+          </div>
 
-            <div class="form-group"
-                 ng-class="{ 'has-error': updateForm.password.$dirty && updateForm.password.$error.required}">
-              <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="currentUser.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
-              <label>New Password</label><input type="password" name="password" id="password" class="form-control" placeholder="Password"
-                     ng-model="currentUser.password" />
-              <span ng-show="updateForm.password.$dirty && updateForm.password.$error.required" class="help-block" required>New Password is required input.</span>
-              <!--<span ng-show="updateForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
-            </div>
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.password.$dirty && updateForm.password.$error.required}">
+            <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="currentUser.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
+            <label>New Password</label><input type="password" name="password" id="password" class="form-control"
+                                              placeholder="Password"
+                                              ng-model="currentUser.password"/>
+            <span ng-show="updateForm.password.$dirty && updateForm.password.$error.required" class="help-block"
+                  required>New Password is required input.</span>
+            <!--<span ng-show="updateForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+          </div>
 
-            <div class="form-group"
-                 ng-class="{ 'has-error': updateForm.rePassword.$dirty && updateForm.rePassword.$error.required}">
-              <label>Re-type Password</label>
-              <input type="password" name="rePassword" id="rePassword" class="form-control"
-                     placeholder="Retype Password"
-                     ng-model="currentUser.rePassword" password-verify="currentUser.password" required/>
-              <!--<span ng-show="updateForm.rePassword.$dirty && updateForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
+          <div class="form-group"
+               ng-class="{ 'has-error': updateForm.rePassword.$dirty && updateForm.rePassword.$error.required}">
+            <label>Re-type Password</label>
+            <input type="password" name="rePassword" id="rePassword" class="form-control"
+                   placeholder="Retype Password"
+                   ng-model="currentUser.rePassword" password-verify="currentUser.password" required/>
+            <!--<span ng-show="updateForm.rePassword.$dirty && updateForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
                 <span class="help-block"
                       ng-show="updateForm.rePassword.$dirty && updateForm.rePassword.$error.passwordVerify">Retype Password : password did not match.</span>
-            </div>
+          </div>
 
-            <div class="col-md-6">
-              <div class="form-actions">
-                <button type="submit" class="btn btn-warning">Change Password</button>
-              </div>
+          <div class="col-md-6">
+            <div class="form-actions">
+              <button type="submit" class="btn btn-warning">Change Password</button>
             </div>
-      </form>
+          </div>
+        </form>
       </div>
     </div>
   </section>

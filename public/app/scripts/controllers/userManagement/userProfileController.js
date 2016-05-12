@@ -7,15 +7,11 @@ myApp.controller('UserProfileCtrl', ['$scope', 'UserService', 'AlertService',
   function ($scope, UserService, AlertService) {
 
     // load data from user service
-    $scope.currentUser  = {};
+    $scope.currentUser = {};
     var matchPassword = '';
 
-    var getUserDetails = function() {
-      console.log("----------> in ctrl");
+    var getUserDetails = function () {
       UserService.getUserDetails().success(function (data, status) {
-          console.log("----------> in service success");
-
-          console.log(data);
           $scope.currentUser = data;
           matchPassword = data.password;
         })
@@ -26,17 +22,14 @@ myApp.controller('UserProfileCtrl', ['$scope', 'UserService', 'AlertService',
     getUserDetails();
 
 
-
-    $scope.changePassword = function() {
-      console.log('--------> in changePassword ' + JSON.stringify($scope.currentUser));
+    $scope.changePassword = function () {
       var encodedPassword = atob(matchPassword);
 
-      if($scope.currentUser.oldPassword != encodedPassword) {
+      if ($scope.currentUser.oldPassword != encodedPassword) {
         var errMsg = 'Incorrect Old Password. Please enter again.';
         AlertService.displayMessage(errMsg, 'error');
       } else {
-        console.log($scope.currentUser.rePassword  +"!= " +$scope.currentUser.password )
-        if($scope.currentUser.rePassword  != $scope.currentUser.password ) {
+        if ($scope.currentUser.rePassword != $scope.currentUser.password) {
           var errMsg = 'Passwords do not match. Please try again.';
           AlertService.displayMessage(errMsg, 'error');
         } else {
@@ -50,25 +43,20 @@ myApp.controller('UserProfileCtrl', ['$scope', 'UserService', 'AlertService',
 
     };
 
+    $scope.update = function () {
+      UserService.updateUser($scope.currentUser).success(function (data, status) {
+        AlertService.displayMessage(data, 'success');
+      }).error(function (data, status) {
+        AlertService.displayMessage(data, 'error');
+      });
+    };
 
-      $scope.update = function() {
-        console.log('--------> in update ' + JSON.stringify($scope.currentUser));
-        UserService.updateUser($scope.currentUser).success(function (data, status) {
-          AlertService.displayMessage(data, 'success');
-        }).error(function (data, status) {
-          AlertService.displayMessage(data, 'error');
-        });
-      };
-
-
-
-    var getRandomImage = function() {
+    var getRandomImage = function () {
       UserService.getRandomUser().success(function (data, status) {
         var userData = data;
-        console.log(userData);
         $scope.imageUrl = userData.results[0].picture.large;
       }).error(function (data, status) {
       });
     };
 
-  }])
+  }]);

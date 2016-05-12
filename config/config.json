@@ -40,6 +40,6 @@
             }
         }
     },
-    "verificationUrl": "http://localhost:3000/user/verifyUser?email=",
-    "applicationUrl": "http://localhost:3000/"
+    "verificationUrl": "http://smarted-cmpe295.rhcloud.com/user/verifyUser?email=",
+    "applicationUrl": "http://smarted-cmpe295.rhcloud.com/"
 }

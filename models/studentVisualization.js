@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose');
 
-var studentDetails = function() {
+/* --------------------------------------------COLLECTION FOR STORING STUDENT INFORMATION FOR DEMOGRAPHICS------------------------------------------------------------------------------------------------------*/
+var studentDetails = function () {
     var studentDetailsSchema = mongoose.Schema({
         type: String,
         term: Number,

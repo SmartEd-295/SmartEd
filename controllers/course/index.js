@@ -61,7 +61,6 @@ module.exports = function (router) {
         var isRegularTerm = true;
 
         utility.getCurrentTerm(term, year, isRegularTerm, function (termId) {
-            console.log('Name:' + courseId + ' ,Term : ' + termId);
 
             CourseMetaData.aggregate([
                 {
@@ -80,7 +79,7 @@ module.exports = function (router) {
             ], function (err, result) {
                 if (err || result === null) {
                     res.sendStatus(400);
-                }else{
+                } else {
                     var responseData = {
                         'courseData': course,
                         'chartData': result

@@ -30,7 +30,6 @@ myApp.controller('ShowCoursesCtrl', ['$scope', '$stateParams', '$state', 'Course
       CourseService.getAllCourses().success(function (data, status) {
         $scope.courseList = data;
       }).error(function (data, status) {
-        console.log(data);
       });
     };
     loadData();

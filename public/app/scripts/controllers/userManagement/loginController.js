@@ -38,7 +38,7 @@ myApp.controller('LoginCtrl', ['$scope', '$location', 'UserService', 'AlertServi
           var tempData = {
             userMail: email,
             tempPass: randomPass
-          }
+          };
           UserService.setTempData(tempData);
           AlertService.displayMessage(data.message, 'success');
           $location.path('/reset');
@@ -47,4 +47,4 @@ myApp.controller('LoginCtrl', ['$scope', '$location', 'UserService', 'AlertServi
         });
       }
     }
-  }])
+  }]);

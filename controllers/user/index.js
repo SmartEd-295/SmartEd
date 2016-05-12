@@ -1,10 +1,8 @@
 'use strict';
 
 var User = require('../../models/user'),
-    ProfessorDetails = require('../../models/professorDetails'),
     constant = require('../../lib/constants'),
     utility = require('../../lib/utility'),
-    sessionFilter = require('../../lib/sessionFilter'),
     canvasConnectivity = require('../../lib/canvasAPI'),
     config = require('../../config/config.json'),
     crypto = require('crypto'),
@@ -12,8 +10,7 @@ var User = require('../../models/user'),
 
 module.exports = function (router) {
 
-    /*	CREATE A NEW USER
-     */
+    /* ----------------------------------------------------ADD A NEW STUDENT----------------------------------------------------------------------------------------------*/
     router.post('/register', function (req, res) {
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
@@ -23,7 +20,7 @@ module.exports = function (router) {
 
         var hash = new Buffer(password).toString('base64');
 
-		email = email.toLowerCase();
+        email = email.toLowerCase();
         if (email.indexOf(constant.MESSAGE_MAP.get('DOMAIN')) > -1) {
             userExist(email, function (error, doc) {
                 if (error || doc === null) {
@@ -37,7 +34,6 @@ module.exports = function (router) {
                         password: hash
                     }, function (err, doc) {
                         if (err) {
-                            console.log(err);
                             res.status(400).send(constant.MESSAGE_MAP.get('REGISTER_FAILED'));
                         }
                         else {
@@ -60,13 +56,12 @@ module.exports = function (router) {
     });
 
 
-    /*	VERIFY THE USER TRYING TO LOG IN
-     */
+    /* ------------------------------------------------------------VERIFY LOGGED IN USER-----------------------------------------------------------------------------------------*/
     router.post('/signin', function (req, res) {
         var userEmail = req.body.email;
         var password = req.body.password;
 
-		userEmail = userEmail.toLowerCase();
+        userEmail = userEmail.toLowerCase();
         userExist(userEmail, function (error, doc) {
             if (error || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_NOT_EXIST'));
@@ -88,6 +83,7 @@ module.exports = function (router) {
         });
     });
 
+    /* --------------------------------------------------------------ADD NEW PROFESSOR---------------------------------------------------------------------------------------*/
     router.post('/registerProfessor', function (req, res) {
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
@@ -96,7 +92,7 @@ module.exports = function (router) {
         var professorId = req.body.professorId;
 
         var hash = new Buffer(password).toString('base64');
-		email = email.toLowerCase();
+        email = email.toLowerCase();
         if (email.indexOf(constant.MESSAGE_MAP.get('DOMAIN')) > -1) {
             userExist(email, function (error, doc) {
                 if (error || doc === null) {
@@ -110,7 +106,6 @@ module.exports = function (router) {
                         password: hash
                     }, function (err, doc) {
                         if (err) {
-                            console.log(err);
                             res.status(400).send(constant.MESSAGE_MAP.get('PROFESSOR_REGISTER_FAILED'));
                         }
                         else {
@@ -127,25 +122,27 @@ module.exports = function (router) {
         }
     });
 
-   router.get('/verifyUser', function (req, res) {
+    /* ---------------------------------------------------------------------VERIFY USER EMAIL--------------------------------------------------------------------------------*/
+    router.get('/verifyUser', function (req, res) {
         var emailAddress = req.query.email;
         var applicationUrl = config.applicationUrl;
-		emailAddress = emailAddress.toLowerCase();
+        emailAddress = emailAddress.toLowerCase();
         User.update({email: emailAddress}, {$set: {isVerified: true}}, function (err, doc) {
-           if (err || doc === null) {
-               res.send('<center><br><br><h3>Some error occured in verification, please try again.</h3></center>');
-           }
-           else {
-               res.send('<center><br><br><br><h3>Email address verified.</h3>' +
-                   '<br><a href="' + applicationUrl + '">Login!</a>' +
-                   '</center>');
-           }
-       });
+            if (err || doc === null) {
+                res.send('<center><br><br><h3>Some error occured in verification, please try again.</h3></center>');
+            }
+            else {
+                res.send('<center><br><br><br><h3>Email address verified.</h3>' +
+                    '<br><a href="' + applicationUrl + '">Login!</a>' +
+                    '</center>');
+            }
+        });
     });
 
+    /* -------------------------------------------------------------RETRIEVE PASSWORD IN CASE USER FORGETS----------------------------------------------------------------------------------------*/
     router.get('/retrievePassword', function (req, res) {
         var userEmail = req.query.email;
-		userEmail = userEmail.toLowerCase();
+        userEmail = userEmail.toLowerCase();
         userExist(userEmail, function (error, doc) {
             if (error || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_NOT_EXIST'));
@@ -161,11 +158,12 @@ module.exports = function (router) {
         });
     });
 
+    /* ---------------------------------------------------------UPDATE EXISTING USER PASSWORD--------------------------------------------------------------------------------------------*/
     router.post('/updatePassword', function (req, res) {
         var email = req.body.email;
         var password = req.body.password;
 
-		email = email.toLowerCase();
+        email = email.toLowerCase();
         var hash = new Buffer(password).toString('base64');
 
         User.update({email: email}, {$set: {password: hash}}, function (err, doc) {
@@ -178,10 +176,11 @@ module.exports = function (router) {
         });
     });
 
+    /* -------------------------------------------------------------------CHECK IF A VALID USER----------------------------------------------------------------------------------*/
     router.get('/isValidUser/:email', function (req, res) {
         var email = req.params.email;
 
-		email = email.toLowerCase();
+        email = email.toLowerCase();
         userExist(email, function (err, doc) {
             if (err || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_SERVICE_UNAVAILABLE'));
@@ -192,30 +191,26 @@ module.exports = function (router) {
         });
     });
 
-
+    /* -------------------------------------------------------------GET LOGGED IN USER' DETAILS----------------------------------------------------------------------------------------*/
     router.get('/getUserDetails/:email', function (req, res) {
         var email = req.params.email;
-		email = email.toLowerCase();
-        console.log('---------> in getUserDetails API call ' + email);
-
+        email = email.toLowerCase();
         userExist(email, function (err, doc) {
             if (err || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('USER_SERVICE_UNAVAILABLE'));
             }
             else {
-                console.log('----------> in getUserDetails API call ' + doc);
-
                 res.json(doc);
             }
         });
     });
 
-
+    /* ------------------------------------------------------------UPDATE USER PROFILE-----------------------------------------------------------------------------------------*/
     router.post('/updateProfile', function (req, res) {
         var email = req.body.email;
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
-		email = email.toLowerCase();
+        email = email.toLowerCase();
         User.update({email: email}, {$set: {firstName: firstName, lastName: lastName}}, function (err, doc) {
             if (err || doc === null) {
                 res.status(401).send(constant.MESSAGE_MAP.get('PROFILE_UPDATE_FAILED'));
@@ -226,31 +221,33 @@ module.exports = function (router) {
         });
     });
 
+    /* -----------------------------------------------------------------GET STUDENT CANVAS PROFILE------------------------------------------------------------------------------------*/
     router.get('/getUserCanvasProfile/:email', function (req, res) {
         var email = req.params.email;
 
-		email = email.toLowerCase();
+        email = email.toLowerCase();
         var apiUrl = constant.MESSAGE_MAP.get('CANVAS_GET_USER_PROFILE');
-        apiUrl = apiUrl.replace(':user_id',email);
+        apiUrl = apiUrl.replace(':user_id', email);
 
         canvasConnectivity.getCanvasDetails(apiUrl, email, function (err, body) {
-            if(!err){
-                console.log('In getUserCanvasProfile API success :-----> ');
+            if (!err) {
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(body));
-            }else{
+            } else {
                 res.status(400).send(constant.MESSAGE_MAP.get('CANVAS_CONNECTION_FAILED'));
             }
         });
     });
 
+    /* ----------------------------------------------------------CHECK IF USER EXIST IN DATABASE-------------------------------------------------------------------------------------------*/
     function userExist(email, cb) {
-		email = email.toLowerCase();
+        email = email.toLowerCase();
         User.findOne({email: email}, function (err, doc) {
             cb(err, doc);
         });
     }
 
+    /* --------------------------------------------------------------GENERATE RANDOM PASSWORD---------------------------------------------------------------------------------------*/
     function getRandomPassword() {
         return base64url(crypto.randomBytes(15));
     }

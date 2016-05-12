@@ -2,13 +2,14 @@
 
 var MessageDetails = require('../../models/messageDetails'),
     constant = require('../../lib/constants'),
-    utility = require('../../lib/utility'),
-    config = require('../../config/config.json');
+    utility = require('../../lib/utility');
 
 module.exports = function (router) {
 
+    /* -------------------------------------------------------------------GET ALL INBOX MESSAGES-------------------------------------------------------------------------------*/
     router.get('/getAllMessages/:userId', function (req, res) {
         var userId = req.params.userId;
+        userId = userId.toLowerCase();
         MessageDetails.find({toUser: userId}).sort({'messageTimestamp': 'asc'})
             .exec( function (err, docs) {
             if(!err){
@@ -39,10 +40,10 @@ module.exports = function (router) {
         });
     });
 
-
-
+    /* ----------------------------------------------------------------GET ALL OUTBOX MESSAGES----------------------------------------------------------------------------------*/
     router.get('/getAllSentMessages/:userId', function (req, res) {
         var userId = req.params.userId;
+        userId = userId.toLowerCase();
         MessageDetails.find({fromUser: userId}).sort({'messageTimestamp': 'asc'})
             .exec(function (err, docs) {
             if(!err){
@@ -73,6 +74,7 @@ module.exports = function (router) {
         });
     });
 
+    /* ----------------------------------------------------------------GET A PARTICULAR MESSAGE DETAILS----------------------------------------------------------------------------------*/
     router.get('/getMessageDetails/:messageId', function (req, res) {
         var msgId = req.params.messageId;
         MessageDetails.find({_id: msgId}, function (err, docs) {
@@ -102,12 +104,15 @@ module.exports = function (router) {
         });
     });
 
-
+    /* ----------------------------------------------------------------SEND A MESSAGE FROM USER A TO B----------------------------------------------------------------------------------*/
     router.post('/addMessage', function (req, res) {
         var toUser = req.body.toUser;
         var fromUser = req.body.fromUser;
         var subject = req.body.subject;
         var content = req.body.content;
+
+        toUser = toUser.toLowerCase();
+        fromUser = fromUser.toLowerCase();
 
         MessageDetails.create({
             toUser: toUser,

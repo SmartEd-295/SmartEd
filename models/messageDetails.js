@@ -2,13 +2,14 @@
 
 var mongoose = require('mongoose');
 
-var messageDetails = function() {
+/* --------------------------------------------------COLLECTION FOR STORING COLLABORATION MAILS------------------------------------------------------------------------------------------------*/
+var messageDetails = function () {
     var messageSchema = mongoose.Schema({
         toUser: String,
         fromUser: String,
         subject: String,
         content: String,
-        messageTimestamp : { type: Date , default: Date.now }
+        messageTimestamp: {type: Date, default: Date.now}
     }, {
         collection: 'messageDetails'
     });

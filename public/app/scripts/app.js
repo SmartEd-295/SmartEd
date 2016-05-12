@@ -12,59 +12,23 @@
 
     $ocLazyLoadProvider.config({
       debug: false,
-      events: true,
+      events: true
     });
 
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
+
+
+    /*---------------------------------------------------------------HOME-------------------------------------------------------------------------*/
+
       .state('home', {
         url: '/home',
         templateUrl: 'views/home.html'
       })
-      .state('login', {
-        controller: 'LoginCtrl',
-        url: '/login',
-        templateUrl: 'views/userManagement/login.html',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/userManagement/loginController.js'
-              ]
-            })
-          }
-        }
-      })
-      .state('signUp', {
-        controller: 'RegisterCtrl',
-        url: '/signUp',
-        templateUrl: 'views/userManagement/register.html',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load(
-              {
-                name: 'smartedApp',
-                files: ['scripts/controllers/userManagement/registerController.js', 'scripts/directives/appDirective.js']
-              })
-          }
-        }
-      })
-      .state('reset', {
-        controller: 'ResetCtrl',
-        templateUrl: 'views/userManagement/resetPassword.html',
-        url: '/reset',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: ['scripts/directives/appDirective.js', 'scripts/controllers/userManagement/resetPasswordController.js']
-            })
-          }
-        }
-      })
-      /* Generic dashboard wrapper */
+
+      /*---------------------------------------------------------DASHBOARD GENERIC-----------------------------------------------------------------*/
+
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: 'views/dashboard/dashboard.html',
@@ -79,16 +43,38 @@
                   'scripts/controllers/dashboard/sidebarController.js',
                   'scripts/controllers/dashboard/headerController.js',
                   'scripts/controllers/dashboard/statsController.js',
+                  'scripts/controllers/dashboard/dashboardController.js',
+
                   'scripts/controllers/student/assignmentController.js',
+                  'scripts/controllers/student/studentController.js',
+                  'scripts/controllers/student/studentController.js',
+                  'scripts/controllers/student/quizController.js',
+                  'scripts/controllers/student/gradesController.js',
+                  'scripts/controllers/student/submissionController.js',
+
                   'scripts/controllers/professor/quizController.js',
                   'scripts/controllers/professor/showCoursesController.js',
+                  'scripts/controllers/professor/courseDetailController.js',
+
+                  'scripts/controllers/admin/adminDashboardController.js',
+                  'scripts/controllers/admin/addProfessorController.js',
+                  'scripts/controllers/admin/professorDetailsController.js',
+
+                  'scripts/controllers/messaging/messageController.js',
+                  'scripts/controllers/userManagement/userProfileController.js',
+                  'scripts/controllers/files/filesController.js',
+
+                  'scripts/directives/charts/dashboardCharts.js',
+                  'scripts/directives/notifications/notifications.js',
+                  'scripts/directives/chat/chat.js',
                   'scripts/directives/header-bar/header-bar.js',
                   'scripts/directives/header-notification/header-notification.js',
                   'scripts/directives/tableau-chart/tableau-chart.js',
                   'scripts/directives/sidebar/sidebar.js',
                   'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                   'scripts/directives/stats/stats.js',
-                  'scripts/directives/charts/dashboardCharts.js'
+
+                  'styles/profile.css'
                 ]
               }),
               $ocLazyLoad.load(
@@ -122,90 +108,7 @@
                 {
                   name: 'ngTouch',
                   files: ['bower_components/angular-touch/angular-touch.js']
-                })
-          }
-        }
-      })
-      /* Professor States  */
-      .state('dashboard.professor', {
-        templateUrl: 'views/dashboard/professor.html',
-        controller: 'ProfessorDashboardCtrl',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load(
-              {
-                name: 'smartedApp',
-                files: [
-                  'scripts/controllers/dashboard/dashboardController.js',
-                  'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js',
-                  'styles/profile.css'
-                ]
-              })
-          }
-        }
-      })
-      /* Student States  */
-      .state('dashboard.student', {
-        templateUrl: 'views/dashboard/student.html',
-        controller: 'StudentDashboardCtrl',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load(
-              {
-                name: 'smartedApp',
-                files: [
-                  'scripts/controllers/dashboard/dashboardController.js',
-                  'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js',
-                  'styles/profile.css'
-                ]
-              })
-          }
-        }
-      })
-
-      /* Admin State */
-      .state('dashboard.admin', {
-        templateUrl: 'views/dashboard/admin.html',
-        controller: 'AdminDashboardCtrl',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load(
-              {
-                name: 'smartedApp',
-                files: [
-                  'scripts/controllers/admin/adminDashboardController.js',
-                  'scripts/directives/notifications/notifications.js',
-                  'scripts/directives/chat/chat.js'
-                ]
-              })
-          }
-        }
-      })
-
-      .state('dashboard.addProfessor', {
-        templateUrl: 'views/admin/addProfessor.html',
-        controller: 'AddProfessorCtrl',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: ['scripts/controllers/admin/addProfessorController.js']
-            })
-          }
-        }
-      })
-
-      .state('dashboard.professorDetails', {
-        templateUrl: 'views/admin/professorDetails.html',
-        controller: 'ProfessorDetailsCtrl',
-        resolve: {
-          loadMyFiles: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: ['scripts/controllers/admin/professorDetailsController.js']
-            }),
+                }),
               $ocLazyLoad.load(
                 {
                   name: 'ngTable',
@@ -213,6 +116,70 @@
                 })
           }
         }
+      })
+
+      /*----------------------------------------------------------USER MANAGEMENT-------------------------------------------------------------------*/
+
+      .state('login', {
+        controller: 'LoginCtrl',
+        url: '/login',
+        templateUrl: 'views/userManagement/login.html',
+        resolve: {
+          loadMyFiles: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: [
+                'scripts/controllers/userManagement/loginController.js'
+              ]
+            })
+          }
+        }
+      })
+
+      .state('signUp', {
+        controller: 'RegisterCtrl',
+        url: '/signUp',
+        templateUrl: 'views/userManagement/register.html',
+        resolve: {
+          loadMyFiles: function ($ocLazyLoad) {
+            return $ocLazyLoad.load(
+              {
+                name: 'smartedApp',
+                files: ['scripts/controllers/userManagement/registerController.js', 'scripts/directives/appDirective.js']
+              })
+          }
+        }
+      })
+
+      .state('reset', {
+        controller: 'ResetCtrl',
+        templateUrl: 'views/userManagement/resetPassword.html',
+        url: '/reset',
+        resolve: {
+          loadMyFiles: function ($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'smartedApp',
+              files: ['scripts/directives/appDirective.js', 'scripts/controllers/userManagement/resetPasswordController.js']
+            })
+          }
+        }
+      })
+
+      /*---------------------------------------------------------------ADMIN------------------------------------------------------------------------*/
+
+      .state('dashboard.admin', {
+        templateUrl: 'views/dashboard/admin.html',
+        controller: 'AdminDashboardCtrl'
+      })
+
+      .state('dashboard.addProfessor', {
+        templateUrl: 'views/admin/addProfessor.html',
+        controller: 'AddProfessorCtrl'
+      })
+
+      .state('dashboard.professorDetails', {
+        templateUrl: 'views/admin/professorDetails.html',
+        controller: 'ProfessorDetailsCtrl'
       })
 
       .state('dashboard.courseGradeDetails', {
@@ -227,6 +194,13 @@
         templateUrl: 'views/admin/detailedQuizPerformanceAdmin.html'
       })
 
+      /*-----------------------------------------------------------PROFESSOR------------------------------------------------------------------------*/
+
+      .state('dashboard.professor', {
+        templateUrl: 'views/dashboard/professor.html',
+        controller: 'ProfessorDashboardCtrl'
+      })
+
       .state('dashboard.professorAverageQuiz', {
         templateUrl: 'views/professor/averageQuizScoreProfessor.html',
         url: '/professor/averageQuiz/:courseId',
@@ -239,181 +213,83 @@
         controller: 'QuizCtrl'
       })
 
-      .state('professor.performance', {
-        templateUrl: 'views/ui-elements/typography.html',
-        url: '/typography'
-      })
-      .state('professor.statistics', {
-        templateUrl: 'views/ui-elements/icons.html',
-        url: '/icons'
-      })
-      .state('dashboard.collaboration', {
-        templateUrl: 'views/messaging/messaging.html',
-        url: '/collaborate',
-        controller: 'MessagingCtrl',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/messaging/messageController.js'
-              ]
-            })
-          }
-        }
-      })
       .state('dashboard.courseCharts', {
         templateUrl: 'views/professor/courseDetails.html',
         url: '/course/:courseId/:term/:year',
-        controller: 'ChartCtrl',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/professor/courseDetailController.js'
-              ]
-            })
-          }
-        }
+        controller: 'ChartCtrl'
       })
+
+      .state('dashboard.showAllCourses', {
+        templateUrl: 'views/professor/showAllCourses.html',
+        controller: 'ShowCoursesCtrl',
+        url: '/professor/courses/:action'
+      })
+
+      /*-------------------------------------------------------------STUDENT------------------------------------------------------------------------*/
+
+      .state('dashboard.student', {
+        templateUrl: 'views/dashboard/student.html',
+        controller: 'StudentDashboardCtrl'
+      })
+
       .state('dashboard.studentRecommendations', {
         templateUrl: 'views/student/courseRecommendations.html',
         url: '/student/recommendations',
-        controller: 'StudentCtrl',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/student/studentController.js'
-              ]
-            }),
-              $ocLazyLoad.load(
-                {
-                  name: 'ngTable',
-                  files: ['bower_components/ng-table/dist/ng-table.min.js']
-                })
-          }
-        }
+        controller: 'StudentCtrl'
       })
+
       .state('dashboard.studentCoursePerformance', {
         templateUrl: 'views/student/studentCoursePerformance.html',
         url: '/studentCoursePerformance/:course',
-        controller: 'StudentCoursePerformanceMainCtrl',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/student/studentController.js',
-                'scripts/directives/charts/dashboardCharts.js'
-              ]
-            }),
-              $ocLazyLoad.load(
-                {
-                  name: 'ngTable',
-                  files: ['bower_components/ng-table/dist/ng-table.min.js']
-                })
-          }
-        }
+        controller: 'StudentCoursePerformanceMainCtrl'
       })
+
       .state('dashboard.assignments', {
         templateUrl: 'views/student/studentAssignmentPerformance.html',
         url: '/course/assignments',
         controller: 'StudentAssignmentPerformanceCtrl'
       })
+
       .state('dashboard.quizzes', {
         templateUrl: 'views/student/studentQuizPerformance.html',
         controller: 'StudentQuizPerformanceCtrl',
-        url: '/course/quizzes',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/student/quizController.js',
-                'scripts/directives/charts/dashboardCharts.js'
-              ]
-            }),
-              $ocLazyLoad.load(
-                {
-                  name: 'ngTable',
-                  files: ['bower_components/ng-table/dist/ng-table.min.js']
-                })
-          }
-        }
+        url: '/course/quizzes'
       })
+
       .state('dashboard.grades', {
         templateUrl: 'views/student/studentGradesPerformance.html',
         controller: 'StudentGradesPerformanceCtrl',
-        url: '/course/grades',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/student/gradesController.js',
-                'scripts/directives/charts/dashboardCharts.js'
-              ]
-            })
-          }
-        }
+        url: '/course/grades'
       })
+
       .state('dashboard.files', {
         templateUrl: 'views/files/courseFiles.html',
         controller: 'FilesCtrl',
-        url: '/course/files',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/files/filesController.js'
-              ]
-            })
-          }
-        }
+        url: '/course/files'
       })
+
       .state('dashboard.submissions', {
         templateUrl: 'views/student/studentSubmissionPerformance.html',
         controller: 'StudentSubmissionPerformanceCtrl',
-        url: '/course/submissions',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/student/submissionController.js',
-                'scripts/directives/charts/dashboardCharts.js'
-              ]
-            })
-          }
-        }
+        url: '/course/submissions'
       })
+
+      /*------------------------------------------------------------COMBINED------------------------------------------------------------------------*/
+
+      .state('dashboard.collaboration', {
+        templateUrl: 'views/messaging/messaging.html',
+        url: '/collaborate',
+        controller: 'MessagingCtrl'
+      })
+
       .state('dashboard.userProfile', {
         templateUrl: 'views/userManagement/userProfile.html',
         controller: 'UserProfileCtrl',
-        url: '/user/profile',
-        resolve: {
-          loadMyFile: function ($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name: 'smartedApp',
-              files: [
-                'scripts/controllers/userManagement/userProfileController.js',
-                'styles/profile.css'
-              ]
-            })
-          }
-        }
-      }).state('dashboard.showAllCourses', {
-      templateUrl: 'views/professor/showAllCourses.html',
-      controller: 'ShowCoursesCtrl',
-      url: '/professor/courses/:action'
-    });
+        url: '/user/profile'
+      });
   }]);
 
-  //  Keep User Logged in on different navigations.
+  /* ----------------------------------------------------Keep User Logged in on different navigations.-----------------------------------------------*/
   app.run(['$rootScope', '$location', '$cookieStore', '$interval', 'ngNotify', function run($rootScope, $location, $cookieStore, $interval, ngNotify) {
     $rootScope.globals = $cookieStore.get('globals') || {};
 
@@ -429,17 +305,15 @@
     $rootScope.$on('$routeChangeStart', function () {
       lastDigestRun = Date.now();
     });
-    /*
 
-     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-     //          Redirect to login page if not logged in and trying to access a restricted page
-     var restrictedPage = $.inArray($location.path(), ['/login', '/signUp']) === -1;
-     var loggedIn = $rootScope.globals.currentUser;
-     if (restrictedPage && !loggedIn) {
-     $location.path('/home');
-     }
-     });
-     */
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+      //          Redirect to login page if not logged in and trying to access a restricted page
+      var restrictedPage = $.inArray($location.path(), ['/login', '/signUp', '/reset']) === -1;
+      var loggedIn = $rootScope.globals.currentUser;
+      if (restrictedPage && !loggedIn) {
+        $location.path('/home');
+      }
+    });
 
     ngNotify.config({
       theme: 'pitchy',

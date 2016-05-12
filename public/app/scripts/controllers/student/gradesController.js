@@ -3,8 +3,8 @@
 var myApp = angular.module('smartedApp');
 
 // student Assignment controller
-myApp.controller('StudentGradesPerformanceCtrl', ['$scope', 'StudentService', 'AlertService', 'UtilityService', 'CourseService',
-  function ($scope, StudentService, AlertService, UtilityService, CourseService) {
+myApp.controller('StudentGradesPerformanceCtrl', ['$scope', 'StudentService', 'UtilityService', 'CourseService',
+  function ($scope, StudentService, UtilityService, CourseService) {
 
     var termMap = new Object();
     termMap['SP'] = 'Spring';
@@ -18,17 +18,16 @@ myApp.controller('StudentGradesPerformanceCtrl', ['$scope', 'StudentService', 'A
     $scope.currentCourse = mCourse;
 
     // parsing course name to extract term and year
-    if(mCourse.name.indexOf('CMPE') > -1) {
+    if (mCourse.name.indexOf('CMPE') > -1) {
       $scope.displayStats = true;
 
       var courseId = mCourse.name.split(" ")[1];
       $scope.courseCode = courseId;
 
       var termYear = mCourse.name.split(" ")[0];
-      var term = termMap[''+termYear.substring(0,2)];
-      var year = "20" + (termYear.substring(2,4) - 1);
+      var term = termMap['' + termYear.substring(0, 2)];
+      var year = "20" + (termYear.substring(2, 4) - 1);
 
-      console.log("-----------> " + courseId + " : " + termYear + " : " + term + " : "+ year) ;
       CourseService.getCourseDetails(courseId, term, year).success(function (result, status) {
         var course = result.courseData;
         $scope.currentCourseData = course;
@@ -53,7 +52,7 @@ myApp.controller('StudentGradesPerformanceCtrl', ['$scope', 'StudentService', 'A
         var colorIndex = (j == 1 ? 9 : j);
         if (j == 0) {
           data.push({
-            name: "# of Students having "+obj._id+" : "+obj.total,
+            name: "# of Students having " + obj._id + " : " + obj.total,
             y: obj.total,
             color: Highcharts.Color(colors[colorIndex]).brighten(brightness).get(),
             sliced: true,
@@ -61,7 +60,7 @@ myApp.controller('StudentGradesPerformanceCtrl', ['$scope', 'StudentService', 'A
           });
         } else {
           data.push({
-            name: "# of Students having "+obj._id+" : "+obj.total,
+            name: "# of Students having " + obj._id + " : " + obj.total,
             y: obj.total,
             color: Highcharts.Color(colors[colorIndex]).brighten(brightness).get()
           });
@@ -75,8 +74,6 @@ myApp.controller('StudentGradesPerformanceCtrl', ['$scope', 'StudentService', 'A
 
       UtilityService.draw3dPieChart(containerId, title, subTitle, seriesName, data);
     };
-
-
 
 
   }]);

@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-lg-12">
     <h3 class="page-header">Quizzes Overview</h3>
@@ -14,99 +13,98 @@
   </div>
 
 
+  <div id="quizWrapper" ng-show="quizList">
+    <div ng-if="quizList.length == 0">
+      <strong>
+        <i class="fa fa-times-circle-o" aria-hidden="true"></i> No Quizzes Available . .
+      </strong>
+    </div>
+    <div ng-if="quizList.length > 0" style="margin-top: 10px;" class="row">
+      <div ng-repeat="quiz in quizList">
+        <div class="panel-group" id="quiz-panel">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="javascript:;" data-parent="#quiz-panel" data-target="#quiz{{$index+1}}">
+                  <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{quiz.title}}
+                </a>
+              </h4>
+            </div>
 
-<div id="quizWrapper" ng-show="quizList">
-  <div ng-if="quizList.length == 0">
-    <strong>
-      <i class="fa fa-times-circle-o" aria-hidden="true"></i> No Quizzes Available . .
-    </strong>
-  </div>
-  <div ng-if="quizList.length > 0" style="margin-top: 10px;" class="row">
-    <div ng-repeat="quiz in quizList">
-      <div class="panel-group" id="quiz-panel">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" href="javascript:;" data-parent="#quiz-panel" data-target="#quiz{{$index+1}}">
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{quiz.title}}
-              </a>
-            </h4>
-          </div>
+            <div id="quiz{{$index+1}}" class="panel-collapse collapse">
 
-          <div id="quiz{{$index+1}}" class="panel-collapse collapse">
-
-            <div class="panel-body">
-              <div style="margin-top: 10px;" class="row">
-                <div class="col-md-8">
+              <div class="panel-body">
+                <div style="margin-top: 10px;" class="row">
+                  <div class="col-md-8">
 
                 <span style="font-size: 1.3em;">
                   <i class="fa fa-file-text-o" aria-hidden="true"></i>
                   <strong>Description</strong>
                 </span>
-                  <hr/>
-                  <p ng-show="quiz.description" ng-bind-html="quiz.description"></p>
-                  <p ng-hide="quiz.description" >
-                    Sorry. No details available.
-                  </p>
+                    <hr/>
+                    <p ng-show="quiz.description" ng-bind-html="quiz.description"></p>
+                    <p ng-hide="quiz.description">
+                      Sorry. No details available.
+                    </p>
 
+                  </div>
+                  <div class="col-md-4">
+                    <p ng-if="quiz.created_at">
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>
+                      <strong>Created at :</strong> {{quiz.created_at}}
+                    </p>
+                    <p ng-if="quiz.due_at">
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>
+                      <strong>Due at :</strong> {{quiz.due_at}}
+                    </p>
+                  </div>
                 </div>
-                <div class="col-md-4">
-                  <p ng-if="quiz.created_at">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <strong>Created at :</strong> {{quiz.created_at}}
-                  </p>
-                  <p ng-if="quiz.due_at" >
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <strong>Due at :</strong> {{quiz.due_at}}
-                  </p>
-                </div>
-              </div>
 
-              <div style="margin-top: 20px;" class="row">
-                <div class="col-md-8">
+                <div style="margin-top: 20px;" class="row">
+                  <div class="col-md-8">
                   <span style="font-size: 1.3em;">
                     <i class="fa fa-file-text-o" aria-hidden="true"></i>
                     <strong>Details</strong>
                   </span>
-                  <hr/>
-                  <p style="font-size: 1em;">
-                    <strong>Max Points: </strong><em>{{quiz.points_possible}}</em>
-                  </p>
-                  <p ng-if="quiz.question_count" style="font-size: 1em;">
-                    <strong>Number of Questions: </strong><em>{{quiz.question_count}}</em>
-                  </p>
-                  <p ng-if="quiz.allowed_attempts" style="font-size: 1em;">
-                    <strong>Number of Attempts: </strong><em>{{quiz.allowed_attempts}}</em>
-                  </p>
-                  <p ng-if="quiz.time_limit" style="font-size: 1em;">
-                    <strong>Time Limit: </strong><em>{{quiz.time_limit}} minutes</em>
-                  </p>
+                    <hr/>
+                    <p style="font-size: 1em;">
+                      <strong>Max Points: </strong><em>{{quiz.points_possible}}</em>
+                    </p>
+                    <p ng-if="quiz.question_count" style="font-size: 1em;">
+                      <strong>Number of Questions: </strong><em>{{quiz.question_count}}</em>
+                    </p>
+                    <p ng-if="quiz.allowed_attempts" style="font-size: 1em;">
+                      <strong>Number of Attempts: </strong><em>{{quiz.allowed_attempts}}</em>
+                    </p>
+                    <p ng-if="quiz.time_limit" style="font-size: 1em;">
+                      <strong>Time Limit: </strong><em>{{quiz.time_limit}} minutes</em>
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div style="margin-top: 20px;" class="row">
-                <div class="col-md-8">
+                <div style="margin-top: 20px;" class="row">
+                  <div class="col-md-8">
                   <span style="font-size: 1.3em;">
                     <i class="fa fa-file-text-o" aria-hidden="true"></i>
                     <strong>Submission</strong>
                   </span>
-                  <hr/>
-                  <p style="font-size: 1em;">
-                    <strong>Submit your quiz </strong>
-                    <a href="{{quiz.html_url}}"> here</a>
-                  </p>
+                    <hr/>
+                    <p style="font-size: 1em;">
+                      <strong>Submit your quiz </strong>
+                      <a href="{{quiz.html_url}}"> here</a>
+                    </p>
+                  </div>
                 </div>
+
               </div>
 
+              <div class="panel-footer"></div>
             </div>
-
-            <div class="panel-footer"></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 
 </div>
