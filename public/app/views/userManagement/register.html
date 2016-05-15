@@ -68,11 +68,11 @@
 
             <div class="form-group"
                  ng-class="{ 'has-error': registerForm.password.$dirty && registerForm.password.$error.required}">
-              <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="user.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />-->
-              <input type="password" name="password" id="password" class="form-control" placeholder="Password"
-                     ng-model="user.password" required/>
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="user.password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/" required />
+              <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password"-->
+                     <!--ng-model="user.password" required/>-->
               <span ng-show="registerForm.password.$dirty && registerForm.password.$error.required" class="help-block">Password is required input.</span>
-              <!--<span ng-show="registerForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>-->
+              <span ng-show="registerForm.password.$error.pattern">Password must be minimum 8 characters, having a number, an upper case and a lower case letter. </span>
             </div>
 
             <div class="form-group"
@@ -80,14 +80,14 @@
               <input type="password" name="rePassword" id="rePassword" class="form-control"
                      placeholder="Retype Password"
                      ng-model="user.rePassword" required password-verify="user.password"/>
-              <!--<span ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>-->
+              <span ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.required" class="help-block">Confirm password is required input.</span>
             <span class="help-block"
                   ng-show="registerForm.rePassword.$dirty && registerForm.rePassword.$error.passwordVerify">Retype Password : password did not match.</span>
             </div>
 
             <div class="form-actions">
               <a ui-sref="login" class="btn btn-link">Go to Login</a>
-              <button type="submit" class="btn btn-info btn-block">Register</button>
+              <button type="submit" ng-disabled="registerForm.$invalid" class="btn btn-info btn-block">Register</button>
             </div>
 
           </form>
